@@ -1,18 +1,1 @@
-[
-    {
-        "id": "agata-mule",
-        "name": "Agata Mule",
-        "folder": "agata-mule",
-        "base": "agatamulebase.png",
-        "masks": [
-            {
-                "file": "agatamuletomaia.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "agatamuleorlaturabordonappine.png",
-                "label": "Orlatura - Bordo Sottopiede - Nappine"
-            }
-        ]
-    }
-]
+[]
