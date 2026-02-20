@@ -18,6 +18,22 @@
                         "label": "Tomaia"
                     }
                 ]
+            },
+            {
+                "id": "elisa-ballerina",
+                "name": "Elisa Ballerina",
+                "folder": "flat",
+                "base": "elisaballerinabase.png",
+                "masks": [
+                    {
+                        "file": "elisaballerinatomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "elisaballerinalistini.png",
+                        "label": "Listini"
+                    }
+                ]
             }
         ]
     },
