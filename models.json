@@ -82,6 +82,22 @@
                         "label": "Tomaia - Listini"
                     }
                 ]
+            },
+            {
+                "id": "vittoria-ballerina",
+                "name": "Vittoria Ballerina",
+                "folder": "flat",
+                "base": "vittoriaballerinabase.png",
+                "masks": [
+                    {
+                        "file": "vittoriaballerinalaterali.png",
+                        "label": "Laterali"
+                    },
+                    {
+                        "file": "vittoriaballerinapunta+list+sper.png",
+                        "label": "Punta - Listino - Sperone"
+                    }
+                ]
             }
         ]
     },
