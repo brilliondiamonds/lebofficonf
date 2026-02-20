@@ -34,6 +34,22 @@
                         "label": "Listini"
                     }
                 ]
+            },
+            {
+                "id": "emma-ballerina",
+                "name": "Emma Ballerina",
+                "folder": "flat",
+                "base": "emmapuntabase-.png",
+                "masks": [
+                    {
+                        "file": "emmapuntatomaia-.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "emmapuntapuntinalistinobottone-.png",
+                        "label": "Punta - Listino - Bottone"
+                    }
+                ]
             }
         ]
     },
