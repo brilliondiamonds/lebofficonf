@@ -8,7 +8,16 @@
                 "name": "Frida",
                 "folder": "flat",
                 "base": "fridabase.png",
-                "masks": []
+                "masks": [
+                    {
+                        "file": "fridapuntaorlaturaebottoni.png",
+                        "label": "Orlatura - Bottoni"
+                    },
+                    {
+                        "file": "fridapuntatomaianobottoni.png",
+                        "label": "Tomaia"
+                    }
+                ]
             }
         ]
     },
