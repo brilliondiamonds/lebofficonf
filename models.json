@@ -110,47 +110,5 @@
         "id": "vittoria-ballerina",
         "name": "Vittoria Ballerina",
         "models": []
-    },
-    {
-        "id": "mule",
-        "name": "MULE",
-        "models": [
-            {
-                "id": "agata-mule",
-                "name": "Agata Mule",
-                "folder": "Agata Mule",
-                "base": "agatamulebase.png",
-                "masks": [
-                    {
-                        "file": "agatamuleorlaturabordonappine.png",
-                        "label": "Orlatura - Bordo Sottopiede - Nappine"
-                    },
-                    {
-                        "file": "agatamuletomaia.png",
-                        "label": "Tomaia"
-                    }
-                ]
-            },
-            {
-                "id": "ginevra-mule",
-                "name": "Ginevra Mule",
-                "folder": "Ginevra Mule",
-                "base": "ginevramulebase.png",
-                "masks": [
-                    {
-                        "file": "ginevramulefibbia.png",
-                        "label": "Fibbia"
-                    },
-                    {
-                        "file": "ginevramulelist+bordo.png",
-                        "label": "Fascia - Bordo Sottopiede"
-                    },
-                    {
-                        "file": "ginevramulemasch.png",
-                        "label": "Tomaia"
-                    }
-                ]
-            }
-        ]
     }
 ]
