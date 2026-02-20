@@ -118,6 +118,26 @@
                         "label": "Riporti - Listini - Bordo Sottopiede"
                     }
                 ]
+            },
+            {
+                "id": "fiammetta",
+                "name": "Fiammetta",
+                "folder": "flat",
+                "base": "fiammettabase.png",
+                "masks": [
+                    {
+                        "file": "fiammettasperone.png",
+                        "label": "Retro"
+                    },
+                    {
+                        "file": "fiammettamascherina.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "fiammettalistini+bordo.png",
+                        "label": "Listini - Bordo Sottopiede"
+                    }
+                ]
             }
         ]
     },
