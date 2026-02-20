@@ -25,16 +25,28 @@
             const img = new Image();
             img.crossOrigin = 'anonymous';
             img.onload = () => { imageCache[src] = img; resolve(img); };
-            img.onerror = () => reject(new Error('Failed: ' + src));
+            img.onerror = () => {
+                if (!src.startsWith('http') && !src.startsWith('data:')) {
+                    const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + src;
+                    const fbImg = new Image();
+                    fbImg.crossOrigin = 'anonymous';
+                    fbImg.onload = () => { imageCache[src] = fbImg; resolve(fbImg); };
+                    fbImg.onerror = () => reject(new Error('Failed: ' + src));
+                    fbImg.src = fallbackSrc;
+                } else {
+                    reject(new Error('Failed: ' + src));
+                }
+            };
             img.src = src;
         });
     }
 
     async function init() {
         try {
+            const timestamp = new Date().getTime();
             const [mRes, matRes] = await Promise.all([
-                fetch('models.json').then(r => r.json()),
-                fetch('materials.json').then(r => r.json())
+                fetch('models.json?v=' + timestamp).then(r => r.json()),
+                fetch('materials.json?v=' + timestamp).then(r => r.json())
             ]);
             modelsData = mRes;
 
@@ -49,19 +61,6 @@
                 }
             } else {
                 materialsData = matRes;
-            }
-
-            // Check for admin-synced models
-            const adminModels = localStorage.getItem('leboffi_models_data');
-            if (adminModels) {
-                try {
-                    modelsData = JSON.parse(adminModels);
-                    console.log('[App] Using admin-synced models from localStorage');
-                } catch (e) {
-                    modelsData = mRes;
-                }
-            } else {
-                modelsData = mRes;
             }
         } catch (e) {
             console.error('Load error:', e);
@@ -115,20 +114,47 @@
     function renderModelGrid() {
         const grid = document.getElementById('modelGrid');
         grid.innerHTML = '';
-        modelsData.forEach(category => {
-            if (category.models) {
-                category.models.forEach(model => {
-                    const card = document.createElement('button');
-                    card.className = 'model-card';
-                    card.dataset.id = model.id;
-                    const src = encodeURI('images/modelli/' + model.folder + '/' + model.base);
-                    card.innerHTML =
-                        '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy"/></div>' +
-                        '<span class="model-name">' + model.name + '</span>';
-                    card.addEventListener('click', () => selectModel(model));
-                    grid.appendChild(card);
-                });
-            }
+        modelsData.forEach(cat => {
+            if (!cat.models || cat.models.length === 0) return;
+
+            const div = document.createElement('div');
+            div.className = 'mat-category open';
+
+            const header = document.createElement('button');
+            header.className = 'mat-cat-header';
+            header.innerHTML =
+                '<span><span class="mat-cat-name">' + cat.name + '</span>' +
+                '<span class="mat-cat-count">' + cat.models.length + '</span></span>' +
+                '<svg class="mat-cat-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
+
+            header.addEventListener('click', () => {
+                div.classList.toggle('open');
+            });
+
+            const content = document.createElement('div');
+            content.className = 'mat-cat-content';
+            const catGrid = document.createElement('div');
+            catGrid.className = 'model-grid-inner'; // specific wrapper if needed, or just model-grid style
+            catGrid.style.display = 'grid';
+            catGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(110px, 1fr))';
+            catGrid.style.gap = '12px';
+
+            cat.models.forEach(model => {
+                const card = document.createElement('button');
+                card.className = 'model-card';
+                card.dataset.id = model.id;
+                const src = encodeURI('images/modelli/' + model.folder + '/' + model.base);
+                card.innerHTML =
+                    '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy"/></div>' +
+                    '<span class="model-name">' + model.name + '</span>';
+                card.addEventListener('click', () => selectModel(model));
+                catGrid.appendChild(card);
+            });
+
+            content.appendChild(catGrid);
+            div.appendChild(header);
+            div.appendChild(content);
+            grid.appendChild(div);
         });
     }
 
@@ -313,12 +339,13 @@
                 const card = document.createElement('button');
                 card.className = 'swatch-card';
                 const imgSrc = encodeURI('images/materiali/' + cat.folder + '/' + sw.file);
+                const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + imgSrc;
                 const curMat = maskMaterials[activeMaskIndex];
                 if (curMat && curMat.categoryId === cat.id && curMat.file === sw.file) {
                     card.classList.add('selected');
                 }
                 card.innerHTML =
-                    '<div class="swatch-img"><img src="' + imgSrc + '" alt="' + sw.label + '" loading="lazy"/></div>' +
+                    '<div class="swatch-img"><img src="' + imgSrc + '" alt="' + sw.label + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
                     '<span class="swatch-name">' + sw.label + '</span>';
                 card.addEventListener('click', () => assignMaterial(activeMaskIndex, cat.id, sw.file, sw.label, imgSrc));
                 grid.appendChild(card);

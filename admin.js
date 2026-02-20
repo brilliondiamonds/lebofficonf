@@ -10,29 +10,33 @@
     const REPO_OWNER = 'brilliondiamonds';
     const REPO_NAME = 'lebofficonf';
     const MATERIALS_PATH = 'materials.json';
-    const IMAGES_BASE = 'images/materiali';
     const MODELS_PATH = 'models.json';
+    const IMAGES_BASE = 'images/materiali';
     const MODELS_IMAGES_BASE = 'images/modelli';
     const API_BASE = 'https://api.github.com';
 
     // ─── STATE ───────────────────────
     let token = '';
+    
     let materialsData = [];
     let originalJSON = '';
     let fileSha = '';
-
+    
     let modelsData = [];
     let originalModelsJSON = '';
     let modelsFileSha = '';
 
-    let activeTab = 'materials';
-
-    let pendingImages = []; // For storing extra pending images (base or masks) safely
     let pendingSwatchImage = null; // { base64, fileName }
-
+    let pendingBaseImage = null;   // { base64, fileName }
+    let pendingMaskImage = null;   // { base64, fileName }
+    
     let editingCategoryIndex = -1;
-    let editingModelIndex = -1; // Track model index
-    let deletingTarget = null; // { type: 'category'|'swatch'|'modelCat'|'model'|'mask', catIdx, swIdx?, modIdx?, maskIdx? }
+    let editingModelCategoryIndex = -1;
+    let editingModelIndex = -1;
+    let editingModelCatParentIndex = -1;
+    let deletingTarget = null; // { type: 'category'|'swatch'|'model-cat'|'model'|'mask', catIdx, swIdx?, modelCatIdx?, modelIdx?, maskIdx? }
+    
+    let currentTab = 'materiali'; // 'materiali' | 'modelli'
 
     // ─── DOM REFS ────────────────────
     const loginScreen = document.getElementById('loginScreen');
@@ -42,10 +46,14 @@
     const categoriesList = document.getElementById('categoriesList');
     const modelsList = document.getElementById('modelsList');
     const statusBadge = document.getElementById('statusBadge');
-    const itemCount = document.getElementById('itemCount');
-    const repoInfo = document.getElementById('repoInfo');
+    const catCount = document.getElementById('catCount');
+    const modelCount = document.getElementById('modelCount');
     const searchInput = document.getElementById('searchInput');
+    const searchModelInput = document.getElementById('searchModelInput');
     const toast = document.getElementById('toast');
+
+    const toolbarMateriali = document.getElementById('toolbarMateriali');
+    const toolbarModelli = document.getElementById('toolbarModelli');
 
     // ─── INIT ────────────────────────
     function init() {
@@ -73,47 +81,72 @@
             loginError.textContent = '';
         });
 
-        // Add category / model category
-        document.getElementById('btnAddCategory').addEventListener('click', () => {
-            editingCategoryIndex = -1;
-            document.getElementById('catNameInput').value = '';
-            // We no longer use catFolderInput
-            if (activeTab === 'materials') {
-                document.getElementById('modalCategoryTitle').textContent = 'Nuova Categoria';
-            } else {
-                document.getElementById('modalCategoryTitle').textContent = 'Nuova Categoria Modelli';
-            }
-            openModal('modalCategory');
-        });
-
-        // Tabs
-        document.querySelectorAll('.admin-tab').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.admin-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
                 e.target.classList.add('active');
-                activeTab = e.target.dataset.tab;
+                
+                const targetId = e.target.dataset.tab;
+                currentTab = targetId;
 
-                if (activeTab === 'materials') {
+                if (targetId === 'materiali') {
+                    toolbarMateriali.classList.remove('hidden');
+                    toolbarMateriali.classList.add('active');
+                    toolbarModelli.classList.add('hidden');
+                    toolbarModelli.classList.remove('active');
+                    
                     categoriesList.classList.remove('hidden');
+                    categoriesList.classList.add('active');
                     modelsList.classList.add('hidden');
-                    document.getElementById('btnAddCategoryLabel').textContent = 'Nuova Categoria';
-                    searchInput.placeholder = 'Cerca materiale…';
-                    renderCategories();
-                } else {
-                    categoriesList.classList.add('hidden');
+                    modelsList.classList.remove('active');
+                } else if (targetId === 'modelli') {
+                    toolbarModelli.classList.remove('hidden');
+                    toolbarModelli.classList.add('active');
+                    toolbarMateriali.classList.add('hidden');
+                    toolbarMateriali.classList.remove('active');
+                    
                     modelsList.classList.remove('hidden');
-                    document.getElementById('btnAddCategoryLabel').textContent = 'Nuova Categoria Modelli';
-                    searchInput.placeholder = 'Cerca modello…';
-                    renderModels();
+                    modelsList.classList.add('active');
+                    categoriesList.classList.add('hidden');
+                    categoriesList.classList.remove('active');
                 }
             });
+        });
+
+        // Add category
+        document.getElementById('btnAddCategory').addEventListener('click', () => {
+            editingCategoryIndex = -1;
+            document.getElementById('modalCategoryTitle').textContent = 'Nuova Categoria';
+            document.getElementById('catNameInput').value = '';
+            document.getElementById('catFolderInput').value = '';
+            openModal('modalCategory');
         });
 
         // Confirm category
         document.getElementById('btnConfirmCategory').addEventListener('click', confirmCategory);
 
-        // Confirm swatch / mask / model
+        // Confirm swatch
         document.getElementById('btnConfirmSwatch').addEventListener('click', confirmSwatch);
+
+        // Add model category
+        document.getElementById('btnAddModelCategory').addEventListener('click', () => {
+            editingModelCategoryIndex = -1;
+            document.getElementById('modalModelCategoryTitle').textContent = 'Nuova Categoria Modelli';
+            document.getElementById('modelCatNameInput').value = '';
+            openModal('modalModelCategory');
+        });
+
+        // Confirm model category
+        document.getElementById('btnConfirmModelCategory').addEventListener('click', confirmModelCategory);
+
+        // Confirm model
+        document.getElementById('btnConfirmModel').addEventListener('click', confirmModel);
+
+        // Confirm mask
+        document.getElementById('btnConfirmMask').addEventListener('click', confirmMask);
+
+        // Save & Publish Models
+        document.getElementById('btnSavePublishModelli').addEventListener('click', saveAndPublishModels);
 
         // Confirm delete
         document.getElementById('btnConfirmDelete').addEventListener('click', confirmDelete);
@@ -122,10 +155,7 @@
         document.getElementById('btnSavePublish').addEventListener('click', saveAndPublish);
 
         // Search
-        searchInput.addEventListener('input', () => {
-            if (activeTab === 'materials') renderCategories();
-            else renderModels();
-        });
+        searchInput.addEventListener('input', renderCategories);
 
         // Modal close buttons
         document.querySelectorAll('[data-close]').forEach(btn => {
@@ -135,7 +165,7 @@
         // Upload area interactions
         setupUploadArea();
 
-        // Delegate action buttons
+        // Delegate action buttons (once, on the container)
         categoriesList.addEventListener('click', handleAction);
         modelsList.addEventListener('click', handleAction);
 
@@ -164,7 +194,6 @@
             if (repoRes.ok) {
                 const repoData = await repoRes.json();
                 hasPush = repoData.permissions && repoData.permissions.push;
-                repoInfo.textContent = `${REPO_OWNER}/${REPO_NAME} · ${user.login}`;
             }
 
             loginScreen.classList.add('hidden');
@@ -200,6 +229,7 @@
                 <div class="spinner"></div>
                 <span>Caricamento materiali…</span>
             </div>`;
+            
         modelsList.innerHTML = `
             <div class="loading-spinner">
                 <div class="spinner"></div>
@@ -207,35 +237,32 @@
             </div>`;
 
         try {
-            // Load materials
-            const resMat = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${MATERIALS_PATH}`);
-            if (!resMat.ok) throw new Error('Impossibile caricare materials.json');
-            const dataMat = await resMat.json();
-            fileSha = dataMat.sha;
-            materialsData = JSON.parse(atob(dataMat.content.replace(/\n/g, '')));
+            const timestamp = new Date().getTime();
+            
+            // Fetch materials
+            const matRes = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${MATERIALS_PATH}?v=${timestamp}`);
+            if (!matRes.ok) throw new Error('Impossibile caricare materials.json');
+            const matData = await matRes.json();
+            fileSha = matData.sha;
+            const matContent = atob(matData.content.replace(/\n/g, ''));
+            materialsData = JSON.parse(matContent);
             originalJSON = JSON.stringify(materialsData);
-
-            // Load models
-            let dataModText = '';
-            try {
-                const resMod = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${MODELS_PATH}`);
-                if (resMod.ok) {
-                    const dataMod = await resMod.json();
-                    modelsFileSha = dataMod.sha;
-                    dataModText = atob(dataMod.content.replace(/\n/g, ''));
-                }
-            } catch (err) { }
-
-            if (dataModText) {
-                modelsData = JSON.parse(dataModText);
+            
+            // Fetch models
+            const modRes = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${MODELS_PATH}?v=${timestamp}`);
+            if (modRes.ok) {
+                const modData = await modRes.json();
+                modelsFileSha = modData.sha;
+                const modContent = atob(modData.content.replace(/\n/g, ''));
+                modelsData = JSON.parse(modContent);
+                originalModelsJSON = JSON.stringify(modelsData);
             } else {
                 modelsData = [];
+                originalModelsJSON = '[]';
             }
-            originalModelsJSON = JSON.stringify(modelsData);
 
-            if (activeTab === 'materials') renderCategories();
-            else renderModels();
-
+            renderCategories();
+            renderModels();
             updateStatus();
         } catch (err) {
             categoriesList.innerHTML = `<p style="text-align:center;color:var(--danger);padding:40px;">❌ ${err.message}</p>`;
@@ -305,8 +332,8 @@
             );
         }
 
-        const total = materialsData.reduce((sum, c) => sum + (c.swatches ? c.swatches.length : 0), 0);
-        itemCount.textContent = `${materialsData.length} categorie · ${total} swatch`;
+        const total = materialsData.reduce((sum, c) => sum + c.swatches.length, 0);
+        catCount.textContent = `${materialsData.length} categorie · ${total} swatch`;
 
         if (filtered.length === 0) {
             categoriesList.innerHTML = `<p style="text-align:center;color:var(--text-muted);padding:40px;">Nessun risultato</p>`;
@@ -373,12 +400,17 @@
             grid.className = 'admin-swatch-grid';
 
             cat.swatches.forEach((sw, swIdx) => {
-                const imgSrc = encodeURI(`${IMAGES_BASE}/${cat.folder}/${sw.file}`);
+                let imgSrc = encodeURI(`${IMAGES_BASE}/${cat.folder}/${sw.file}`);
+                if (sw._pendingUpload) {
+                    imgSrc = 'data:image/png;base64,' + sw._pendingUpload.base64;
+                }
+                const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(IMAGES_BASE + '/' + cat.folder + '/' + sw.file)}`;
+                
                 const swCard = document.createElement('div');
                 swCard.className = 'admin-swatch-card';
                 swCard.innerHTML = `
                     <img class="admin-swatch-img" src="${imgSrc}" alt="${esc(sw.label)}" loading="lazy" 
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%231a1a1f%22 width=%22100%22 height=%22100%22/><text fill=%22%235a5a6a%22 x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2212%22>No img</text></svg>'"/>
+                         onerror="if(!this.dataset.fb){ this.dataset.fb='1'; this.src='${fallbackSrc}'; } else { this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%231a1a1f%22 width=%22100%22 height=%22100%22/><text fill=%22%235a5a6a%22 x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2212%22>No img</text></svg>'; }"/>
                     <div class="admin-swatch-info">
                         <span class="admin-swatch-name" title="${esc(sw.label)}">${esc(sw.label)}</span>
                         <button class="admin-swatch-delete" data-action="delete-swatch" data-cat-idx="${realIdx}" data-sw-idx="${swIdx}" title="Rimuovi">
@@ -399,21 +431,22 @@
         });
     }
 
+    // ─── ACTION HANDLER ──────────────
     function renderModels() {
-        const query = searchInput.value.trim().toLowerCase();
+        const query = searchModelInput.value.trim().toLowerCase();
         modelsList.innerHTML = '';
 
         let filtered = modelsData;
         if (query) {
             filtered = modelsData.filter(cat =>
                 cat.name.toLowerCase().includes(query) ||
-                (cat.models && cat.models.some(m => m.name.toLowerCase().includes(query) || (m.masks && m.masks.some(mk => mk.label.toLowerCase().includes(query)))))
+                (cat.models && cat.models.some(m => m.name.toLowerCase().includes(query) || m.masks.some(mk => mk.label.toLowerCase().includes(query))))
             );
         }
 
-        let totalModels = 0;
-        modelsData.forEach(c => totalModels += (c.models ? c.models.length : 0));
-        itemCount.textContent = `${modelsData.length} categorie · ${totalModels} modelli`;
+        const totalModels = modelsData.reduce((sum, c) => sum + (c.models ? c.models.length : 0), 0);
+        const totalMasks = modelsData.reduce((sum, c) => sum + (c.models ? c.models.reduce((s2, m) => s2 + m.masks.length, 0) : 0), 0);
+        modelCount.textContent = `${modelsData.length} categorie · ${totalModels} modelli · ${totalMasks} maschere`;
 
         if (filtered.length === 0) {
             modelsList.innerHTML = `<p style="text-align:center;color:var(--text-muted);padding:40px;">Nessun risultato</p>`;
@@ -421,13 +454,12 @@
         }
 
         filtered.forEach((cat, filteredIdx) => {
-            const realIdx = modelsData.indexOf(cat);
+            const realCatIdx = modelsData.indexOf(cat);
             const card = document.createElement('div');
             card.className = 'category-card';
-            card.dataset.idx = realIdx;
+            card.dataset.modelCatIdx = realCatIdx;
 
-            const modelsCount = cat.models ? cat.models.length : 0;
-
+            // Header for Model Category
             const header = document.createElement('div');
             header.className = 'cat-header';
             header.innerHTML = `
@@ -436,16 +468,16 @@
                         <polyline points="6 9 12 15 18 9"/>
                     </svg>
                     <span class="cat-name">${esc(cat.name)}</span>
-                    <span class="cat-count">${modelsCount}</span>
+                    <span class="cat-count">${cat.models ? cat.models.length : 0}</span>
                 </div>
                 <div class="cat-header-right">
-                    <button class="btn-icon-action" data-action="edit-model-cat" data-idx="${realIdx}" title="Modifica Categoria">
+                    <button class="btn-icon-action" data-action="edit-model-cat" data-idx="${realCatIdx}" title="Modifica Categoria">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                             <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                         </svg>
                     </button>
-                    <button class="btn-icon-action danger" data-action="delete-model-cat" data-idx="${realIdx}" title="Elimina Categoria">
+                    <button class="btn-icon-action danger" data-action="delete-model-cat" data-idx="${realCatIdx}" title="Elimina Categoria">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="3 6 5 6 21 6"/>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -464,72 +496,109 @@
             const actionsBar = document.createElement('div');
             actionsBar.className = 'cat-actions-bar';
             actionsBar.innerHTML = `
-                <span>${modelsCount} modelli nella categoria</span>
-                <button class="btn-icon-action" data-action="add-model" data-idx="${realIdx}">
+                <span>${cat.models ? cat.models.length : 0} modelli nella categoria</span>
+                <button class="btn-icon-action" data-action="add-model" data-cat-idx="${realCatIdx}">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="12" y1="5" x2="12" y2="19"/>
                         <line x1="5" y1="12" x2="19" y2="12"/>
                     </svg>
                     Aggiungi Modello
                 </button>`;
-
-            const grid = document.createElement('div');
-            grid.className = 'admin-swatch-grid';
+            
+            const modelsContainer = document.createElement('div');
+            modelsContainer.style.display = 'flex';
+            modelsContainer.style.flexDirection = 'column';
+            modelsContainer.style.gap = '16px';
+            modelsContainer.style.padding = '16px 0';
 
             if (cat.models) {
-                cat.models.forEach((mod, modIdx) => {
-                    const imgSrc = mod._pendingBaseUpload ? mod._pendingBaseUpload.base64Full : encodeURI(`${MODELS_IMAGES_BASE}/${mod.folder}/${mod.base}`);
+                cat.models.forEach((model, modIdx) => {
                     const mCard = document.createElement('div');
-                    mCard.className = 'admin-swatch-card';
-                    mCard.style.gridColumn = 'span 2'; // make model cards wider
+                    mCard.style.border = '1px solid var(--border)';
+                    mCard.style.borderRadius = '8px';
+                    mCard.style.background = 'var(--surface-dark)';
 
-                    let masksHtml = '';
-                    if (mod.masks) {
-                        mod.masks.forEach((mk, mkIdx) => {
-                            const maskSrc = mk._pendingUpload ? mk._pendingUpload.base64Full : encodeURI(`${MODELS_IMAGES_BASE}/${mod.folder}/${mk.file}`);
-                            masksHtml += `
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px; padding:6px; background:rgba(255,255,255,0.05); border-radius:4px; border:1px solid var(--border);">
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <img src="${maskSrc}" style="width:24px; height:24px; object-fit:contain; background:#111; border-radius:2px;" />
-                                    <span title="${esc(mk.label)}" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:120px; font-size:12px;">${esc(mk.label)}</span>
-                                </div>
-                                <button data-action="delete-mask" data-cat-idx="${realIdx}" data-mod-idx="${modIdx}" data-mask-idx="${mkIdx}" style="background:none; border:none; color:var(--danger); cursor:pointer; padding:2px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-                            </div>`;
-                        });
+                    let baseImgSrc = encodeURI(`${MODELS_IMAGES_BASE}/${model.folder}/${model.base}`);
+                    if (model._pendingBaseUpload) {
+                        baseImgSrc = 'data:image/png;base64,' + model._pendingBaseUpload.base64;
+                    }
+                    const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + model.base)}`;
+                    
+                    const mHeader = document.createElement('div');
+                    mHeader.className = 'cat-header';
+                    mHeader.style.padding = '12px 16px';
+                    mHeader.style.background = 'transparent';
+                    mHeader.innerHTML = `
+                        <div class="cat-header-left">
+                            <img src="${baseImgSrc}" alt="${esc(model.name)}" style="width:30px;height:30px;object-fit:contain;background:#fff;border-radius:4px;" 
+                                 onerror="if(!this.dataset.fb){ this.dataset.fb='1'; this.src='${fallbackSrc}'; } else { this.style.display='none'; }"/>
+                            <span class="cat-name">${esc(model.name)}</span>
+                            <span class="cat-count">${model.masks.length} maschere</span>
+                            <span class="cat-folder">${esc(model.folder)}</span>
+                        </div>
+                        <div class="cat-header-right">
+                            <button class="btn-icon-action" data-action="add-mask" data-cat-idx="${realCatIdx}" data-model-idx="${modIdx}" title="Aggiungi Maschera">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon-action" data-action="edit-model" data-cat-idx="${realCatIdx}" data-model-idx="${modIdx}" title="Modifica Modello">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                    <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon-action danger" data-action="delete-model" data-cat-idx="${realCatIdx}" data-model-idx="${modIdx}" title="Elimina Modello">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"/>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </div>`;
+                    
+                    const mGrid = document.createElement('div');
+                    mGrid.className = 'admin-swatch-grid';
+                    mGrid.style.padding = '0 16px 16px 16px';
+                    mGrid.style.borderTop = '1px solid var(--border)';
+                    mGrid.style.marginTop = '12px';
+
+                    if (model.masks.length === 0) {
+                        mGrid.style.display = 'none';
                     }
 
-                    mCard.innerHTML = `
-                        <img class="admin-swatch-img" src="${imgSrc}" alt="${esc(mod.name)}" loading="lazy" 
-                             style="max-height:160px; object-fit:contain; background:#111; padding:8px;"
-                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%231a1a1f%22 width=%22100%22 height=%22100%22/><text fill=%22%235a5a6a%22 x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2212%22>No img</text></svg>'"/>
-                        <div class="admin-swatch-info" style="flex-direction:column; align-items:stretch;">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                                <div style="display:flex; flex-direction:column;">
-                                    <span class="admin-swatch-name" style="font-size:14px;" title="${esc(mod.name)}"><b>${esc(mod.name)}</b></span>
-                                    <span style="font-size:10px; color:var(--text-dim); font-family:monospace;">${esc(mod.folder)}</span>
-                                </div>
-                                <button class="admin-swatch-delete" data-action="delete-model" data-cat-idx="${realIdx}" data-mod-idx="${modIdx}" title="Rimuovi Modello">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    model.masks.forEach((mask, maskIdx) => {
+                        let maskImgSrc = encodeURI(`${MODELS_IMAGES_BASE}/${model.folder}/${mask.file}`);
+                        if (mask._pendingUpload) {
+                            maskImgSrc = 'data:image/png;base64,' + mask._pendingUpload.base64;
+                        }
+                        const maskFbSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + mask.file)}`;
+                        
+                        const maskCard = document.createElement('div');
+                        maskCard.className = 'admin-swatch-card';
+                        maskCard.innerHTML = `
+                            <img class="admin-swatch-img" src="${maskImgSrc}" alt="${esc(mask.label)}" loading="lazy" style="background:#fff;"
+                                 onerror="if(!this.dataset.fb){ this.dataset.fb='1'; this.src='${maskFbSrc}'; } else { this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%231a1a1f%22 width=%22100%22 height=%22100%22/><text fill=%22%235a5a6a%22 x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2212%22>No img</text></svg>'; }"/>
+                            <div class="admin-swatch-info">
+                                <span class="admin-swatch-name" title="${esc(mask.label)}">${esc(mask.label)}</span>
+                                <button class="admin-swatch-delete" data-action="delete-mask" data-cat-idx="${realCatIdx}" data-model-idx="${modIdx}" data-mask-idx="${maskIdx}" title="Rimuovi">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <line x1="18" y1="6" x2="6" y2="18"/>
                                         <line x1="6" y1="6" x2="18" y2="18"/>
                                     </svg>
                                 </button>
-                            </div>
-                            <div style="font-size:11px; color:var(--text-muted);">
-                                <div style="font-weight:600; text-transform:uppercase; font-size:10px; margin-bottom:4px; letter-spacing:0.5px;">Maschere associate</div>
-                                ${masksHtml || '<div style="padding:6px; font-style:italic; opacity:0.6;">Nessuna maschera</div>'}
-                                <button class="btn-icon-action" style="width:100%; margin-top:8px; justify-content:center; padding:6px;" data-action="add-mask" data-cat-idx="${realIdx}" data-mod-idx="${modIdx}">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                                    Aggiungi Maschera
-                                </button>
-                            </div>
-                        </div>`;
-                    grid.appendChild(mCard);
+                            </div>`;
+                        mGrid.appendChild(maskCard);
+                    });
+
+                    mCard.appendChild(mHeader);
+                    if (model.masks.length > 0) mCard.appendChild(mGrid);
+                    modelsContainer.appendChild(mCard);
                 });
             }
 
             body.appendChild(actionsBar);
-            body.appendChild(grid);
+            body.appendChild(modelsContainer);
             card.appendChild(header);
             card.appendChild(body);
             modelsList.appendChild(card);
@@ -550,167 +619,327 @@
                 document.getElementById('modalCategoryTitle').textContent = 'Modifica Categoria';
                 document.getElementById('catNameInput').value = materialsData[idx].name;
                 document.getElementById('catFolderInput').value = materialsData[idx].folder;
-                document.getElementById('catFolderGroup').classList.remove('hidden');
-                openModal('modalCategory');
-                break;
-            case 'edit-model-cat':
-                editingCategoryIndex = idx;
-                document.getElementById('modalCategoryTitle').textContent = 'Modifica Categoria Modelli';
-                document.getElementById('catNameInput').value = modelsData[idx].name;
-                document.getElementById('catFolderGroup').classList.add('hidden');
                 openModal('modalCategory');
                 break;
 
             case 'delete-cat':
                 deletingTarget = { type: 'category', catIdx: idx };
                 document.getElementById('deleteMessage').textContent =
-                    `Sei sicuro di voler eliminare la categoria "${materialsData[idx].name}" e tutti i suoi swatch?`;
-                openModal('modalDelete');
-                break;
-            case 'delete-model-cat':
-                deletingTarget = { type: 'modelCat', catIdx: idx };
-                document.getElementById('deleteMessage').textContent =
-                    `Sei sicuro di voler eliminare la categoria "${modelsData[idx].name}" e tutti i suoi modelli?`;
+                    `Sei sicuro di voler eliminare la categoria "${materialsData[idx].name}" e tutti i suoi ${materialsData[idx].swatches.length} swatch?`;
                 openModal('modalDelete');
                 break;
 
             case 'add-swatch':
                 editingCategoryIndex = idx;
-                editingModelIndex = -1;
                 pendingSwatchImage = null;
-                document.getElementById('modalSwatchTitle').textContent = 'Aggiungi Swatch';
-                document.getElementById('swatchLabelTitle').textContent = 'Nome Swatch';
                 document.getElementById('swatchLabelInput').value = '';
-                document.getElementById('modelExtraFields').classList.add('hidden');
-                document.getElementById('swatchFileInput').value = '';
-                document.getElementById('uploadPreview').classList.add('hidden');
-                document.getElementById('uploadPlaceholder').classList.remove('hidden');
-                openModal('modalSwatch');
-                break;
-            case 'add-model':
-                editingCategoryIndex = idx;
-                editingModelIndex = -1;
-                pendingSwatchImage = null;
-                document.getElementById('modalSwatchTitle').textContent = 'Aggiungi Modello';
-                document.getElementById('swatchLabelTitle').textContent = 'Nome Modello';
-                document.getElementById('swatchLabelInput').value = '';
-                document.getElementById('modelExtraFields').classList.remove('hidden');
-                document.getElementById('modelFolderInput').value = '';
-                document.getElementById('uploadImageTitle').textContent = 'Immagine Base';
-                document.getElementById('swatchFileInput').value = '';
-                document.getElementById('uploadPreview').classList.add('hidden');
-                document.getElementById('uploadPlaceholder').classList.remove('hidden');
-                openModal('modalSwatch');
-                break;
-            case 'add-mask':
-                editingCategoryIndex = parseInt(btn.dataset.catIdx);
-                editingModelIndex = parseInt(btn.dataset.modIdx);
-                pendingSwatchImage = null;
-                document.getElementById('modalSwatchTitle').textContent = 'Aggiungi Maschera';
-                document.getElementById('swatchLabelTitle').textContent = 'Nome Maschera';
-                document.getElementById('swatchLabelInput').value = '';
-                document.getElementById('modelExtraFields').classList.add('hidden');
-                document.getElementById('uploadImageTitle').textContent = 'Immagine Maschera';
                 document.getElementById('swatchFileInput').value = '';
                 document.getElementById('uploadPreview').classList.add('hidden');
                 document.getElementById('uploadPlaceholder').classList.remove('hidden');
                 openModal('modalSwatch');
                 break;
 
-            case 'delete-swatch':
-                deletingTarget = { type: 'swatch', catIdx: parseInt(btn.dataset.catIdx), swIdx: parseInt(btn.dataset.swIdx) };
-                document.getElementById('deleteMessage').textContent = `Sei sicuro di voler rimuovere lo swatch?`;
+            case 'delete-swatch': {
+                const catIdx = parseInt(btn.dataset.catIdx);
+                const swIdx = parseInt(btn.dataset.swIdx);
+                deletingTarget = { type: 'swatch', catIdx, swIdx };
+                document.getElementById('deleteMessage').textContent =
+                    `Sei sicuro di voler rimuovere "${materialsData[catIdx].swatches[swIdx].label}"?`;
                 openModal('modalDelete');
                 break;
-            case 'delete-model':
-                deletingTarget = { type: 'model', catIdx: parseInt(btn.dataset.catIdx), modIdx: parseInt(btn.dataset.modIdx) };
-                document.getElementById('deleteMessage').textContent = `Sei sicuro di voler rimuovere il modello?`;
+            }
+                
+            case 'edit-model-cat':
+                editingModelCategoryIndex = idx;
+                document.getElementById('modalModelCategoryTitle').textContent = 'Modifica Categoria';
+                document.getElementById('modelCatNameInput').value = modelsData[idx].name;
+                openModal('modalModelCategory');
+                break;
+
+            case 'delete-model-cat':
+                deletingTarget = { type: 'model-cat', modelCatIdx: idx };
+                document.getElementById('deleteMessage').textContent =
+                    `Sei sicuro di voler eliminare la categoria "${modelsData[idx].name}" e tutti i suoi ${modelsData[idx].models ? modelsData[idx].models.length : 0} modelli?`;
                 openModal('modalDelete');
                 break;
-            case 'delete-mask':
-                deletingTarget = { type: 'mask', catIdx: parseInt(btn.dataset.catIdx), modIdx: parseInt(btn.dataset.modIdx), maskIdx: parseInt(btn.dataset.maskIdx) };
-                document.getElementById('deleteMessage').textContent = `Sei sicuro di voler rimuovere la maschera?`;
+
+            case 'add-model': {
+                const catIdx = parseInt(btn.dataset.catIdx);
+                editingModelCatParentIndex = catIdx;
+                editingModelIndex = -1;
+                pendingBaseImage = null;
+                document.getElementById('modalModelTitle').textContent = 'Nuovo Modello';
+                document.getElementById('modelNameInput').value = '';
+                document.getElementById('modelFolderInput').value = '';
+                
+                // Populate select
+                const sel = document.getElementById('modelCategorySelect');
+                sel.innerHTML = modelsData.map((c, i) => `<option value="${i}" ${i === catIdx ? 'selected' : ''}>${esc(c.name)}</option>`).join('');
+                
+                const baseInput = document.getElementById('baseFileInput');
+                if(baseInput) baseInput.value = '';
+                
+                const basePreview = document.getElementById('uploadBasePreview');
+                const basePlaceholder = document.getElementById('uploadBasePlaceholder');
+                if(basePreview) basePreview.classList.add('hidden');
+                if(basePlaceholder) basePlaceholder.classList.remove('hidden');
+                
+                openModal('modalModel');
+                break;
+            }
+                
+            case 'edit-model': {
+                const catIdx = parseInt(btn.dataset.catIdx);
+                const modIdx = parseInt(btn.dataset.modelIdx);
+                editingModelCatParentIndex = catIdx;
+                editingModelIndex = modIdx;
+                pendingBaseImage = null;
+                
+                const theModel = modelsData[catIdx].models[modIdx];
+                document.getElementById('modalModelTitle').textContent = 'Modifica Modello';
+                document.getElementById('modelNameInput').value = theModel.name;
+                document.getElementById('modelFolderInput').value = theModel.folder;
+                
+                // Populate select
+                const sel = document.getElementById('modelCategorySelect');
+                sel.innerHTML = modelsData.map((c, i) => `<option value="${i}" ${i === catIdx ? 'selected' : ''}>${esc(c.name)}</option>`).join('');
+
+                const baseInput = document.getElementById('baseFileInput');
+                if(baseInput) baseInput.value = '';
+                
+                const basePreview = document.getElementById('uploadBasePreview');
+                const basePlaceholder = document.getElementById('uploadBasePlaceholder');
+                if (theModel._pendingBaseUpload) {
+                    basePreview.src = 'data:image/png;base64,' + theModel._pendingBaseUpload.base64;
+                    basePreview.classList.remove('hidden');
+                    basePlaceholder.classList.add('hidden');
+                } else if (theModel.base) {
+                    basePreview.src = encodeURI(`${MODELS_IMAGES_BASE}/${theModel.folder}/${theModel.base}`);
+                    basePreview.classList.remove('hidden');
+                    basePlaceholder.classList.add('hidden');
+                } else {
+                    basePreview.classList.add('hidden');
+                    basePlaceholder.classList.remove('hidden');
+                }
+                openModal('modalModel');
+                break;
+            }
+
+            case 'delete-model': {
+                const catIdx = parseInt(btn.dataset.catIdx);
+                const modIdx = parseInt(btn.dataset.modelIdx);
+                deletingTarget = { type: 'model', modelCatIdx: catIdx, modelIdx: modIdx };
+                document.getElementById('deleteMessage').textContent =
+                    `Sei sicuro di voler eliminare il modello "${modelsData[catIdx].models[modIdx].name}"?`;
                 openModal('modalDelete');
                 break;
+            }
+
+            case 'add-mask': {
+                const catIdx = parseInt(btn.dataset.catIdx);
+                const modIdx = parseInt(btn.dataset.modelIdx);
+                editingModelCatParentIndex = catIdx;
+                editingModelIndex = modIdx;
+                pendingMaskImage = null;
+                document.getElementById('maskLabelInput').value = '';
+                const maskInput = document.getElementById('maskFileInput');
+                if(maskInput) maskInput.value = '';
+                const maskPreview = document.getElementById('uploadMaskPreview');
+                const maskPlaceholder = document.getElementById('uploadMaskPlaceholder');
+                if(maskPreview) maskPreview.classList.add('hidden');
+                if(maskPlaceholder) maskPlaceholder.classList.remove('hidden');
+                openModal('modalMask');
+                break;
+            }
+
+            case 'delete-mask': {
+                const catIdx = parseInt(btn.dataset.catIdx);
+                const modIdx = parseInt(btn.dataset.modelIdx);
+                const maskIdx = parseInt(btn.dataset.maskIdx);
+                deletingTarget = { type: 'mask', modelCatIdx: catIdx, modelIdx: modIdx, maskIdx: maskIdx };
+                document.getElementById('deleteMessage').textContent =
+                    `Sei sicuro di voler rimuovere "${modelsData[catIdx].models[modIdx].masks[maskIdx].label}"?`;
+                openModal('modalDelete');
+                break;
+            }
         }
     }
 
     // ─── CATEGORY CRUD ───────────────
     function confirmCategory() {
         const name = document.getElementById('catNameInput').value.trim();
-        const folder = slugify(name); // Auto-generate folder from name
+        const folder = document.getElementById('catFolderInput').value.trim();
 
-        if (activeTab === 'materials') {
-            if (!name) { showToast('Compila il nome', 'error'); return; }
-            if (editingCategoryIndex >= 0) {
-                materialsData[editingCategoryIndex].name = name;
-                materialsData[editingCategoryIndex].folder = folder;
-                materialsData[editingCategoryIndex].id = slugify(name);
-            } else {
-                materialsData.push({ id: slugify(name), name: name, folder: folder, swatches: [] });
-            }
-            renderCategories();
+        if (!name || !folder) {
+            showToast('Compila tutti i campi', 'error');
+            return;
+        }
+
+        if (editingCategoryIndex >= 0) {
+            // Edit existing
+            materialsData[editingCategoryIndex].name = name;
+            materialsData[editingCategoryIndex].folder = folder;
+            // Update ID from name
+            materialsData[editingCategoryIndex].id = slugify(name);
         } else {
-            if (!name) { showToast('Compila il nome', 'error'); return; }
-            if (editingCategoryIndex >= 0) {
-                modelsData[editingCategoryIndex].name = name;
-                modelsData[editingCategoryIndex].id = slugify(name);
-            } else {
-                modelsData.push({ id: slugify(name), name: name, models: [] });
-            }
-            renderModels();
+            // Add new
+            materialsData.push({
+                id: slugify(name),
+                name: name,
+                folder: folder,
+                swatches: []
+            });
         }
 
         closeModal('modalCategory');
+        renderCategories();
         updateStatus();
-        showToast('Categoria salvata', 'success');
+        showToast(editingCategoryIndex >= 0 ? 'Categoria aggiornata' : 'Categoria aggiunta', 'success');
     }
 
     // ─── SWATCH CRUD ─────────────────
     function confirmSwatch() {
         const label = document.getElementById('swatchLabelInput').value.trim();
-        if (!label) { showToast('Inserisci un nome', 'error'); return; }
-        if (!pendingSwatchImage) { showToast("Seleziona un'immagine", 'error'); return; }
 
-        if (activeTab === 'materials') {
-            const cat = materialsData[editingCategoryIndex];
-            if (!cat.swatches) cat.swatches = [];
-            cat.swatches.push({
-                file: pendingSwatchImage.fileName,
-                label: label,
-                _pendingUpload: { base64: pendingSwatchImage.base64, base64Full: pendingSwatchImage.base64Full, folder: cat.folder }
-            });
-            renderCategories();
-        } else {
-            const cat = modelsData[editingCategoryIndex];
-            if (editingModelIndex === -1) {
-                // Add Model
-                const folder = slugify(label); // Auto-generate folder from name
-                if (!cat.models) cat.models = [];
-                cat.models.push({
-                    id: slugify(label),
-                    name: label,
-                    folder: folder,
-                    base: pendingSwatchImage.fileName,
-                    masks: [],
-                    _pendingBaseUpload: { base64: pendingSwatchImage.base64, base64Full: pendingSwatchImage.base64Full, folder: folder }
-                });
-            } else {
-                // Add Mask
-                const mod = cat.models[editingModelIndex];
-                if (!mod.masks) mod.masks = [];
-                mod.masks.push({
-                    file: pendingSwatchImage.fileName,
-                    label: label,
-                    _pendingUpload: { base64: pendingSwatchImage.base64, base64Full: pendingSwatchImage.base64Full, folder: mod.folder }
-                });
-            }
-            renderModels();
+        if (!label) {
+            showToast('Inserisci un nome per lo swatch', 'error');
+            return;
         }
 
+        if (!pendingSwatchImage) {
+            showToast('Seleziona un\'immagine', 'error');
+            return;
+        }
+
+        const cat = materialsData[editingCategoryIndex];
+        cat.swatches.push({
+            file: pendingSwatchImage.fileName,
+            label: label,
+            _pendingUpload: {
+                base64: pendingSwatchImage.base64,
+                folder: cat.folder
+            }
+        });
+
         closeModal('modalSwatch');
+        renderCategories();
         updateStatus();
-        showToast('Elemento aggiunto', 'success');
+        showToast('Swatch aggiunto (sarà caricato al salvataggio)', 'success');
+    }
+
+    // ─── MODEL CATEGORY CRUD ─────────
+    function confirmModelCategory() {
+        const name = document.getElementById('modelCatNameInput').value.trim();
+
+        if (!name) {
+            showToast('Inserisci un nome per la categoria', 'error');
+            return;
+        }
+
+        if (editingModelCategoryIndex >= 0) {
+            // Edit existing
+            modelsData[editingModelCategoryIndex].name = name;
+            modelsData[editingModelCategoryIndex].id = slugify(name);
+        } else {
+            // Add new
+            modelsData.push({
+                id: slugify(name),
+                name: name,
+                models: []
+            });
+        }
+
+        closeModal('modalModelCategory');
+        renderModels();
+        updateStatus();
+        showToast(editingModelCategoryIndex >= 0 ? 'Categoria modelli aggiornata' : 'Categoria modelli aggiunta', 'success');
+    }
+
+    // ─── MODEL CRUD ──────────────────
+    function confirmModel() {
+        const name = document.getElementById('modelNameInput').value.trim();
+        const folder = document.getElementById('modelFolderInput').value.trim();
+        const selectCat = document.getElementById('modelCategorySelect');
+        const selectedCatIdx = parseInt(selectCat.value);
+
+        if (!name || !folder || isNaN(selectedCatIdx)) {
+            showToast('Compila tutti i campi', 'error');
+            return;
+        }
+
+        if (editingModelIndex >= 0 && editingModelCatParentIndex >= 0) {
+            const theModel = modelsData[editingModelCatParentIndex].models[editingModelIndex];
+            theModel.name = name;
+            theModel.folder = folder;
+            theModel.id = slugify(name);
+            if (pendingBaseImage) {
+                theModel.base = pendingBaseImage.fileName;
+                theModel._pendingBaseUpload = {
+                    base64: pendingBaseImage.base64,
+                    folder: folder
+                };
+            }
+            
+            // If category changed, move it
+            if (selectedCatIdx !== editingModelCatParentIndex) {
+                modelsData[editingModelCatParentIndex].models.splice(editingModelIndex, 1);
+                if (!modelsData[selectedCatIdx].models) modelsData[selectedCatIdx].models = [];
+                modelsData[selectedCatIdx].models.push(theModel);
+            }
+        } else {
+            if (!pendingBaseImage) {
+                showToast('Seleziona un\'immagine di base', 'error');
+                return;
+            }
+            if (!modelsData[selectedCatIdx].models) modelsData[selectedCatIdx].models = [];
+            modelsData[selectedCatIdx].models.push({
+                id: slugify(name),
+                name: name,
+                folder: folder,
+                base: pendingBaseImage.fileName,
+                _pendingBaseUpload: {
+                    base64: pendingBaseImage.base64,
+                    folder: folder
+                },
+                masks: []
+            });
+        }
+
+        closeModal('modalModel');
+        renderModels();
+        updateStatus();
+        showToast(editingModelIndex >= 0 ? 'Modello aggiornato' : 'Modello aggiunto', 'success');
+    }
+
+    // ─── MASK CRUD ───────────────────
+    function confirmMask() {
+        const label = document.getElementById('maskLabelInput').value.trim();
+
+        if (!label) {
+            showToast('Inserisci un nome per la maschera', 'error');
+            return;
+        }
+
+        if (!pendingMaskImage) {
+            showToast('Seleziona un\'immagine per la maschera', 'error');
+            return;
+        }
+
+        const model = modelsData[editingModelCatParentIndex].models[editingModelIndex];
+        if(!model.masks) model.masks = [];
+        model.masks.push({
+            file: pendingMaskImage.fileName,
+            label: label,
+            _pendingUpload: {
+                base64: pendingMaskImage.base64,
+                folder: model.folder
+            }
+        });
+
+        closeModal('modalMask');
+        renderModels();
+        updateStatus();
+        showToast('Maschera aggiunta (sarà caricata al salvataggio)', 'success');
     }
 
     // ─── DELETE ──────────────────────
@@ -718,20 +947,31 @@
         if (!deletingTarget) return;
 
         if (deletingTarget.type === 'category') {
-            materialsData.splice(deletingTarget.catIdx, 1);
+            const removed = materialsData.splice(deletingTarget.catIdx, 1)[0];
+            showToast(`Categoria "${removed.name}" rimossa`, 'success');
         } else if (deletingTarget.type === 'swatch') {
-            materialsData[deletingTarget.catIdx].swatches.splice(deletingTarget.swIdx, 1);
-        } else if (deletingTarget.type === 'modelCat') {
-            modelsData.splice(deletingTarget.catIdx, 1);
+            const cat = materialsData[deletingTarget.catIdx];
+            const removed = cat.swatches.splice(deletingTarget.swIdx, 1)[0];
+            showToast(`Swatch "${removed.label}" rimosso`, 'success');
+        } else if (deletingTarget.type === 'model-cat') {
+            const removed = modelsData.splice(deletingTarget.modelCatIdx, 1)[0];
+            showToast(`Categoria modelli "${removed.name}" rimossa`, 'success');
         } else if (deletingTarget.type === 'model') {
-            modelsData[deletingTarget.catIdx].models.splice(deletingTarget.modIdx, 1);
+            const removed = modelsData[deletingTarget.modelCatIdx].models.splice(deletingTarget.modelIdx, 1)[0];
+            showToast(`Modello "${removed.name}" rimosso`, 'success');
         } else if (deletingTarget.type === 'mask') {
-            modelsData[deletingTarget.catIdx].models[deletingTarget.modIdx].masks.splice(deletingTarget.maskIdx, 1);
+            const model = modelsData[deletingTarget.modelCatIdx].models[deletingTarget.modelIdx];
+            const removed = model.masks.splice(deletingTarget.maskIdx, 1)[0];
+            showToast(`Maschera "${removed.label}" rimossa`, 'success');
         }
 
         deletingTarget = null;
         closeModal('modalDelete');
-        if (activeTab === 'materials') renderCategories(); else renderModels();
+        if (currentTab === 'materiali') {
+            renderCategories();
+        } else {
+            renderModels();
+        }
         updateStatus();
     }
 
@@ -743,52 +983,19 @@
         setStatus('saving', 'Pubblicazione…');
 
         try {
-            const materialsChanged = hasMaterialsChanges();
-            const modelsChanged = hasModelsChanges();
-
-            // 1. Upload any pending images (Materials)
+            // 1. Upload any pending swatch images
             const pendingUploads = [];
-            if (materialsChanged) {
-                materialsData.forEach(cat => {
-                    cat.swatches.forEach(sw => {
-                        if (sw._pendingUpload) {
-                            pendingUploads.push({
-                                path: `${IMAGES_BASE}/${sw._pendingUpload.folder}/${sw.file}`,
-                                base64: sw._pendingUpload.base64,
-                                label: sw.label
-                            });
-                        }
-                    });
-                });
-            }
-
-            // 2. Upload any pending images (Models)
-            if (modelsChanged) {
-                modelsData.forEach(cat => {
-                    if (cat.models) {
-                        cat.models.forEach(mod => {
-                            if (mod._pendingBaseUpload) {
-                                pendingUploads.push({
-                                    path: `${MODELS_IMAGES_BASE}/${mod._pendingBaseUpload.folder}/${mod.base}`,
-                                    base64: mod._pendingBaseUpload.base64,
-                                    label: `Base ${mod.name}`
-                                });
-                            }
-                            if (mod.masks) {
-                                mod.masks.forEach(mk => {
-                                    if (mk._pendingUpload) {
-                                        pendingUploads.push({
-                                            path: `${MODELS_IMAGES_BASE}/${mk._pendingUpload.folder}/${mk.file}`,
-                                            base64: mk._pendingUpload.base64,
-                                            label: mk.label
-                                        });
-                                    }
-                                });
-                            }
+            materialsData.forEach(cat => {
+                cat.swatches.forEach(sw => {
+                    if (sw._pendingUpload) {
+                        pendingUploads.push({
+                            path: `${IMAGES_BASE}/${sw._pendingUpload.folder}/${sw.file}`,
+                            base64: sw._pendingUpload.base64,
+                            label: sw.label
                         });
                     }
                 });
-            }
+            });
 
             for (const upload of pendingUploads) {
                 setStatus('saving', `Caricamento ${upload.label}…`);
@@ -799,68 +1006,36 @@
                 );
             }
 
-            // 3. Commit materials.json if changed
-            if (materialsChanged) {
-                const cleanMatData = materialsData.map(cat => ({
-                    id: cat.id,
-                    name: cat.name,
-                    folder: cat.folder,
-                    swatches: cat.swatches.map(sw => ({
-                        file: sw.file,
-                        label: sw.label
-                    }))
-                }));
+            // 2. Clean pending flags from data
+            const cleanData = materialsData.map(cat => ({
+                id: cat.id,
+                name: cat.name,
+                folder: cat.folder,
+                swatches: cat.swatches.map(sw => ({
+                    file: sw.file,
+                    label: sw.label
+                }))
+            }));
 
-                setStatus('saving', 'Salvataggio materials.json…');
-                const jsonMatContent = JSON.stringify(cleanMatData, null, 4);
-                const resultMat = await commitFile(
-                    MATERIALS_PATH,
-                    jsonMatContent,
-                    `[Admin] Aggiornamento materiali (${new Date().toLocaleString('it-IT')})`,
-                    fileSha
-                );
+            // 3. Commit materials.json
+            setStatus('saving', 'Salvataggio materials.json…');
+            const jsonContent = JSON.stringify(cleanData, null, 4);
+            const result = await commitFile(
+                MATERIALS_PATH,
+                jsonContent,
+                `[Admin] Aggiornamento materiali (${new Date().toLocaleString('it-IT')})`,
+                fileSha
+            );
 
-                fileSha = resultMat.content.sha;
-                materialsData = cleanMatData;
-                originalJSON = JSON.stringify(materialsData);
-                localStorage.setItem('leboffi_materials_data', jsonMatContent);
-            }
+            // 4. Update local state
+            fileSha = result.content.sha;
+            materialsData = cleanData;
+            originalJSON = JSON.stringify(materialsData);
 
-            // 4. Commit models.json if changed
-            if (modelsChanged) {
-                const cleanModData = modelsData.map(cat => ({
-                    id: cat.id,
-                    name: cat.name,
-                    models: (cat.models || []).map(mod => ({
-                        id: mod.id,
-                        name: mod.name,
-                        folder: mod.folder || slugify(mod.name), // Ensure model folder exists
-                        base: mod.base,
-                        masks: (mod.masks || []).map(mk => ({
-                            file: mk.file,
-                            label: mk.label
-                        }))
-                    }))
-                }));
+            // 5. Sync to localStorage so the configurator picks it up immediately
+            localStorage.setItem('leboffi_materials_data', jsonContent);
 
-                setStatus('saving', 'Salvataggio models.json…');
-                const jsonModContent = JSON.stringify(cleanModData, null, 4);
-                const resultMod = await commitFile(
-                    MODELS_PATH,
-                    jsonModContent,
-                    `[Admin] Aggiornamento modelli (${new Date().toLocaleString('it-IT')})`,
-                    modelsFileSha
-                );
-
-                modelsFileSha = resultMod.content.sha;
-                modelsData = cleanModData;
-                originalModelsJSON = JSON.stringify(modelsData);
-                localStorage.setItem('leboffi_models_data', jsonModContent);
-            }
-
-            if (activeTab === 'materials') renderCategories();
-            else renderModels();
-
+            renderCategories();
             updateStatus();
             showToast('✅ Pubblicato con successo! Vercel farà il redeploy automaticamente.', 'success');
         } catch (err) {
@@ -876,9 +1051,96 @@
         }
     }
 
+    // ─── SAVE & PUBLISH MODELLI ──────
+    async function saveAndPublishModels() {
+        const btn = document.getElementById('btnSavePublishModelli');
+        btn.disabled = true;
+        btn.innerHTML = `<div class="spinner" style="width:16px;height:16px;border-width:2px;"></div> Pubblicazione…`;
+        setStatus('saving', 'Pubblicazione…');
+
+        try {
+            const pendingUploads = [];
+            modelsData.forEach(cat => {
+                if(cat.models) {
+                    cat.models.forEach(m => {
+                        if (m._pendingBaseUpload) {
+                            pendingUploads.push({
+                                path: `${MODELS_IMAGES_BASE}/${m._pendingBaseUpload.folder}/${m.base}`,
+                                base64: m._pendingBaseUpload.base64,
+                                label: `Base: ${m.name}`
+                            });
+                        }
+                        if(m.masks) {
+                            m.masks.forEach(mask => {
+                                if (mask._pendingUpload) {
+                                    pendingUploads.push({
+                                        path: `${MODELS_IMAGES_BASE}/${mask._pendingUpload.folder}/${mask.file}`,
+                                        base64: mask._pendingUpload.base64,
+                                        label: `Maschera: ${mask.label}`
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+            for (const upload of pendingUploads) {
+                setStatus('saving', `Caricamento ${upload.label}…`);
+                await uploadImage(
+                    upload.path,
+                    upload.base64,
+                    `[Admin] Aggiunta immagine: ${upload.label}`
+                );
+            }
+
+            const cleanData = modelsData.map(cat => ({
+                id: cat.id,
+                name: cat.name,
+                models: (cat.models || []).map(m => ({
+                    id: m.id,
+                    name: m.name,
+                    folder: m.folder,
+                    base: m.base,
+                    masks: (m.masks || []).map(mask => ({
+                        file: mask.file,
+                        label: mask.label
+                    }))
+                }))
+            }));
+
+            setStatus('saving', 'Salvataggio models.json…');
+            const jsonContent = JSON.stringify(cleanData, null, 4);
+            const result = await commitFile(
+                MODELS_PATH,
+                jsonContent,
+                `[Admin] Aggiornamento modelli (${new Date().toLocaleString('it-IT')})`,
+                modelsFileSha
+            );
+
+            modelsFileSha = result.content.sha;
+            modelsData = cleanData;
+            originalModelsJSON = JSON.stringify(modelsData);
+
+            renderModels();
+            updateStatus();
+            showToast('✅ Pubblicato con successo! Vercel farà il redeploy automaticamente.', 'success');
+        } catch (err) {
+            showToast('❌ Errore: ' + err.message, 'error');
+            setStatus('unsaved', 'Modifiche non salvate');
+        } finally {
+            btn.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Salva e Pubblica Modelli`;
+            updateStatus();
+        }
+    }
+
     // ─── STATUS TRACKING ─────────────
-    function hasMaterialsChanges() {
-        const currentClean = materialsData.map(cat => ({
+    function hasChanges() {
+        const currentCleanMaterials = materialsData.map(cat => ({
             id: cat.id,
             name: cat.name,
             folder: cat.folder,
@@ -887,37 +1149,37 @@
                 label: sw.label
             }))
         }));
-        return JSON.stringify(currentClean) !== originalJSON;
-    }
+        const matChanged = JSON.stringify(currentCleanMaterials) !== originalJSON;
 
-    function hasModelsChanges() {
-        const currentClean = modelsData.map(cat => ({
+        const currentCleanModels = modelsData.map(cat => ({
             id: cat.id,
             name: cat.name,
-            models: (cat.models || []).map(mod => ({
-                id: mod.id,
-                name: mod.name,
-                folder: mod.folder,
-                base: mod.base,
-                masks: (mod.masks || []).map(mk => ({
-                    file: mk.file,
-                    label: mk.label
+            models: (cat.models || []).map(m => ({
+                id: m.id,
+                name: m.name,
+                folder: m.folder,
+                base: m.base,
+                masks: (m.masks || []).map(mask => ({
+                    file: mask.file,
+                    label: mask.label
                 }))
             }))
         }));
-        return JSON.stringify(currentClean) !== originalModelsJSON;
-    }
-
-    function hasChanges() {
-        return hasMaterialsChanges() || hasModelsChanges();
+        const modChanged = JSON.stringify(currentCleanModels) !== originalModelsJSON;
+        
+        return { matChanged, modChanged };
     }
 
     function updateStatus() {
-        const changed = hasChanges();
-        const btn = document.getElementById('btnSavePublish');
-        btn.disabled = !changed;
+        const { matChanged, modChanged } = hasChanges();
+        
+        const btnMat = document.getElementById('btnSavePublish');
+        if (btnMat) btnMat.disabled = !matChanged;
+        
+        const btnMod = document.getElementById('btnSavePublishModelli');
+        if (btnMod) btnMod.disabled = !modChanged;
 
-        if (changed) {
+        if (matChanged || modChanged) {
             setStatus('unsaved', 'Modifiche non salvate');
         } else {
             setStatus('synced', 'Sincronizzato');
@@ -933,43 +1195,74 @@
 
     // ─── FILE UPLOAD ─────────────────
     function setupUploadArea() {
-        const area = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('swatchFileInput');
-        const preview = document.getElementById('uploadPreview');
-        const placeholder = document.getElementById('uploadPlaceholder');
-
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) processFile(file);
-        });
-
-        area.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            area.classList.add('dragover');
-        });
-
-        area.addEventListener('dragleave', () => {
-            area.classList.remove('dragover');
-        });
-
-        area.addEventListener('drop', (e) => {
-            e.preventDefault();
-            area.classList.remove('dragover');
-            const file = e.dataTransfer.files[0];
-            if (file && file.type.startsWith('image/')) {
-                processFile(file);
+        const uploadConfigs = [
+            {
+                areaId: 'uploadArea',
+                inputId: 'swatchFileInput',
+                previewId: 'uploadPreview',
+                placeholderId: 'uploadPlaceholder',
+                onFileRead: (base64Data, fileName) => {
+                    pendingSwatchImage = { base64: base64Data, fileName: fileName };
+                }
+            },
+            {
+                areaId: 'uploadBaseArea', // assume this is the id, wait let me check if it exists
+                inputId: 'baseFileInput',
+                previewId: 'uploadBasePreview',
+                placeholderId: 'uploadBasePlaceholder',
+                onFileRead: (base64Data, fileName) => {
+                    pendingBaseImage = { base64: base64Data, fileName: fileName };
+                }
+            },
+            {
+                areaId: 'uploadMaskArea', // assume this is the id
+                inputId: 'maskFileInput',
+                previewId: 'uploadMaskPreview',
+                placeholderId: 'uploadMaskPlaceholder',
+                onFileRead: (base64Data, fileName) => {
+                    pendingMaskImage = { base64: base64Data, fileName: fileName };
+                }
             }
+        ];
+
+        uploadConfigs.forEach(config => {
+            const area = document.getElementById(config.areaId) || document.getElementById(config.inputId)?.closest('.upload-area');
+            const fileInput = document.getElementById(config.inputId);
+            const preview = document.getElementById(config.previewId);
+            const placeholder = document.getElementById(config.placeholderId);
+
+            if (!area || !fileInput) return;
+
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) processFile(file, config, preview, placeholder);
+            });
+
+            area.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                area.classList.add('dragover');
+            });
+
+            area.addEventListener('dragleave', () => {
+                area.classList.remove('dragover');
+            });
+
+            area.addEventListener('drop', (e) => {
+                e.preventDefault();
+                area.classList.remove('dragover');
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    processFile(file, config, preview, placeholder);
+                }
+            });
         });
 
-        function processFile(file) {
+        function processFile(file, config, preview, placeholder) {
             const reader = new FileReader();
             reader.onload = () => {
                 const base64Full = reader.result;
                 const base64Data = base64Full.split(',')[1];
-                pendingSwatchImage = {
-                    base64: base64Data,
-                    fileName: file.name
-                };
+                config.onFileRead(base64Data, file.name);
                 preview.src = base64Full;
                 preview.classList.remove('hidden');
                 placeholder.classList.add('hidden');

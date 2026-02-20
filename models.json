@@ -1,1 +1,59 @@
-[]
+[
+    {
+        "id": "flat",
+        "name": "Flat",
+        "models": []
+    },
+    {
+        "id": "mocassini",
+        "name": "Mocassini",
+        "models": []
+    },
+    {
+        "id": "mule",
+        "name": "Mule",
+        "models": [
+            {
+                "id": "agata-mule",
+                "name": "Agata Mule",
+                "folder": "agata-mule",
+                "base": "agatamulebase.png",
+                "masks": [
+                    {
+                        "file": "agatamuletomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "agatamuleorlaturabordonappine.png",
+                        "label": "Orlatura - Bordo Sottopiede - Nappine"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "55-coda",
+        "name": "55 Coda",
+        "models": []
+    },
+    {
+        "id": "55-bally",
+        "name": "55 Bally",
+        "models": []
+    },
+    {
+        "id": "85-coda",
+        "name": "85 Coda",
+        "models": []
+    },
+    {
+        "id": "85-bally",
+        "name": "85 Bally",
+        "models": []
+    },
+    {
+        "id": "stivaletti",
+        "name": "Stivaletti",
+        "models": []
+    }
+]
