@@ -1,0 +1,923 @@
+[
+    {
+        "id": "camosci",
+        "name": "Camosci",
+        "folder": "Camosci",
+        "swatches": [
+            {
+                "file": "Camoscio cognac.jpg",
+                "label": "Camoscio Cognac"
+            },
+            {
+                "file": "Camoscio rosso.jpg",
+                "label": "Camoscio Rosso"
+            },
+            {
+                "file": "camoscio arancio.jpg",
+                "label": "Camoscio Arancio"
+            },
+            {
+                "file": "camoscio biscotto.jpg",
+                "label": "Camoscio Biscotto"
+            },
+            {
+                "file": "camoscio blu.jpg",
+                "label": "Camoscio Blu"
+            },
+            {
+                "file": "camoscio bordeaux.jpg",
+                "label": "Camoscio Bordeaux"
+            },
+            {
+                "file": "camoscio dalia.jpg",
+                "label": "Camoscio Dalia"
+            },
+            {
+                "file": "camoscio fucsia.jpg",
+                "label": "Camoscio Fucsia"
+            },
+            {
+                "file": "camoscio marrone.jpg",
+                "label": "Camoscio Marrone"
+            },
+            {
+                "file": "camoscio nero.jpg",
+                "label": "Camoscio Nero"
+            },
+            {
+                "file": "camoscio prugna.jpg",
+                "label": "Camoscio Prugna"
+            },
+            {
+                "file": "camoscio rosa piggy.jpg",
+                "label": "Camoscio Rosa Piggy"
+            },
+            {
+                "file": "camoscio talpa.jpg",
+                "label": "Camoscio Talpa"
+            },
+            {
+                "file": "camoscio ultraviolet.jpg",
+                "label": "Camoscio Ultraviolet"
+            },
+            {
+                "file": "camoscio verde bottiglia.jpg",
+                "label": "Camoscio Verde Bottiglia"
+            },
+            {
+                "file": "camoscio verde schock.jpg",
+                "label": "Camoscio Verde Schock"
+            },
+            {
+                "file": "viola.jpg",
+                "label": "Viola"
+            }
+        ]
+    },
+    {
+        "id": "cavallini",
+        "name": "Cavallini",
+        "folder": "CAVALLINI OK",
+        "swatches": [
+            {
+                "file": "Cavallino Naturale def.jpg",
+                "label": "Cavallino Naturale"
+            },
+            {
+                "file": "Cavallino Zebra Grande def.jpg",
+                "label": "Cavallino Zebra Grande"
+            },
+            {
+                "file": "cavallino berri def.jpg",
+                "label": "Cavallino Berri"
+            },
+            {
+                "file": "cavallino bluette def.jpg",
+                "label": "Cavallino Bluette"
+            },
+            {
+                "file": "cavallino bordeaux def.jpg",
+                "label": "Cavallino Bordeaux"
+            },
+            {
+                "file": "cavallino giraffa def.jpg",
+                "label": "Cavallino Giraffa"
+            },
+            {
+                "file": "cavallino lunette def.jpg",
+                "label": "Cavallino Lunette"
+            },
+            {
+                "file": "cavallino nero def.jpg",
+                "label": "Cavallino Nero"
+            },
+            {
+                "file": "cavallino spring leo.jpg",
+                "label": "Cavallino Spring Leo"
+            },
+            {
+                "file": "cavallino ultraviolet def.jpg",
+                "label": "Cavallino Ultraviolet"
+            },
+            {
+                "file": "cavallino verde def.jpg",
+                "label": "Cavallino Verde"
+            },
+            {
+                "file": "cavallino viola def.jpg",
+                "label": "Cavallino Viola"
+            },
+            {
+                "file": "cavallino zebra azzurro def.jpg",
+                "label": "Cavallino Zebra Azzurro"
+            },
+            {
+                "file": "cavallino zebra fine def.jpg",
+                "label": "Cavallino Zebra Fine"
+            },
+            {
+                "file": "lince.jpg",
+                "label": "Lince"
+            },
+            {
+                "file": "lunette.jpg",
+                "label": "Lunette"
+            }
+        ]
+    },
+    {
+        "id": "croste",
+        "name": "Croste",
+        "folder": "CROSTE",
+        "swatches": [
+            {
+                "file": "Crosta Arancione.jpg",
+                "label": "Crosta Arancione"
+            },
+            {
+                "file": "Crosta Azzurro Polvere.jpg",
+                "label": "Crosta Azzurro Polvere"
+            },
+            {
+                "file": "Crosta Beige Chiaro.jpg",
+                "label": "Crosta Beige Chiaro"
+            },
+            {
+                "file": "Crosta Beige.jpg",
+                "label": "Crosta Beige"
+            },
+            {
+                "file": "Crosta Bianca.jpg",
+                "label": "Crosta Bianca"
+            },
+            {
+                "file": "Crosta Biscotto.jpg",
+                "label": "Crosta Biscotto"
+            },
+            {
+                "file": "Crosta Grigio Talpa1.jpg",
+                "label": "Crosta Grigio Talpa"
+            },
+            {
+                "file": "Crosta Marrone 1.jpg",
+                "label": "Crosta Marrone"
+            },
+            {
+                "file": "Crosta Marrone scuro.jpg",
+                "label": "Crosta Marrone Scuro"
+            },
+            {
+                "file": "Crosta Nera1.jpg",
+                "label": "Crosta Nera"
+            },
+            {
+                "file": "Crosta Peonia.jpg",
+                "label": "Crosta Peonia"
+            },
+            {
+                "file": "Crosta Prugna.jpg",
+                "label": "Crosta Prugna"
+            },
+            {
+                "file": "Crosta Rosa Cipria.jpg",
+                "label": "Crosta Rosa Cipria"
+            },
+            {
+                "file": "Crosta Rosa Confetto.jpg",
+                "label": "Crosta Rosa Confetto"
+            },
+            {
+                "file": "Crosta Rosa Piggy.jpg",
+                "label": "Crosta Rosa Piggy"
+            },
+            {
+                "file": "Crosta Rossa.jpg",
+                "label": "Crosta Rossa"
+            },
+            {
+                "file": "Crosta Scuro.jpg",
+                "label": "Crosta Scuro"
+            },
+            {
+                "file": "Crosta Tabacco.jpg",
+                "label": "Crosta Tabacco"
+            },
+            {
+                "file": "Crosta Terracotta.jpg",
+                "label": "Crosta Terracotta"
+            },
+            {
+                "file": "Crosta Verde Lime.jpg",
+                "label": "Crosta Verde Lime"
+            },
+            {
+                "file": "Crosta Verde.jpg",
+                "label": "Crosta Verde"
+            },
+            {
+                "file": "Crosta Viola Chiaro.jpg",
+                "label": "Crosta Viola Chiaro"
+            },
+            {
+                "file": "Crosta blu notte.jpg",
+                "label": "Crosta Blu Notte"
+            }
+        ]
+    },
+    {
+        "id": "glitter",
+        "name": "Glitter",
+        "folder": "GLITTER",
+        "swatches": [
+            {
+                "file": "Fiore Glitter Bordeaux.jpg",
+                "label": "Fiore Glitter Bordeaux"
+            },
+            {
+                "file": "Fiore Glitter Marrone.jpg",
+                "label": "Fiore Glitter Marrone"
+            },
+            {
+                "file": "Glitter Fine Argento.jpg",
+                "label": "Glitter Fine Argento"
+            },
+            {
+                "file": "Glitter Fine Bianco.jpg",
+                "label": "Glitter Fine Bianco"
+            },
+            {
+                "file": "Glitter Fine Blu.jpg",
+                "label": "Glitter Fine Blu"
+            },
+            {
+                "file": "Glitter Fine Dorato.jpg",
+                "label": "Glitter Fine Dorato"
+            },
+            {
+                "file": "Glitter Fine Fucsia.jpg",
+                "label": "Glitter Fine Fucsia"
+            },
+            {
+                "file": "Glitter Fine Grigio Antracite.jpg",
+                "label": "Glitter Fine Grigio Antracite"
+            },
+            {
+                "file": "Glitter Fine Marrone.jpg",
+                "label": "Glitter Fine Marrone"
+            },
+            {
+                "file": "Glitter Fine Nero.jpg",
+                "label": "Glitter Fine Nero"
+            },
+            {
+                "file": "Glitter Fine Nude.jpg",
+                "label": "Glitter Fine Nude"
+            },
+            {
+                "file": "Glitter Fine Petrolio.jpg",
+                "label": "Glitter Fine Petrolio"
+            },
+            {
+                "file": "Glitter Fine Platino.jpg",
+                "label": "Glitter Fine Platino"
+            },
+            {
+                "file": "Glitter Fine Rosso.jpg",
+                "label": "Glitter Fine Rosso"
+            },
+            {
+                "file": "Glitter Grosso Bianco Matt.jpg",
+                "label": "Glitter Grosso Bianco Matt"
+            },
+            {
+                "file": "Glitter Grosso Blu.jpg",
+                "label": "Glitter Grosso Blu"
+            },
+            {
+                "file": "Glitter Grosso Bluette.jpg",
+                "label": "Glitter Grosso Bluette"
+            },
+            {
+                "file": "Glitter Grosso Oro.jpg",
+                "label": "Glitter Grosso Oro"
+            },
+            {
+                "file": "Glitter Grosso Poudre.jpg",
+                "label": "Glitter Grosso Poudre"
+            },
+            {
+                "file": "Glitter Grosso Viola.jpg",
+                "label": "Glitter Grosso Viola"
+            },
+            {
+                "file": "Maculato Glitter.jpg",
+                "label": "Maculato Glitter"
+            },
+            {
+                "file": "Tessuto Glitterato Antracite.jpg",
+                "label": "Tessuto Glitterato Antracite"
+            },
+            {
+                "file": "Tessuto Glitterato Rosa.jpg",
+                "label": "Tessuto Glitterato Rosa"
+            },
+            {
+                "file": "glitter grosso antracite.jpg",
+                "label": "Glitter Grosso Antracite"
+            },
+            {
+                "file": "glitter grosso bordeaux.jpg",
+                "label": "Glitter Grosso Bordeaux"
+            },
+            {
+                "file": "glitter grosso nero.jpg",
+                "label": "Glitter Grosso Nero"
+            },
+            {
+                "file": "glitter grosso rosa mat.jpg",
+                "label": "Glitter Grosso Rosa Mat"
+            },
+            {
+                "file": "glitter grosso rosso.jpg",
+                "label": "Glitter Grosso Rosso"
+            },
+            {
+                "file": "pois f.jpg",
+                "label": "Pois Fine"
+            },
+            {
+                "file": "pois m.jpg",
+                "label": "Pois Medio"
+            },
+            {
+                "file": "rosa m.jpg",
+                "label": "Rosa Medio"
+            }
+        ]
+    },
+    {
+        "id": "laminati-e-vernici",
+        "name": "Laminati e Vernici",
+        "folder": "LAMINATI E VERNICI",
+        "swatches": [
+            {
+                "file": "Cracklè argento.jpg",
+                "label": "Cracklè Argento"
+            },
+            {
+                "file": "Cracklè turchese.jpg",
+                "label": "Cracklè Turchese"
+            },
+            {
+                "file": "Laminato Bronzo.jpg",
+                "label": "Laminato Bronzo"
+            },
+            {
+                "file": "Laminato Marrone.jpg",
+                "label": "Laminato Marrone"
+            },
+            {
+                "file": "Laminato bronzo antico.jpg",
+                "label": "Laminato Bronzo Antico"
+            },
+            {
+                "file": "Laminato canna di fucile.jpg",
+                "label": "Laminato Canna di Fucile"
+            },
+            {
+                "file": "Laminato oro arricciato.jpg",
+                "label": "Laminato Oro Arricciato"
+            },
+            {
+                "file": "Laminato oro.jpg",
+                "label": "Laminato Oro"
+            },
+            {
+                "file": "Laminato platino arricciato.jpg",
+                "label": "Laminato Platino Arricciato"
+            },
+            {
+                "file": "Laminato platino rigato.jpg",
+                "label": "Laminato Platino Rigato"
+            },
+            {
+                "file": "Laminato platino.jpg",
+                "label": "Laminato Platino"
+            },
+            {
+                "file": "Laminato rosa chiaro.jpg",
+                "label": "Laminato Rosa Chiaro"
+            },
+            {
+                "file": "Laminato tie dye oro.jpg",
+                "label": "Laminato Tie Dye Oro"
+            },
+            {
+                "file": "Laminato tie dye rosa antico.jpg",
+                "label": "Laminato Tie Dye Rosa Antico"
+            },
+            {
+                "file": "Pelle carte d'or.jpg",
+                "label": "Pelle Carte d'Or"
+            },
+            {
+                "file": "Pelle glitterata Oro.jpg",
+                "label": "Pelle Glitterata Oro"
+            },
+            {
+                "file": "Pelle glitterata nera.jpg",
+                "label": "Pelle Glitterata Nera"
+            },
+            {
+                "file": "Pelle glitterata platino.jpg",
+                "label": "Pelle Glitterata Platino"
+            },
+            {
+                "file": "Vernice Blu Navy.jpg",
+                "label": "Vernice Blu Navy"
+            },
+            {
+                "file": "Vernice Blu notte.jpg",
+                "label": "Vernice Blu Notte"
+            },
+            {
+                "file": "Vernice Bordeaux.jpg",
+                "label": "Vernice Bordeaux"
+            },
+            {
+                "file": "Vernice Marrone.jpg",
+                "label": "Vernice Marrone"
+            },
+            {
+                "file": "Vernice arancione.jpg",
+                "label": "Vernice Arancione"
+            },
+            {
+                "file": "Vernice fucsia fluo.jpg",
+                "label": "Vernice Fucsia Fluo"
+            },
+            {
+                "file": "Vernice grigi.jpg",
+                "label": "Vernice Grigio"
+            },
+            {
+                "file": "Vernice nera.jpg",
+                "label": "Vernice Nera"
+            },
+            {
+                "file": "Vernice nude chiaro.jpg",
+                "label": "Vernice Nude Chiaro"
+            },
+            {
+                "file": "Vernice nude scuro.jpg",
+                "label": "Vernice Nude Scuro"
+            },
+            {
+                "file": "Vernice rosa antico.jpg",
+                "label": "Vernice Rosa Antico"
+            },
+            {
+                "file": "Vernice rossa.jpg",
+                "label": "Vernice Rossa"
+            },
+            {
+                "file": "Vernice ultraviolet.jpg",
+                "label": "Vernice Ultraviolet"
+            },
+            {
+                "file": "Vernice verde bottiglia.jpg",
+                "label": "Vernice Verde Bottiglia"
+            },
+            {
+                "file": "laminato argento.jpg",
+                "label": "Laminato Argento"
+            },
+            {
+                "file": "vernice arancio.jpg",
+                "label": "Vernice Arancio"
+            },
+            {
+                "file": "vernice arancione fluo.jpg",
+                "label": "Vernice Arancione Fluo"
+            },
+            {
+                "file": "vernice azzurr.jpg",
+                "label": "Vernice Azzurro"
+            },
+            {
+                "file": "vernice beige.jpg",
+                "label": "Vernice Beige"
+            },
+            {
+                "file": "vernice bianca.jpg",
+                "label": "Vernice Bianca"
+            }
+        ]
+    },
+    {
+        "id": "pelle-liscia",
+        "name": "Pelle Liscia",
+        "folder": "PELLE LISCIA",
+        "swatches": [
+            {
+                "file": "crem.jpg",
+                "label": "Crema"
+            },
+            {
+                "file": "nude ch.jpg",
+                "label": "Nude Chiaro"
+            },
+            {
+                "file": "nude scu.jpg",
+                "label": "Nude Scuro"
+            },
+            {
+                "file": "nude scur.jpg",
+                "label": "Nude Scurissimo"
+            },
+            {
+                "file": "nude.jpg",
+                "label": "Nude"
+            },
+            {
+                "file": "talpa c.jpg",
+                "label": "Talpa Chiaro"
+            },
+            {
+                "file": "talpa s.jpg",
+                "label": "Talpa Scuro"
+            }
+        ]
+    },
+    {
+        "id": "pelli-martellate",
+        "name": "Pelli Martellate",
+        "folder": "PELLI MARTELLATE OK",
+        "swatches": [
+            {
+                "file": "Pelle martellata fucsia.jpg",
+                "label": "Pelle Martellata Fucsia"
+            },
+            {
+                "file": "Pelle martellata nera.jpg",
+                "label": "Pelle Martellata Nera"
+            },
+            {
+                "file": "Pelle martellata senape.jpg",
+                "label": "Pelle Martellata Senape"
+            },
+            {
+                "file": "Pelle martellata tabacco.jpg",
+                "label": "Pelle Martellata Tabacco"
+            },
+            {
+                "file": "Pelle martellata verde bottiglia.jpg",
+                "label": "Pelle Martellata Verde Bottiglia"
+            },
+            {
+                "file": "Pelle martellata viola chiaro.jpg",
+                "label": "Pelle Martellata Viola Chiaro"
+            },
+            {
+                "file": "fucsia.jpg",
+                "label": "Fucsia"
+            },
+            {
+                "file": "pelle martellata bianca .jpg",
+                "label": "Pelle Martellata Bianca"
+            },
+            {
+                "file": "prugna martellata.jpg",
+                "label": "Prugna Martellata"
+            }
+        ]
+    },
+    {
+        "id": "pelli-stampate",
+        "name": "Pelli Stampate",
+        "folder": "PELLI STAMPATE",
+        "swatches": [
+            {
+                "file": "Cocco Beige.jpg",
+                "label": "Cocco Beige"
+            },
+            {
+                "file": "Cocco Bianco.jpg",
+                "label": "Cocco Bianco"
+            },
+            {
+                "file": "Cocco Blu Marino.jpg",
+                "label": "Cocco Blu Marino"
+            },
+            {
+                "file": "Cocco Blu.jpg",
+                "label": "Cocco Blu"
+            },
+            {
+                "file": "Cocco Bordeaux.jpg",
+                "label": "Cocco Bordeaux"
+            },
+            {
+                "file": "Cocco Cioccolato Fondente.jpg",
+                "label": "Cocco Cioccolato Fondente"
+            },
+            {
+                "file": "Cocco Fucsia.jpg",
+                "label": "Cocco Fucsia"
+            },
+            {
+                "file": "Cocco Marrone Lucido.jpg",
+                "label": "Cocco Marrone Lucido"
+            },
+            {
+                "file": "Cocco Nero.jpg",
+                "label": "Cocco Nero"
+            },
+            {
+                "file": "Cocco Platino.jpg",
+                "label": "Cocco Platino"
+            },
+            {
+                "file": "Cocco Tabacco.jpg",
+                "label": "Cocco Tabacco"
+            },
+            {
+                "file": "Cocco Verde Lucido.jpg",
+                "label": "Cocco Verde Lucido"
+            },
+            {
+                "file": "Cocco Verde Oliva.jpg",
+                "label": "Cocco Verde Oliva"
+            },
+            {
+                "file": "Cocco Verde.jpg",
+                "label": "Cocco Verde"
+            },
+            {
+                "file": "Cocco Viola Chiaro.jpg",
+                "label": "Cocco Viola Chiaro"
+            },
+            {
+                "file": "Pitone Azzurro.jpg",
+                "label": "Pitone Azzurro"
+            },
+            {
+                "file": "Pitone Blu.jpg",
+                "label": "Pitone Blu"
+            },
+            {
+                "file": "Pitone Nero.jpg",
+                "label": "Pitone Nero"
+            },
+            {
+                "file": "Pitone Platino.jpg",
+                "label": "Pitone Platino"
+            },
+            {
+                "file": "Pitone Roccia.jpg",
+                "label": "Pitone Roccia"
+            },
+            {
+                "file": "Pitone Rosa.jpg",
+                "label": "Pitone Rosa"
+            },
+            {
+                "file": "Rettile Verde.jpg",
+                "label": "Rettile Verde"
+            },
+            {
+                "file": "Struzzo Grigio.jpg",
+                "label": "Struzzo Grigio"
+            },
+            {
+                "file": "Pelle Spigata Grigia.jpg",
+                "label": "Pelle Spigata Grigia"
+            },
+            {
+                "file": "Pelle Spigata Oro.jpg",
+                "label": "Pelle Spigata Oro"
+            }
+        ]
+    },
+    {
+        "id": "rafie-e-tessuti-naturali",
+        "name": "Rafie e Tessuti Naturali",
+        "folder": "RAFIE E TESSUTI NATURALI OK",
+        "swatches": [
+            {
+                "file": "caramello.jpg",
+                "label": "Caramello"
+            },
+            {
+                "file": "intrecciato argento.jpg",
+                "label": "Intrecciato Argento"
+            },
+            {
+                "file": "intrecciato bianco.jpg",
+                "label": "Intrecciato Bianco"
+            },
+            {
+                "file": "intrecciato naturale.jpg",
+                "label": "Intrecciato Naturale"
+            },
+            {
+                "file": "intrecciato verde salvia.jpg",
+                "label": "Intrecciato Verde Salvia"
+            },
+            {
+                "file": "intrecciato zafferano.jpg",
+                "label": "Intrecciato Zafferano"
+            },
+            {
+                "file": "lino marron glacè.jpg",
+                "label": "Lino Marron Glacè"
+            },
+            {
+                "file": "lino nero.jpg",
+                "label": "Lino Nero"
+            },
+            {
+                "file": "rafia arancione def.jpg",
+                "label": "Rafia Arancione"
+            },
+            {
+                "file": "rafia blu def.jpg",
+                "label": "Rafia Blu"
+            },
+            {
+                "file": "rafia caramello.jpg",
+                "label": "Rafia Caramello"
+            },
+            {
+                "file": "rafia corda def.jpg",
+                "label": "Rafia Corda"
+            },
+            {
+                "file": "rafia nera.jpg",
+                "label": "Rafia Nera"
+            },
+            {
+                "file": "spigato azzurro.jpg",
+                "label": "Spigato Azzurro"
+            },
+            {
+                "file": "spigato platino e arancione.jpg",
+                "label": "Spigato Platino e Arancione"
+            }
+        ]
+    },
+    {
+        "id": "tessuti",
+        "name": "Tessuti",
+        "folder": "TESSUTI",
+        "swatches": [
+            {
+                "file": "damasco rosa e grigio.jpg",
+                "label": "Damasco Rosa e Grigio"
+            },
+            {
+                "file": "flora verde.jpg",
+                "label": "Flora Verde"
+            },
+            {
+                "file": "jeans chiaro.jpg",
+                "label": "Jeans Chiaro"
+            },
+            {
+                "file": "jeans medio.jpg",
+                "label": "Jeans Medio"
+            },
+            {
+                "file": "jeans scuro.jpg",
+                "label": "Jeans Scuro"
+            },
+            {
+                "file": "lino nero pois argento.jpg",
+                "label": "Lino Nero Pois Argento"
+            },
+            {
+                "file": "mattonelle azzurre.jpg",
+                "label": "Mattonelle Azzurre"
+            },
+            {
+                "file": "mattonelle giallo e verde.jpg",
+                "label": "Mattonelle Giallo e Verde"
+            },
+            {
+                "file": "papaveri rossi.jpg",
+                "label": "Papaveri Rossi"
+            },
+            {
+                "file": "raso blu pois bianchi.jpg",
+                "label": "Raso Blu Pois Bianchi"
+            },
+            {
+                "file": "vichy azzurro.jpg",
+                "label": "Vichy Azzurro"
+            },
+            {
+                "file": "vichy fucsia.jpg",
+                "label": "Vichy Fucsia"
+            },
+            {
+                "file": "vichy nero.jpg",
+                "label": "Vichy Nero"
+            },
+            {
+                "file": "vichy rosso.jpg",
+                "label": "Vichy Rosso"
+            }
+        ]
+    },
+    {
+        "id": "velluti",
+        "name": "Velluti",
+        "folder": "VELLUTI OK",
+        "swatches": [
+            {
+                "file": "ciocc.jpg",
+                "label": "Cioccolato"
+            },
+            {
+                "file": "noce.jpg",
+                "label": "Noce"
+            },
+            {
+                "file": "nude.jpg",
+                "label": "Nude"
+            },
+            {
+                "file": "velluto antracite def.jpg",
+                "label": "Velluto Antracite"
+            },
+            {
+                "file": "velluto azzurro def.jpg",
+                "label": "Velluto Azzurro"
+            },
+            {
+                "file": "velluto bianco.jpg",
+                "label": "Velluto Bianco"
+            },
+            {
+                "file": "velluto blu def.jpg",
+                "label": "Velluto Blu"
+            },
+            {
+                "file": "velluto bluette def.jpg",
+                "label": "Velluto Bluette"
+            },
+            {
+                "file": "velluto bordeaux.jpg",
+                "label": "Velluto Bordeaux"
+            },
+            {
+                "file": "velluto fucsia def.jpg",
+                "label": "Velluto Fucsia"
+            },
+            {
+                "file": "velluto nero.jpg",
+                "label": "Velluto Nero"
+            },
+            {
+                "file": "velluto perla.jpg",
+                "label": "Velluto Perla"
+            },
+            {
+                "file": "velluto rosso.jpg",
+                "label": "Velluto Rosso"
+            },
+            {
+                "file": "velluto rubino.jpg",
+                "label": "Velluto Rubino"
+            },
+            {
+                "file": "velluto salvia.jpg",
+                "label": "Velluto Salvia"
+            },
+            {
+                "file": "velluto verde bosco.jpg",
+                "label": "Velluto Verde Bosco"
+            }
+        ]
+    }
+]

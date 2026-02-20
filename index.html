@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="description"
+        content="Le Boffi – Configura la tua scarpa su misura. Scegli modello, materiale e colori." />
+    <meta name="theme-color" content="#b03d75" />
+    <title>Le Boffi – Configura la tua Scarpa</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Assistant:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <span class="header-tagline">CHOOSE YOUR STYLE!</span>
+        <img src="images/logo/logo.avif" alt="Le Boffi" class="header-logo" />
+        <div class="header-actions">
+            <button id="btnInstall" class="btn-icon" style="display:none;" title="Installa App">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+            </button>
+            <button id="btnExport" class="btn-icon" disabled title="Esporta PNG">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="m21 15-5-5L5 21" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <!-- Viewer: always sticky at top-left -->
+        <section class="viewer-col">
+            <div class="shoe-viewer" id="shoeViewer">
+                <div class="viewer-placeholder" id="viewerPlaceholder">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <path
+                            d="M2 7.5C2 5.01 2 3.77 2.67 2.92a3 3 0 0 1 .41-.41C3.93 1.84 5.17 1.84 7.66 1.84h8.68c2.49 0 3.73 0 4.58.67.15.12.29.26.41.41.67.85.67 2.09.67 4.58v8.68c0 2.49 0 3.73-.67 4.58-.12.15-.26.29-.41.41-.85.67-2.09.67-4.58.67H7.66c-2.49 0-3.73 0-4.58-.67a3 3 0 0 1-.41-.41C2 19.91 2 18.67 2 16.18V7.5Z" />
+                        <circle cx="8" cy="8" r="2" />
+                        <path
+                            d="m2 15.5 3.25-3.25a1 1 0 0 1 1.5.1l2.1 2.8a1 1 0 0 0 1.5.1L14 11.5l4.5 4.25a1.25 1.25 0 0 1 .5 1v2.75" />
+                    </svg>
+                    <span>Seleziona un modello per iniziare</span>
+                </div>
+                <canvas id="shoeCanvas" style="display:none;"></canvas>
+            </div>
+        </section>
+
+        <!-- Controls: scrollable right panel -->
+        <aside class="controls-col">
+            <!-- Step Nav -->
+            <nav class="step-nav">
+                <button class="step-tab active" data-step="0">
+                    <span class="step-dot"></span> Modello
+                </button>
+                <svg class="step-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <polyline points="9 6 15 12 9 18" />
+                </svg>
+                <button class="step-tab" data-step="1">
+                    <span class="step-dot"></span> Materiale
+                </button>
+            </nav>
+
+            <!-- STEP 1: Modello -->
+            <div class="step-panel active" id="panel-0">
+                <div class="panel-scroll">
+                    <div class="model-grid" id="modelGrid">
+                        <div class="loading-msg">Caricamento…</div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button id="btnNext" class="btn btn-primary btn-full">
+                        Scegli Materiale
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: Materiale -->
+            <div class="step-panel" id="panel-1">
+                <div class="mask-selector">
+                    <div class="mask-tabs" id="maskTabs"></div>
+                    <div class="active-mask-label" id="activeMaskLabel"></div>
+                </div>
+                <div class="panel-scroll">
+                    <div class="material-categories" id="materialCategories">
+                        <div class="loading-msg">Caricamento…</div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button id="btnPrev" class="btn btn-ghost-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                        Modello
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <div id="toast" class="toast"></div>
+    <script src="app.js"></script>
+</body>
+
+</html>
