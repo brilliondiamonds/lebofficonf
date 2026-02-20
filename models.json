@@ -66,6 +66,22 @@
                         "label": "Punta"
                     }
                 ]
+            },
+            {
+                "id": "frida-tonda",
+                "name": "Frida Tonda",
+                "folder": "flat",
+                "base": "fridatondabase.png",
+                "masks": [
+                    {
+                        "file": "fridatondaorltura+BOTT.png",
+                        "label": "Orlatura - Bottoni"
+                    },
+                    {
+                        "file": "fridatondatomaiaNOBOTT.png",
+                        "label": "Tomaia - Listini"
+                    }
+                ]
             }
         ]
     },
