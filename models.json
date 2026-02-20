@@ -110,5 +110,10 @@
         "id": "vittoria-ballerina",
         "name": "Vittoria Ballerina",
         "models": []
+    },
+    {
+        "id": "mule",
+        "name": "MULE",
+        "models": []
     }
 ]
