@@ -98,6 +98,26 @@
                         "label": "Punta - Listino - Sperone"
                     }
                 ]
+            },
+            {
+                "id": "elisabetta",
+                "name": "Elisabetta",
+                "folder": "flat",
+                "base": "elisabettabase.png",
+                "masks": [
+                    {
+                        "file": "elisabettasperone.png",
+                        "label": "Retro"
+                    },
+                    {
+                        "file": "elisabettamascherina.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "elisabettariportielistini+BORDO SOTT.png",
+                        "label": "Riporti - Listini - Bordo Sottopiede"
+                    }
+                ]
             }
         ]
     },
