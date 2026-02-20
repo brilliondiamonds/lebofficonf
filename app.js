@@ -27,7 +27,8 @@
             img.onload = () => { imageCache[src] = img; resolve(img); };
             img.onerror = () => {
                 if (!src.startsWith('http') && !src.startsWith('data:')) {
-                    const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + src;
+                    const baseSrc = src.split('?')[0]; // Rimuove eventuali vecchi cache buster
+                    const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + baseSrc + '?v=' + new Date().getTime();
                     const fbImg = new Image();
                     fbImg.crossOrigin = 'anonymous';
                     fbImg.onload = () => { imageCache[src] = fbImg; resolve(fbImg); };
@@ -62,9 +63,22 @@
             }
 
             const adminModels = localStorage.getItem('leboffi_models_data');
+            // Check if adminModels is older than the github data or we just force github data if it's more recent
+            // Actually, we'll just check if adminModels is present.
             if (adminModels) {
                 try {
-                    modelsData = JSON.parse(adminModels);
+                    let localModels = JSON.parse(adminModels);
+                    // A quick fix to ensure the agata-mule folder name is correct in local storage as well
+                    localModels.forEach(cat => {
+                        if (cat.models) {
+                            cat.models.forEach(m => {
+                                if (m.id === 'agata-mule' && m.folder === 'agata-mule') {
+                                    m.folder = 'AGATA MULE';
+                                }
+                            });
+                        }
+                    });
+                    modelsData = localModels;
                     console.log('[App] Using admin-synced models from localStorage');
                 } catch (e) {
                     modelsData = mRes;
@@ -157,8 +171,10 @@
                     card.className = 'model-card';
                     card.dataset.id = model.id;
                     const src = encodeURI('images/modelli/' + model.folder + '/' + model.base);
+                    const ts = new Date().getTime();
+                    const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + src + '?v=' + ts;
                     card.innerHTML =
-                        '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy"/></div>' +
+                        '<div class="model-thumb"><img src="' + src + '?v=' + ts + '" alt="' + model.name + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
                         '<span class="model-name">' + model.name + '</span>';
                     card.addEventListener('click', () => selectModel(model));
                     catGrid.appendChild(card);
@@ -355,14 +371,15 @@
             cat.swatches.forEach(sw => {
                 const card = document.createElement('button');
                 card.className = 'swatch-card';
+                const ts = new Date().getTime();
                 const imgSrc = encodeURI('images/materiali/' + cat.folder + '/' + sw.file);
-                const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + imgSrc;
+                const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + imgSrc + '?v=' + ts;
                 const curMat = maskMaterials[activeMaskIndex];
                 if (curMat && curMat.categoryId === cat.id && curMat.file === sw.file) {
                     card.classList.add('selected');
                 }
                 card.innerHTML =
-                    '<div class="swatch-img"><img src="' + imgSrc + '" alt="' + sw.label + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
+                    '<div class="swatch-img"><img src="' + imgSrc + '?v=' + ts + '" alt="' + sw.label + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
                     '<span class="swatch-name">' + sw.label + '</span>';
                 card.addEventListener('click', () => assignMaterial(activeMaskIndex, cat.id, sw.file, sw.label, imgSrc));
                 grid.appendChild(card);

@@ -404,7 +404,7 @@
                 if (sw._pendingUpload) {
                     imgSrc = 'data:image/png;base64,' + sw._pendingUpload.base64;
                 }
-                const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(IMAGES_BASE + '/' + cat.folder + '/' + sw.file)}`;
+                const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(IMAGES_BASE + '/' + cat.folder + '/' + sw.file)}?v=${new Date().getTime()}`;
                 
                 const swCard = document.createElement('div');
                 swCard.className = 'admin-swatch-card';
@@ -522,7 +522,7 @@
                     if (model._pendingBaseUpload) {
                         baseImgSrc = 'data:image/png;base64,' + model._pendingBaseUpload.base64;
                     }
-                    const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + model.base)}`;
+                    const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + model.base)}?v=${new Date().getTime()}`;
                     
                     const mHeader = document.createElement('div');
                     mHeader.className = 'cat-header';
@@ -572,7 +572,7 @@
                         if (mask._pendingUpload) {
                             maskImgSrc = 'data:image/png;base64,' + mask._pendingUpload.base64;
                         }
-                        const maskFbSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + mask.file)}`;
+                        const maskFbSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + mask.file)}?v=${new Date().getTime()}`;
                         
                         const maskCard = document.createElement('div');
                         maskCard.className = 'admin-swatch-card';
