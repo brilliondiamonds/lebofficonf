@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shoe-config-v6';
+const CACHE_NAME = 'shoe-config-v7';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -63,6 +63,8 @@ self.addEventListener('fetch', (event) => {
           if (event.request.mode === 'navigate') {
             return caches.match('/index.html');
           }
+          // Prevent TypeError if nothing matches
+          return new Response('Offline and not cached', { status: 503, statusText: 'Service Unavailable' });
         });
       })
   );
