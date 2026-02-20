@@ -1,23 +1,17 @@
 [
     {
-        "id": "mule",
-        "name": "MULE",
-        "models": [
+        "id": "agata-mule",
+        "name": "Agata Mule",
+        "folder": "agata-mule",
+        "base": "agatamulebase.png",
+        "masks": [
             {
-                "id": "agata-mule",
-                "name": "Agata Mule",
-                "folder": "agata-mule",
-                "base": "agatamulebase.png",
-                "masks": [
-                    {
-                        "file": "agatamuletomaia.png",
-                        "label": "Tomaia"
-                    },
-                    {
-                        "file": "agatamuleorlaturabordonappine.png",
-                        "label": "Orlatura - Bordo Sottopiede - Nappine"
-                    }
-                ]
+                "file": "agatamuletomaia.png",
+                "label": "Tomaia"
+            },
+            {
+                "file": "agatamuleorlaturabordonappine.png",
+                "label": "Orlatura - Bordo Sottopiede - Nappine"
             }
         ]
     }
