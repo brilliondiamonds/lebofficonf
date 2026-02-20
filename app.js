@@ -126,7 +126,8 @@
         grid.innerHTML = '';
         modelsData.forEach(cat => {
             const div = document.createElement('div');
-            div.className = 'mat-category open';
+            // Categoria dei modelli chiusa di default come quelle dei materiali
+            div.className = 'mat-category';
 
             const modelsCount = cat.models ? cat.models.length : 0;
 
@@ -138,18 +139,19 @@
                 '<svg class="mat-cat-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
 
             header.addEventListener('click', () => {
-                div.classList.toggle('open');
+                const wasOpen = div.classList.contains('open');
+                // Opzionale: chiudi le altre categorie quando se ne apre una
+                // grid.querySelectorAll('.mat-category').forEach(c => c.classList.remove('open'));
+                if (!wasOpen) div.classList.add('open');
+                else div.classList.remove('open');
             });
 
             const content = document.createElement('div');
             content.className = 'mat-cat-content';
             const catGrid = document.createElement('div');
-            catGrid.className = 'model-grid-inner'; // specific wrapper if needed, or just model-grid style
-            catGrid.style.display = 'grid';
-            catGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(110px, 1fr))';
-            catGrid.style.gap = '12px';
+            catGrid.className = 'swatch-grid'; // Usa la classe swatch-grid per allineare l'estetica a quella dei materiali
 
-            if (cat.models) {
+            if (cat.models && cat.models.length > 0) {
                 cat.models.forEach(model => {
                     const card = document.createElement('button');
                     card.className = 'model-card';
@@ -161,6 +163,9 @@
                     card.addEventListener('click', () => selectModel(model));
                     catGrid.appendChild(card);
                 });
+            } else {
+                // Messaggio vuoto per indicare che non ci sono modelli in questa categoria
+                catGrid.innerHTML = '<span style="color:var(--text-muted);font-size:14px;padding:8px;">Nessun modello disponibile</span>';
             }
 
             content.appendChild(catGrid);
