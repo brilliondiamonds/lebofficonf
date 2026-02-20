@@ -248,6 +248,38 @@
                         "label": "Pateletta"
                     }
                 ]
+            },
+            {
+                "id": "sofia",
+                "name": "Sofia",
+                "folder": "mocassini",
+                "base": "sofiabase.png",
+                "masks": [
+                    {
+                        "file": "sofiatomaia-.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "sofiafascetta-.png",
+                        "label": "Fascetta"
+                    }
+                ]
+            },
+            {
+                "id": "lavinia",
+                "name": "Lavinia",
+                "folder": "mocassini",
+                "base": "laviniabase.png",
+                "masks": [
+                    {
+                        "file": "laviniatomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "laviniaorlatura+nappine.png",
+                        "label": "Orlatura - Nappine"
+                    }
+                ]
             }
         ]
     },
@@ -268,6 +300,42 @@
                     {
                         "file": "agatamuleorlaturabordonappine.png",
                         "label": "Orlatura - Bordo Sottopiede - Nappine"
+                    }
+                ]
+            },
+            {
+                "id": "costanza",
+                "name": "Costanza",
+                "folder": "mule",
+                "base": "costanzamulebase.png",
+                "masks": [
+                    {
+                        "file": "costanzamulemascherina.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "costanzamuleorlatura+bordo.png",
+                        "label": "Orlatura - Bordo Sottopiede"
+                    }
+                ]
+            },
+            {
+                "id": "ginevra",
+                "name": "Ginevra",
+                "folder": "mule",
+                "base": "ginevramulebase.png",
+                "masks": [
+                    {
+                        "file": "ginevramulemasch.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "ginevramulelistino.png",
+                        "label": "Fascia"
+                    },
+                    {
+                        "file": "ginevramulefibbiaebordosott.png",
+                        "label": "Fibbia - Bordo Sottopiede"
                     }
                 ]
             }
