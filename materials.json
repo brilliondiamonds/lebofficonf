@@ -71,6 +71,10 @@
             {
                 "file": "viola.jpg",
                 "label": "Viola"
+            },
+            {
+                "file": "IMG_2728.jpeg",
+                "label": "Test"
             }
         ]
     },
