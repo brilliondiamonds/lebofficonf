@@ -48,9 +48,7 @@
                 fetch('models.json?v=' + timestamp).then(r => r.json()),
                 fetch('materials.json?v=' + timestamp).then(r => r.json())
             ]);
-            modelsData = mRes;
-
-            // Check for admin-synced materials (updated via admin panel)
+            // Check for admin-synced materials and models (updated via admin panel)
             const adminMaterials = localStorage.getItem('leboffi_materials_data');
             if (adminMaterials) {
                 try {
@@ -61,6 +59,18 @@
                 }
             } else {
                 materialsData = matRes;
+            }
+
+            const adminModels = localStorage.getItem('leboffi_models_data');
+            if (adminModels) {
+                try {
+                    modelsData = JSON.parse(adminModels);
+                    console.log('[App] Using admin-synced models from localStorage');
+                } catch (e) {
+                    modelsData = mRes;
+                }
+            } else {
+                modelsData = mRes;
             }
         } catch (e) {
             console.error('Load error:', e);
@@ -115,16 +125,16 @@
         const grid = document.getElementById('modelGrid');
         grid.innerHTML = '';
         modelsData.forEach(cat => {
-            if (!cat.models || cat.models.length === 0) return;
-
             const div = document.createElement('div');
             div.className = 'mat-category open';
+
+            const modelsCount = cat.models ? cat.models.length : 0;
 
             const header = document.createElement('button');
             header.className = 'mat-cat-header';
             header.innerHTML =
                 '<span><span class="mat-cat-name">' + cat.name + '</span>' +
-                '<span class="mat-cat-count">' + cat.models.length + '</span></span>' +
+                '<span class="mat-cat-count">' + modelsCount + '</span></span>' +
                 '<svg class="mat-cat-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
 
             header.addEventListener('click', () => {
@@ -139,17 +149,19 @@
             catGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(110px, 1fr))';
             catGrid.style.gap = '12px';
 
-            cat.models.forEach(model => {
-                const card = document.createElement('button');
-                card.className = 'model-card';
-                card.dataset.id = model.id;
-                const src = encodeURI('images/modelli/' + model.folder + '/' + model.base);
-                card.innerHTML =
-                    '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy"/></div>' +
-                    '<span class="model-name">' + model.name + '</span>';
-                card.addEventListener('click', () => selectModel(model));
-                catGrid.appendChild(card);
-            });
+            if (cat.models) {
+                cat.models.forEach(model => {
+                    const card = document.createElement('button');
+                    card.className = 'model-card';
+                    card.dataset.id = model.id;
+                    const src = encodeURI('images/modelli/' + model.folder + '/' + model.base);
+                    card.innerHTML =
+                        '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy"/></div>' +
+                        '<span class="model-name">' + model.name + '</span>';
+                    card.addEventListener('click', () => selectModel(model));
+                    catGrid.appendChild(card);
+                });
+            }
 
             content.appendChild(catGrid);
             div.appendChild(header);
