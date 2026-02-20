@@ -50,6 +50,22 @@
                         "label": "Punta - Listino - Bottone"
                     }
                 ]
+            },
+            {
+                "id": "adele-bicolor",
+                "name": "Adele Bicolor",
+                "folder": "flat",
+                "base": "adelebicolorbase.png",
+                "masks": [
+                    {
+                        "file": "adelebicolorretro.png",
+                        "label": "Retro"
+                    },
+                    {
+                        "file": "adelebicolormascherina.png",
+                        "label": "Punta"
+                    }
+                ]
             }
         ]
     },
