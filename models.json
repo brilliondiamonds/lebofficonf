@@ -138,6 +138,22 @@
                         "label": "Listini - Bordo Sottopiede"
                     }
                 ]
+            },
+            {
+                "id": "gaia",
+                "name": "Gaia",
+                "folder": "flat",
+                "base": "gaiabase.png",
+                "masks": [
+                    {
+                        "file": "gaiamascherina.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "gaialistini.png",
+                        "label": "Listini - Bordo Sottopiede"
+                    }
+                ]
             }
         ]
     },
