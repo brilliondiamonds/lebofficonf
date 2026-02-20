@@ -2,329 +2,96 @@
     {
         "id": "adele-bicolor",
         "name": "Adele Bicolor",
-        "folder": "ADELE BICOLOR",
-        "base": "adelebicolorbase.png",
-        "masks": [
-            {
-                "file": "adelebicolormascherina.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "adelebicolorretro.png",
-                "label": "Retro"
-            }
-        ]
+        "models": []
     },
     {
         "id": "agata-mule",
         "name": "Agata Mule",
-        "folder": "AGATA MULE",
-        "base": "agatamulebase.png",
-        "masks": [
-            {
-                "file": "agatamuletomaia.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "agatamuleorlaturabordonappine.png",
-                "label": "Orlatura Bordo Nappine"
-            }
-        ]
+        "models": []
     },
     {
         "id": "costanza-mule",
         "name": "Costanza Mule",
-        "folder": "costanza mule",
-        "base": "costanzamulebase.png",
-        "masks": [
-            {
-                "file": "costanzamulemascherina.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "costanzamuleorlatura+bordo.png",
-                "label": "Orlatura + Bordo"
-            }
-        ]
+        "models": []
     },
     {
         "id": "elisa-ballerina",
         "name": "Elisa Ballerina",
-        "folder": "elisa ballerina",
-        "base": "elisaballerinabase.png",
-        "masks": [
-            {
-                "file": "elisaballerinatomaia.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "elisaballerinalistini.png",
-                "label": "Listini"
-            }
-        ]
+        "models": []
     },
     {
         "id": "elisabetta",
         "name": "Elisabetta",
-        "folder": "elisabetta",
-        "base": "elisabettabase.png",
-        "masks": [
-            {
-                "file": "elisabettamascherina.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "elisabettasperone.png",
-                "label": "Sperone"
-            },
-            {
-                "file": "elisabettariportielistini.png",
-                "label": "Riporti e Listini"
-            }
-        ]
+        "models": []
     },
     {
         "id": "emma",
         "name": "Emma",
-        "folder": "EMMA",
-        "base": "emmapuntabase-.png",
-        "masks": [
-            {
-                "file": "emmapuntatomaia-.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "emmapuntapuntinalistinobottone-.png",
-                "label": "Puntina Listino Bottone"
-            }
-        ]
+        "models": []
     },
     {
         "id": "fiammetta",
         "name": "Fiammetta",
-        "folder": "fiammetta",
-        "base": "fiammettabase.png",
-        "masks": [
-            {
-                "file": "fiammettamascherina.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "fiammettasperone.png",
-                "label": "Sperone"
-            },
-            {
-                "file": "fiammettalistini+bordo.png",
-                "label": "Listini + Bordo"
-            }
-        ]
+        "models": []
     },
     {
         "id": "frida-punta",
         "name": "Frida Punta",
-        "folder": "frida punta",
-        "base": "fridabase.png",
-        "masks": [
-            {
-                "file": "fridapuntatomaia.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "fridapuntaorlatura.png",
-                "label": "Orlatura"
-            }
-        ]
+        "models": []
     },
     {
         "id": "frida-tonda",
         "name": "Frida Tonda",
-        "folder": "frida tonda",
-        "base": "fridatondabase.png",
-        "masks": [
-            {
-                "file": "fridatondatomaia.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "fridatondaorltura.png",
-                "label": "Orlatura"
-            }
-        ]
+        "models": []
     },
     {
         "id": "gaia",
         "name": "Gaia",
-        "folder": "gaia",
-        "base": "gaiabase.png",
-        "masks": [
-            {
-                "file": "gaiamascherina.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "gaialistini.png",
-                "label": "Listini"
-            }
-        ]
+        "models": []
     },
     {
         "id": "ginevra-mule",
         "name": "Ginevra Mule",
-        "folder": "ginevramule",
-        "base": "ginevramulebase.png",
-        "masks": [
-            {
-                "file": "ginevramulemasch.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "ginevramulelistino.png",
-                "label": "Listino"
-            },
-            {
-                "file": "ginevramulefibbia.png",
-                "label": "Fibbia"
-            }
-        ]
+        "models": []
     },
     {
         "id": "giorgia",
         "name": "Giorgia",
-        "folder": "GIORGIA",
-        "base": "giorgiabase.png",
-        "masks": [
-            {
-                "file": "giorgiatomaia.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "giorgiatomaiaBORDO.png",
-                "label": "Tomaia Bordo"
-            },
-            {
-                "file": "giorgiariporti.png",
-                "label": "Riporti"
-            }
-        ]
+        "models": []
     },
     {
         "id": "lavinia",
         "name": "Lavinia",
-        "folder": "lavinia",
-        "base": "laviniabase.png",
-        "masks": [
-            {
-                "file": "laviniatomaia.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "laviniaorlatura+nappine.png",
-                "label": "Orlatura + Nappine"
-            }
-        ]
+        "models": []
     },
     {
         "id": "matilde",
         "name": "Matilde",
-        "folder": "matilde",
-        "base": "matildebase.png",
-        "masks": [
-            {
-                "file": "matildemascherina.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "matildesperone.png",
-                "label": "Sperone"
-            },
-            {
-                "file": "matildelistino+bordosott.png",
-                "label": "Listino + Bordo"
-            }
-        ]
+        "models": []
     },
     {
         "id": "ottavia",
         "name": "Ottavia",
-        "folder": "ottavia",
-        "base": "ottaviabase.png",
-        "masks": [
-            {
-                "file": "ottaviamascherina.png",
-                "label": "Mascherina"
-            },
-            {
-                "file": "ottaviasperone.png",
-                "label": "Sperone"
-            },
-            {
-                "file": "ottavialistini+bordo.png",
-                "label": "Listini + Bordo"
-            }
-        ]
+        "models": []
     },
     {
         "id": "penelope",
         "name": "Penelope",
-        "folder": "penelope",
-        "base": "penelope.png",
-        "masks": [
-            {
-                "file": "penelopetomvasc.png",
-                "label": "Tomaia Vasca"
-            },
-            {
-                "file": "penelopepat.png",
-                "label": "Pattina"
-            }
-        ]
+        "models": []
     },
     {
         "id": "sofia",
         "name": "Sofia",
-        "folder": "SOFIA",
-        "base": "sofiabase.png",
-        "masks": [
-            {
-                "file": "sofiatomaia-.png",
-                "label": "Tomaia"
-            },
-            {
-                "file": "sofiafascetta-.png",
-                "label": "Fascetta"
-            }
-        ]
+        "models": []
     },
     {
         "id": "vittoria-aperta",
         "name": "Vittoria Aperta",
-        "folder": "VITTORIA APERTA",
-        "base": "vittoriaapertabase.png",
-        "masks": [
-            {
-                "file": "vittoriaapertatomaiabordosott.png",
-                "label": "Tomaia Bordo"
-            },
-            {
-                "file": "vittoriaapertariporti+listini.png",
-                "label": "Riporti + Listini"
-            }
-        ]
+        "models": []
     },
     {
         "id": "vittoria-ballerina",
         "name": "Vittoria Ballerina",
-        "folder": "vittoria ballerina",
-        "base": "vittoriaballerinabase.png",
-        "masks": [
-            {
-                "file": "vittoriaballerinalaterali.png",
-                "label": "Laterali"
-            },
-            {
-                "file": "vittoriaballerinapunta+list+sper.png",
-                "label": "Punta + Listini + Sperone"
-            }
-        ]
+        "models": []
     }
 ]
