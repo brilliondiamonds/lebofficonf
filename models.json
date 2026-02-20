@@ -6,7 +6,7 @@
             {
                 "id": "agata-mule",
                 "name": "Agata Mule",
-                "folder": "mule",
+                "folder": "agata-mule",
                 "base": "agatamulebase.png",
                 "masks": [
                     {
