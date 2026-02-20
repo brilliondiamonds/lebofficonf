@@ -58,7 +58,7 @@ self.addEventListener('fetch', (event) => {
       })
       .catch(() => {
         // Offline: serve from cache
-        return caches.match(event.request).then((cachedResponse) => {
+        return caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
           if (cachedResponse) {
             return cachedResponse;
           }
