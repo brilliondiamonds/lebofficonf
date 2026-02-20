@@ -2,7 +2,15 @@
     {
         "id": "flat",
         "name": "Flat",
-        "models": []
+        "models": [
+            {
+                "id": "frida",
+                "name": "Frida",
+                "folder": "flat",
+                "base": "fridabase.png",
+                "masks": []
+            }
+        ]
     },
     {
         "id": "mocassini",
