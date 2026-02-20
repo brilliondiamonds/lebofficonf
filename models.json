@@ -210,6 +210,22 @@
                         "label": "Listini - Bordo Sottopiede"
                     }
                 ]
+            },
+            {
+                "id": "vittoria",
+                "name": "Vittoria",
+                "folder": "flat",
+                "base": "vittoriaapertabase.png",
+                "masks": [
+                    {
+                        "file": "vittoriaestivatomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "vittoriaestivariportilistinibordosott.png",
+                        "label": "Listino - Riporti - Bordo Sottopiede"
+                    }
+                ]
             }
         ]
     },
