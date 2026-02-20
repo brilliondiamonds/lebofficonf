@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shoe-config-v5';
+const CACHE_NAME = 'shoe-config-v6';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -39,15 +39,12 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch: Cache-First strategy
+// Fetch: Network-First strategy (always get fresh content, fallback to cache offline)
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request).then((networkResponse) => {
-        // Cache new requests dynamically
+    fetch(event.request)
+      .then((networkResponse) => {
+        // Update cache with fresh response
         if (event.request.method === 'GET' && networkResponse.status === 200) {
           const responseClone = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
@@ -55,12 +52,18 @@ self.addEventListener('fetch', (event) => {
           });
         }
         return networkResponse;
-      });
-    }).catch(() => {
-      // Fallback for navigation requests
-      if (event.request.mode === 'navigate') {
-        return caches.match('/index.html');
-      }
-    })
+      })
+      .catch(() => {
+        // Offline: serve from cache
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          // Fallback for navigation requests
+          if (event.request.mode === 'navigate') {
+            return caches.match('/index.html');
+          }
+        });
+      })
   );
 });

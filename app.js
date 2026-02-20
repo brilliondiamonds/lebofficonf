@@ -37,7 +37,32 @@
                 fetch('materials.json').then(r => r.json())
             ]);
             modelsData = mRes;
-            materialsData = matRes;
+
+            // Check for admin-synced materials (updated via admin panel)
+            const adminMaterials = localStorage.getItem('leboffi_materials_data');
+            if (adminMaterials) {
+                try {
+                    materialsData = JSON.parse(adminMaterials);
+                    console.log('[App] Using admin-synced materials from localStorage');
+                } catch (e) {
+                    materialsData = matRes;
+                }
+            } else {
+                materialsData = matRes;
+            }
+
+            // Check for admin-synced models
+            const adminModels = localStorage.getItem('leboffi_models_data');
+            if (adminModels) {
+                try {
+                    modelsData = JSON.parse(adminModels);
+                    console.log('[App] Using admin-synced models from localStorage');
+                } catch (e) {
+                    modelsData = mRes;
+                }
+            } else {
+                modelsData = mRes;
+            }
         } catch (e) {
             console.error('Load error:', e);
             return;
@@ -384,6 +409,46 @@
     }
 
     // ─── EXPORT ──────────────────────
+    function drawExportSummary() {
+        const W = canvas.width;
+        const H = canvas.height;
+        const padding = 40;
+        const lineHeight = 48;
+        const titleSize = 42;
+        const textSize = 32;
+
+        // Build summary lines
+        const lines = [];
+        selectedModel.masks.forEach((mask, i) => {
+            const mat = maskMaterials[i];
+            lines.push(mask.label + ':  ' + (mat ? mat.label : '—'));
+        });
+
+        const panelH = padding * 2 + lineHeight + lines.length * lineHeight + 10;
+        const panelY = H - panelH;
+
+        // Semi-transparent dark background
+        ctx.fillStyle = 'rgba(30, 30, 30, 0.85)';
+        ctx.fillRect(0, panelY, W, panelH);
+
+        // Top border accent
+        ctx.fillStyle = '#b03d75';
+        ctx.fillRect(0, panelY, W, 4);
+
+        // Model name (title)
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold ' + titleSize + 'px Assistant, sans-serif';
+        ctx.textBaseline = 'top';
+        ctx.fillText('✦  ' + selectedModel.name, padding, panelY + padding);
+
+        // Mask → Material lines
+        ctx.font = textSize + 'px Assistant, sans-serif';
+        ctx.fillStyle = '#e0e0e0';
+        lines.forEach((line, i) => {
+            ctx.fillText(line, padding + 20, panelY + padding + lineHeight + i * lineHeight + 10);
+        });
+    }
+
     function setupExport() {
         document.getElementById('btnExport').addEventListener('click', () => {
             if (!selectedModel) return;
@@ -393,6 +458,7 @@
             hoveredMaskIndex = -1;
             currentStep = -1; // suppress active mask highlight
             renderShoe().then(() => {
+                drawExportSummary();
                 const a = document.createElement('a');
                 a.download = 'leboffi-' + selectedModel.id + '.png';
                 a.href = canvas.toDataURL('image/png');
