@@ -170,6 +170,26 @@
                         "label": "Riporti"
                     }
                 ]
+            },
+            {
+                "id": "matilde",
+                "name": "Matilde",
+                "folder": "flat",
+                "base": "matildebase.png",
+                "masks": [
+                    {
+                        "file": "matildesperone.png",
+                        "label": "Retro"
+                    },
+                    {
+                        "file": "matildemascherina.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "matildelistino+bordosott.png",
+                        "label": "Listini - Bordo Sottopiede"
+                    }
+                ]
             }
         ]
     },
