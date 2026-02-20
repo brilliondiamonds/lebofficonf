@@ -381,10 +381,6 @@
         "folder": "LAMINATI E VERNICI",
         "swatches": [
             {
-                "file": "CracklÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨ turchese.jpg",
-                "label": "CracklÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨ Turchese"
-            },
-            {
                 "file": "Laminato Bronzo.jpg",
                 "label": "Laminato Bronzo"
             },
@@ -745,8 +741,8 @@
                 "label": "Intrecciato Zafferano"
             },
             {
-                "file": "lino marron glacÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨.jpg",
-                "label": "Lino Marron GlacÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨"
+                "file": "lino marron glacÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨.jpg",
+                "label": "Lino Marron GlacÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨"
             },
             {
                 "file": "lino nero.jpg",
