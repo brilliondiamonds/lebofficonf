@@ -1,8 +1,8 @@
 [
     {
-        "id": "camosci",
-        "name": "Camosci",
-        "folder": "Camosci",
+        "id": "camoscio",
+        "name": "Camoscio",
+        "folder": "Camoscio",
         "swatches": [
             {
                 "file": "Camoscio cognac.jpg",
@@ -381,12 +381,12 @@
         "folder": "LAMINATI E VERNICI",
         "swatches": [
             {
-                "file": "Cracklè argento.jpg",
-                "label": "Cracklè Argento"
+                "file": "CracklÃ¨ argento.jpg",
+                "label": "CracklÃ¨ Argento"
             },
             {
-                "file": "Cracklè turchese.jpg",
-                "label": "Cracklè Turchese"
+                "file": "CracklÃ¨ turchese.jpg",
+                "label": "CracklÃ¨ Turchese"
             },
             {
                 "file": "Laminato Bronzo.jpg",
@@ -749,8 +749,8 @@
                 "label": "Intrecciato Zafferano"
             },
             {
-                "file": "lino marron glacè.jpg",
-                "label": "Lino Marron Glacè"
+                "file": "lino marron glacÃ¨.jpg",
+                "label": "Lino Marron GlacÃ¨"
             },
             {
                 "file": "lino nero.jpg",
