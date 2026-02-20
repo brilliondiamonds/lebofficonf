@@ -115,16 +115,20 @@
     function renderModelGrid() {
         const grid = document.getElementById('modelGrid');
         grid.innerHTML = '';
-        modelsData.forEach(model => {
-            const card = document.createElement('button');
-            card.className = 'model-card';
-            card.dataset.id = model.id;
-            const src = encodeURI('images/modelli/' + model.folder + '/' + model.base);
-            card.innerHTML =
-                '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy"/></div>' +
-                '<span class="model-name">' + model.name + '</span>';
-            card.addEventListener('click', () => selectModel(model));
-            grid.appendChild(card);
+        modelsData.forEach(category => {
+            if (category.models) {
+                category.models.forEach(model => {
+                    const card = document.createElement('button');
+                    card.className = 'model-card';
+                    card.dataset.id = model.id;
+                    const src = encodeURI('images/modelli/' + model.folder + '/' + model.base);
+                    card.innerHTML =
+                        '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy"/></div>' +
+                        '<span class="model-name">' + model.name + '</span>';
+                    card.addEventListener('click', () => selectModel(model));
+                    grid.appendChild(card);
+                });
+            }
         });
     }
 
