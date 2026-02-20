@@ -174,7 +174,7 @@
                     const ts = new Date().getTime();
                     const fallbackSrc = 'https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/' + src + '?v=' + ts;
                     card.innerHTML =
-                        '<div class="model-thumb"><img src="' + src + '?v=' + ts + '" alt="' + model.name + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
+                        '<div class="model-thumb"><img src="' + src + '" alt="' + model.name + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
                         '<span class="model-name">' + model.name + '</span>';
                     card.addEventListener('click', () => selectModel(model));
                     catGrid.appendChild(card);
@@ -379,7 +379,7 @@
                     card.classList.add('selected');
                 }
                 card.innerHTML =
-                    '<div class="swatch-img"><img src="' + imgSrc + '?v=' + ts + '" alt="' + sw.label + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
+                    '<div class="swatch-img"><img src="' + imgSrc + '" alt="' + sw.label + '" loading="lazy" onerror="if(!this.dataset.fb){ this.dataset.fb=\'1\'; this.src=\'' + fallbackSrc + '\'; }"/></div>' +
                     '<span class="swatch-name">' + sw.label + '</span>';
                 card.addEventListener('click', () => assignMaterial(activeMaskIndex, cat.id, sw.file, sw.label, imgSrc));
                 grid.appendChild(card);
