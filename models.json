@@ -154,6 +154,22 @@
                         "label": "Listini - Bordo Sottopiede"
                     }
                 ]
+            },
+            {
+                "id": "giorgia",
+                "name": "Giorgia",
+                "folder": "flat",
+                "base": "giorgiabase.png",
+                "masks": [
+                    {
+                        "file": "giorgiatomaiaBORDO.png",
+                        "label": "Tomaia - Bordo Sottopiede"
+                    },
+                    {
+                        "file": "giorgiariporti.png",
+                        "label": "Riporti"
+                    }
+                ]
             }
         ]
     },
