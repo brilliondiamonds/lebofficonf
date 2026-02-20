@@ -190,6 +190,26 @@
                         "label": "Listini - Bordo Sottopiede"
                     }
                 ]
+            },
+            {
+                "id": "ottavia",
+                "name": "Ottavia",
+                "folder": "flat",
+                "base": "ottaviabase.png",
+                "masks": [
+                    {
+                        "file": "ottaviasperone.png",
+                        "label": "Retro"
+                    },
+                    {
+                        "file": "ottaviamascherina.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "ottavialistini+bordo.png",
+                        "label": "Listini - Bordo Sottopiede"
+                    }
+                ]
             }
         ]
     },
