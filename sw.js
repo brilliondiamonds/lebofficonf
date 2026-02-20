@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shoe-config-v8';
+const CACHE_NAME = 'shoe-config-v7';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -44,12 +44,15 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((networkResponse) => {
-        // Update cache with fresh response
+        // Update cache with fresh response, skip if there are query parameters (like cache busters)
         if (event.request.method === 'GET' && networkResponse.status === 200) {
-          const responseClone = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+          const url = new URL(event.request.url);
+          if (!url.searchParams.has('v') && !url.searchParams.has('t')) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
         }
         return networkResponse;
       })
@@ -63,8 +66,6 @@ self.addEventListener('fetch', (event) => {
           if (event.request.mode === 'navigate') {
             return caches.match('/index.html');
           }
-          // Prevent TypeError if nothing matches
-          return new Response('Offline and not cached', { status: 503, statusText: 'Service Unavailable' });
         });
       })
   );
