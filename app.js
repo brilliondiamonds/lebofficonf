@@ -149,7 +149,7 @@
             const content = document.createElement('div');
             content.className = 'mat-cat-content';
             const catGrid = document.createElement('div');
-            catGrid.className = 'swatch-grid'; // Usa la classe swatch-grid per allineare l'estetica a quella dei materiali
+            catGrid.className = 'model-grid';
 
             if (cat.models && cat.models.length > 0) {
                 cat.models.forEach(model => {
