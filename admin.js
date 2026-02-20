@@ -834,7 +834,7 @@
                     models: (cat.models || []).map(mod => ({
                         id: mod.id,
                         name: mod.name,
-                        folder: mod.folder,
+                        folder: mod.folder || slugify(mod.name), // Ensure model folder exists
                         base: mod.base,
                         masks: (mod.masks || []).map(mk => ({
                             file: mk.file,
