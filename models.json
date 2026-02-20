@@ -8,7 +8,16 @@
                 "name": "Adele Bicolor",
                 "folder": "ADELE BICOLOR",
                 "base": "adelebicolorbase.png",
-                "masks": []
+                "masks": [
+                    {
+                        "file": "adelebicolormascherina.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "adelebicolorretro.png",
+                        "label": "Retro"
+                    }
+                ]
             }
         ]
     },
