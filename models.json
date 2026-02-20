@@ -2,7 +2,15 @@
     {
         "id": "adele-bicolor",
         "name": "Adele Bicolor",
-        "models": []
+        "models": [
+            {
+                "id": "adele-bicolor",
+                "name": "Adele Bicolor",
+                "folder": "ADELE BICOLOR",
+                "base": "adelebicolorbase.png",
+                "masks": []
+            }
+        ]
     },
     {
         "id": "agata-mule",
