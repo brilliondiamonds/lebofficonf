@@ -232,7 +232,24 @@
     {
         "id": "mocassini",
         "name": "Mocassini",
-        "models": []
+        "models": [
+            {
+                "id": "penelope",
+                "name": "Penelope",
+                "folder": "mocassini",
+                "base": "penelope.png",
+                "masks": [
+                    {
+                        "file": "penelopetomvasc.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "penelopepat.png",
+                        "label": "Pateletta"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": "mule",
