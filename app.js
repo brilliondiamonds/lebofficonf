@@ -525,11 +525,41 @@
     }
 
     function setupExport() {
+        const modal = document.getElementById('exportModal');
+        const input = document.getElementById('clientNameInput');
+        const btnCancel = document.getElementById('btnCancelExport');
+        const btnConfirm = document.getElementById('btnConfirmExport');
+
         document.getElementById('btnExport').addEventListener('click', () => {
             if (!selectedModel) return;
             
-            const clientName = prompt('Inserisci il nome della cliente (opzionale):', '');
-            if (clientName === null) return; // User cancelled the prompt
+            // Show custom modal
+            input.value = '';
+            modal.classList.remove('hidden');
+            setTimeout(() => input.focus(), 100);
+        });
+
+        function closeExportModal() {
+            modal.classList.add('hidden');
+            input.blur();
+        }
+
+        btnCancel.addEventListener('click', closeExportModal);
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeExportModal();
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeExportModal();
+            if (e.key === 'Enter') btnConfirm.click();
+        });
+
+        btnConfirm.addEventListener('click', () => {
+            if (!selectedModel) return;
+            
+            const clientName = input.value;
+            closeExportModal();
 
             // Re-render without highlights for export
             const savedHover = hoveredMaskIndex;
