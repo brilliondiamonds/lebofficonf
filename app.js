@@ -473,7 +473,7 @@
     }
 
     // ─── EXPORT ──────────────────────
-    function drawExportSummary(clientName) {
+    async function drawExportSummary(clientName) {
         const W = canvas.width;
         const H = canvas.height;
         const padding = 40;
@@ -507,7 +507,7 @@
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold ' + titleSize + 'px Assistant, sans-serif';
         ctx.textBaseline = 'top';
-        ctx.fillText('✦  ' + selectedModel.name, padding, panelY + padding);
+        ctx.fillText(selectedModel.name, padding, panelY + padding);
 
         // Mask → Material lines
         ctx.font = textSize + 'px Assistant, sans-serif';
@@ -522,6 +522,30 @@
             }
             ctx.fillText(line, padding + 20, panelY + padding + lineHeight + i * lineHeight + 10);
         });
+
+        // Draw Logo on the right
+        try {
+            const logoUrl = encodeURI('images/logo/logo.avif');
+            const logoImg = await loadImage(logoUrl);
+            
+            // Calculate scale to fit nicely in the panel
+            const maxLogoHeight = panelH - padding * 2;
+            const maxLogoWidth = 400; // max width space we want to give to the logo
+            let logoW = logoImg.naturalWidth;
+            let logoH = logoImg.naturalHeight;
+            const scale = Math.min(maxLogoWidth / logoW, maxLogoHeight / logoH);
+            
+            logoW = logoW * scale;
+            logoH = logoH * scale;
+
+            // Align logo to the right, centered vertically within the panel
+            const logoX = W - padding - logoW;
+            const logoY = panelY + (panelH - logoH) / 2;
+            
+            ctx.drawImage(logoImg, logoX, logoY, logoW, logoH);
+        } catch (e) {
+            console.warn('Impossibile caricare il logo per l\'esportazione', e);
+        }
     }
 
     function setupExport() {
@@ -571,8 +595,8 @@
             const savedStep = currentStep;
             hoveredMaskIndex = -1;
             currentStep = -1; // suppress active mask highlight
-            renderShoe().then(() => {
-                drawExportSummary(clientName);
+            renderShoe().then(async () => {
+                await drawExportSummary(clientName);
                 const a = document.createElement('a');
                 
                 let fileName = 'leboffi-' + selectedModel.id;
