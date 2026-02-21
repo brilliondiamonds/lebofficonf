@@ -525,33 +525,38 @@
     }
 
     function setupExport() {
-        const modal = document.getElementById('exportModal');
+        const dropdown = document.getElementById('exportDropdownMenu');
         const input = document.getElementById('clientNameInput');
-        const btnCancel = document.getElementById('btnCancelExport');
+        const btnExport = document.getElementById('btnExport');
         const btnConfirm = document.getElementById('btnConfirmExport');
 
-        document.getElementById('btnExport').addEventListener('click', () => {
+        btnExport.addEventListener('click', (e) => {
             if (!selectedModel) return;
+            e.stopPropagation(); // Prevent closing immediately
             
-            // Show custom modal
-            input.value = '';
-            modal.classList.remove('hidden');
-            setTimeout(() => input.focus(), 100);
+            const isHidden = dropdown.classList.contains('hidden');
+            if (isHidden) {
+                dropdown.classList.remove('hidden');
+                setTimeout(() => input.focus(), 100);
+            } else {
+                dropdown.classList.add('hidden');
+            }
         });
 
-        function closeExportModal() {
-            modal.classList.add('hidden');
+        function closeExportDropdown() {
+            dropdown.classList.add('hidden');
             input.blur();
         }
 
-        btnCancel.addEventListener('click', closeExportModal);
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeExportModal();
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdown.classList.contains('hidden') && !dropdown.contains(e.target) && e.target !== btnExport) {
+                closeExportDropdown();
+            }
         });
 
         input.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeExportModal();
+            if (e.key === 'Escape') closeExportDropdown();
             if (e.key === 'Enter') btnConfirm.click();
         });
 
@@ -559,7 +564,7 @@
             if (!selectedModel) return;
             
             const clientName = input.value;
-            closeExportModal();
+            closeExportDropdown();
 
             // Re-render without highlights for export
             const savedHover = hoveredMaskIndex;

@@ -712,98 +712,79 @@ body {
   background: var(--brand-glow2)
 }
 
-/* ═══ EXPORT MODAL ═══ */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* ═══ EXPORT DROPDOWN ═══ */
+.export-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.export-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
   right: 0;
-  bottom: 0;
-  background: rgba(18, 18, 20, 0.8);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-.modal-overlay.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.modal {
+  width: 260px;
   background: var(--bg-white);
   border: 1px solid var(--border-rose);
   border-radius: var(--r-md);
-  padding: 32px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(176, 61, 117, 0.08);
-  transform: translateY(0) scale(1);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(176, 61, 117, 0.06);
+  z-index: 100;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.modal-overlay.hidden .modal {
-  transform: translateY(20px) scale(0.95);
+.export-dropdown-menu.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
-.modal-header {
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.modal-title {
-  font-family: 'Amiri', serif;
-  font-size: 1.5rem;
-  color: var(--txt);
-  margin-bottom: 8px;
-}
-
-.modal-desc {
-  font-size: 0.85rem;
-  color: var(--txt2);
-  font-family: 'Assistant', sans-serif;
-}
-
-.modal-body {
-  margin-bottom: 24px;
-}
-
-.modal-input {
-  width: 100%;
+.export-dropdown-header {
   padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(176, 61, 117, 0.02);
+  border-top-left-radius: var(--r-md);
+  border-top-right-radius: var(--r-md);
+}
+
+.export-dropdown-title {
+  font-family: 'Assistant', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--txt);
+}
+
+.export-dropdown-body {
+  padding: 16px;
+}
+
+.export-dropdown-input {
+  width: 100%;
+  padding: 10px 14px;
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   background: var(--bg);
   color: var(--txt);
   font-family: 'Assistant', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.2s ease;
   outline: none;
 }
 
-.modal-input:focus {
+.export-dropdown-input:focus {
   border-color: var(--brand);
   box-shadow: 0 0 0 3px var(--brand-glow);
   background: var(--bg-white);
 }
 
-.modal-input::placeholder {
+.export-dropdown-input::placeholder {
   color: var(--txt3);
 }
 
-.modal-footer {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-}
-
-.modal-footer .btn {
-  flex: 1;
-  justify-content: center;
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
 }
 
 /* ═══ TOAST ═══ */

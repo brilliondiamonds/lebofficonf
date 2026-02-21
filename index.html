@@ -41,13 +41,31 @@
                     <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
             </button>
-            <button id="btnExport" class="btn-icon" disabled title="Esporta PNG">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="m21 15-5-5L5 21" />
-                </svg>
-            </button>
+            <div class="export-dropdown-wrapper" id="exportDropdownWrapper">
+                <button id="btnExport" class="btn-icon" disabled title="Esporta PNG">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <path d="m21 15-5-5L5 21" />
+                    </svg>
+                </button>
+                <div class="export-dropdown-menu hidden" id="exportDropdownMenu">
+                    <div class="export-dropdown-header">
+                        <span class="export-dropdown-title">Nome Cliente (Opzionale)</span>
+                    </div>
+                    <div class="export-dropdown-body">
+                        <input type="text" id="clientNameInput" class="export-dropdown-input" placeholder="Es: Maria Rossi" autocomplete="off">
+                        <button id="btnConfirmExport" class="btn btn-primary btn-sm btn-full" style="margin-top: 10px;">
+                            Esporta PNG
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -126,29 +144,6 @@
             </div>
         </aside>
     </main>
-
-    <div id="exportModal" class="modal-overlay hidden">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Esporta Progetto</h2>
-                <p class="modal-desc">Inserisci il nome della cliente per associarlo all'immagine del configuratore (opzionale).</p>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="clientNameInput" class="modal-input" placeholder="Es: Maria Rossi" autocomplete="off">
-            </div>
-            <div class="modal-footer">
-                <button id="btnCancelExport" class="btn btn-ghost-sm">Annulla</button>
-                <button id="btnConfirmExport" class="btn btn-primary">
-                    Esporta PNG
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <div id="toast" class="toast"></div>
     <script>
