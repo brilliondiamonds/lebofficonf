@@ -473,7 +473,7 @@
     }
 
     // ─── EXPORT ──────────────────────
-    function drawExportSummary() {
+    function drawExportSummary(clientName) {
         const W = canvas.width;
         const H = canvas.height;
         const padding = 40;
@@ -483,6 +483,10 @@
 
         // Build summary lines
         const lines = [];
+        if (clientName && clientName.trim() !== '') {
+            lines.push('Cliente: ' + clientName.trim());
+        }
+        
         selectedModel.masks.forEach((mask, i) => {
             const mat = maskMaterials[i];
             lines.push(mask.label + ':  ' + (mat ? mat.label : '—'));
@@ -509,6 +513,13 @@
         ctx.font = textSize + 'px Assistant, sans-serif';
         ctx.fillStyle = '#e0e0e0';
         lines.forEach((line, i) => {
+            if (line.startsWith('Cliente:')) {
+                ctx.font = 'bold ' + textSize + 'px Assistant, sans-serif';
+                ctx.fillStyle = '#ffffff';
+            } else {
+                ctx.font = textSize + 'px Assistant, sans-serif';
+                ctx.fillStyle = '#e0e0e0';
+            }
             ctx.fillText(line, padding + 20, panelY + padding + lineHeight + i * lineHeight + 10);
         });
     }
@@ -516,15 +527,25 @@
     function setupExport() {
         document.getElementById('btnExport').addEventListener('click', () => {
             if (!selectedModel) return;
+            
+            const clientName = prompt('Inserisci il nome della cliente (opzionale):', '');
+            if (clientName === null) return; // User cancelled the prompt
+
             // Re-render without highlights for export
             const savedHover = hoveredMaskIndex;
             const savedStep = currentStep;
             hoveredMaskIndex = -1;
             currentStep = -1; // suppress active mask highlight
             renderShoe().then(() => {
-                drawExportSummary();
+                drawExportSummary(clientName);
                 const a = document.createElement('a');
-                a.download = 'leboffi-' + selectedModel.id + '.png';
+                
+                let fileName = 'leboffi-' + selectedModel.id;
+                if (clientName && clientName.trim() !== '') {
+                    fileName += '-' + clientName.trim().replace(/[^a-z0-9]/gi, '-').toLowerCase();
+                }
+                a.download = fileName + '.png';
+                
                 a.href = canvas.toDataURL('image/png');
                 a.click();
                 hoveredMaskIndex = savedHover;
