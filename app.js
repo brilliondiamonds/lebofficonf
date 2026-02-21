@@ -507,7 +507,7 @@
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold ' + titleSize + 'px Assistant, sans-serif';
         ctx.textBaseline = 'top';
-        ctx.fillText(selectedModel.name, padding, panelY + padding);
+        ctx.fillText(selectedModel.name, padding + 20, panelY + padding);
 
         // Mask → Material lines
         ctx.font = textSize + 'px Assistant, sans-serif';
