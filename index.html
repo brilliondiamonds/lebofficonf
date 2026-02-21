@@ -128,7 +128,12 @@
     </main>
 
     <div id="toast" class="toast"></div>
-    <script src="app.js"></script>
+    <script>
+        // Pulizia forzata della vecchia cache locale
+        localStorage.removeItem('leboffi_materials_data');
+        localStorage.removeItem('leboffi_models_data');
+    </script>
+    <script src="app.js?v=8"></script>
 </body>
 
 </html>

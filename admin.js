@@ -1032,9 +1032,6 @@
             materialsData = cleanData;
             originalJSON = JSON.stringify(materialsData);
 
-            // 5. Sync to localStorage so the configurator picks it up immediately
-            localStorage.setItem('leboffi_materials_data', jsonContent);
-
             renderCategories();
             updateStatus();
             showToast('✅ Pubblicato con successo! Vercel farà il redeploy automaticamente.', 'success');
@@ -1121,9 +1118,6 @@
             modelsFileSha = result.content.sha;
             modelsData = cleanData;
             originalModelsJSON = JSON.stringify(modelsData);
-
-            // Sync to localStorage so the configurator picks it up immediately
-            localStorage.setItem('leboffi_models_data', jsonContent);
 
             renderModels();
             updateStatus();

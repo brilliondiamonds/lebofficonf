@@ -42,50 +42,49 @@
         });
     }
 
+    async function loadDataFile(fileName) {
+        const timestamp = new Date().getTime();
+        try {
+            // 1. Tenta di scaricare i dati in tempo reale dall'API di GitHub (bypassa l'attesa di Vercel)
+            const ghRes = await fetch(`https://api.github.com/repos/brilliondiamonds/lebofficonf/contents/${fileName}?t=${timestamp}`, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3.raw'
+                }
+            });
+            if (ghRes.ok) {
+                console.log(`[App] ${fileName} caricato da GitHub API (istantaneo)`);
+                return await ghRes.json();
+            }
+            throw new Error(`GitHub API HTTP ${ghRes.status}`);
+        } catch (e) {
+            console.warn(`[App] Fallback: carico ${fileName} in locale (server)`, e);
+            // 2. Se l'API fallisce (es. rate limit di GitHub), usiamo il file servito da Vercel
+            const localRes = await fetch(`${fileName}?v=${timestamp}`);
+            return await localRes.json();
+        }
+    }
+
     async function init() {
         try {
-            const timestamp = new Date().getTime();
             const [mRes, matRes] = await Promise.all([
-                fetch('models.json?v=' + timestamp).then(r => r.json()),
-                fetch('materials.json?v=' + timestamp).then(r => r.json())
+                loadDataFile('models.json'),
+                loadDataFile('materials.json')
             ]);
-            // Check for admin-synced materials and models (updated via admin panel)
-            const adminMaterials = localStorage.getItem('leboffi_materials_data');
-            if (adminMaterials) {
-                try {
-                    materialsData = JSON.parse(adminMaterials);
-                    console.log('[App] Using admin-synced materials from localStorage');
-                } catch (e) {
-                    materialsData = matRes;
-                }
-            } else {
-                materialsData = matRes;
-            }
 
-            const adminModels = localStorage.getItem('leboffi_models_data');
-            // Check if adminModels is older than the github data or we just force github data if it's more recent
-            // Actually, we'll just check if adminModels is present.
-            if (adminModels) {
-                try {
-                    let localModels = JSON.parse(adminModels);
-                    // A quick fix to ensure the agata-mule folder name is correct in local storage as well
-                    localModels.forEach(cat => {
-                        if (cat.models) {
-                            cat.models.forEach(m => {
-                                if (m.id === 'agata-mule' && m.folder === 'agata-mule') {
-                                    m.folder = 'AGATA MULE';
-                                }
-                            });
+            // Fix temporanea per la cartella di agata-mule
+            mRes.forEach(cat => {
+                if (cat.models) {
+                    cat.models.forEach(m => {
+                        if (m.id === 'agata-mule' && m.folder === 'agata-mule') {
+                            m.folder = 'AGATA MULE';
                         }
                     });
-                    modelsData = localModels;
-                    console.log('[App] Using admin-synced models from localStorage');
-                } catch (e) {
-                    modelsData = mRes;
                 }
-            } else {
-                modelsData = mRes;
-            }
+            });
+
+            modelsData = mRes;
+            materialsData = matRes;
+
         } catch (e) {
             console.error('Load error:', e);
             return;
