@@ -597,20 +597,59 @@
             currentStep = -1; // suppress active mask highlight
             renderShoe().then(async () => {
                 await drawExportSummary(clientName);
-                const a = document.createElement('a');
                 
                 let fileName = 'leboffi-' + selectedModel.id;
                 if (clientName && clientName.trim() !== '') {
                     fileName += '-' + clientName.trim().replace(/[^a-z0-9]/gi, '-').toLowerCase();
                 }
-                a.download = fileName + '.png';
-                
-                a.href = canvas.toDataURL('image/png');
-                a.click();
-                hoveredMaskIndex = savedHover;
-                currentStep = savedStep;
-                renderShoe();
-                showToast('Immagine esportata!', 'success');
+                const fullFileName = fileName + '.png';
+
+                const performExport = () => {
+                    hoveredMaskIndex = savedHover;
+                    currentStep = savedStep;
+                    renderShoe();
+                };
+
+                const fallbackDownload = () => {
+                    const a = document.createElement('a');
+                    a.download = fullFileName;
+                    a.href = canvas.toDataURL('image/png');
+                    a.click();
+                    performExport();
+                    showToast('Immagine esportata!', 'success');
+                };
+
+                // Try native Web Share API first (fixes iOS download issue)
+                canvas.toBlob(async (blob) => {
+                    if (!blob) {
+                        fallbackDownload();
+                        return;
+                    }
+                    
+                    const file = new File([blob], fullFileName, { type: blob.type });
+                    
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        try {
+                            await navigator.share({
+                                files: [file],
+                                title: 'Le Boffi - ' + selectedModel.name
+                            });
+                            performExport();
+                            // Non mostriamo il toast di successo perché il menu nativo di sistema lo gestisce già visivamente
+                        } catch (err) {
+                            if (err.name !== 'AbortError') {
+                                console.error('Errore nella condivisione:', err);
+                                fallbackDownload();
+                            } else {
+                                // L'utente ha chiuso il pannello di condivisione
+                                performExport();
+                            }
+                        }
+                    } else {
+                        // Web Share API non supportata o impossibile condividere file (es. desktop vecchi)
+                        fallbackDownload();
+                    }
+                }, 'image/png');
             });
         });
     }
