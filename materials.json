@@ -5,12 +5,28 @@
         "folder": "Camosci",
         "swatches": [
             {
-                "file": "Camoscio cognac.jpg",
-                "label": "Camoscio Cognac"
-            },
-            {
                 "file": "Camoscio rosso.jpg",
                 "label": "Camoscio Rosso"
+            },
+            {
+                "file": "camoscio rosa chiaro.png",
+                "label": "CAMSOCIO ROSA CHIARO"
+            },
+            {
+                "file": "camoscio dalia.jpg",
+                "label": "Camoscio Dalia"
+            },
+            {
+                "file": "camoscio tabacco.jpg",
+                "label": "Camoscio tabacco"
+            },
+            {
+                "file": "camoscio bordeaux.jpg",
+                "label": "camoscio bordeaux"
+            },
+            {
+                "file": "camoscio blu.jpg",
+                "label": "Camoscio Blu"
             },
             {
                 "file": "camoscio arancio.jpg",
@@ -21,20 +37,8 @@
                 "label": "Camoscio Biscotto"
             },
             {
-                "file": "camoscio blu.jpg",
-                "label": "Camoscio Blu"
-            },
-            {
-                "file": "camoscio bordeaux.jpg",
-                "label": "Camoscio Bordeaux"
-            },
-            {
-                "file": "camoscio dalia.jpg",
-                "label": "Camoscio Dalia"
-            },
-            {
-                "file": "camoscio fucsia.jpg",
-                "label": "Camoscio Fucsia"
+                "file": "Camoscio cognac.jpg",
+                "label": "Camoscio Cognac"
             },
             {
                 "file": "camoscio marrone.jpg",
@@ -47,10 +51,6 @@
             {
                 "file": "camoscio prugna.jpg",
                 "label": "Camoscio Prugna"
-            },
-            {
-                "file": "camoscio rosa piggy.jpg",
-                "label": "Camoscio Rosa Piggy"
             },
             {
                 "file": "camoscio talpa.jpg",
@@ -71,6 +71,90 @@
             {
                 "file": "viola.jpg",
                 "label": "Viola"
+            },
+            {
+                "file": "camoscio giallo.jpg",
+                "label": "Camoscio giallo"
+            },
+            {
+                "file": "camoscio grigio topo.jpg",
+                "label": "camoscio grigio topo"
+            },
+            {
+                "file": "camoscio beige.jpg",
+                "label": "Camoscio beige"
+            },
+            {
+                "file": "Camoscio sabbia.jpg",
+                "label": "Camoscio sabbia"
+            },
+            {
+                "file": "camoscio papavero.jpg",
+                "label": "Camoscio papavero"
+            },
+            {
+                "file": "camoscio indaco.jpg",
+                "label": "camoscio indaco"
+            },
+            {
+                "file": "camoscio ottanio.jpg",
+                "label": "camoscio ottanio"
+            },
+            {
+                "file": "camoscio grigio scuro.jpg",
+                "label": "camoscio grigio scuro"
+            },
+            {
+                "file": "camoscio verde oliva.jpg",
+                "label": "camoscio verde oliva"
+            },
+            {
+                "file": "camoscio militare chiaro.jpg",
+                "label": "camoscio militare chiaro"
+            },
+            {
+                "file": "camoscio verde prato 2.jpg",
+                "label": "Camoscio verde prato 2"
+            },
+            {
+                "file": "camoscio verde prato.jpg",
+                "label": "camoscio verde prato"
+            },
+            {
+                "file": "camoscio verde avocado.jpg",
+                "label": "camoscio verde avocado"
+            },
+            {
+                "file": "camoscio mandarino.jpg",
+                "label": "camoscio mandarino"
+            },
+            {
+                "file": "camoscio fucsia.jpg",
+                "label": "camoscio fucsia shock"
+            },
+            {
+                "file": "camoscio lavanda scuro.jpg",
+                "label": "camoscio lavanda scuro"
+            },
+            {
+                "file": "camoscio rosa confetto.jpg",
+                "label": "camoscio rosa confetto"
+            },
+            {
+                "file": "camoscio rosa antico.jpg",
+                "label": "camoscio rosa antico"
+            },
+            {
+                "file": "camoscio nero e argento.jpg",
+                "label": "camoscio nero e argento"
+            },
+            {
+                "file": "pizzo nero.jpg",
+                "label": "pizzo nero"
+            },
+            {
+                "file": "camoscio l.jpg",
+                "label": "camoscio leo"
             }
         ]
     },
@@ -262,10 +346,6 @@
                 "label": "Glitter Fine Argento"
             },
             {
-                "file": "Glitter Fine Bianco.jpg",
-                "label": "Glitter Fine Bianco"
-            },
-            {
                 "file": "Glitter Fine Blu.jpg",
                 "label": "Glitter Fine Blu"
             },
@@ -296,10 +376,6 @@
             {
                 "file": "Glitter Fine Petrolio.jpg",
                 "label": "Glitter Fine Petrolio"
-            },
-            {
-                "file": "Glitter Fine Platino.jpg",
-                "label": "Glitter Fine Platino"
             },
             {
                 "file": "Glitter Fine Rosso.jpg",
@@ -372,6 +448,146 @@
             {
                 "file": "rosa m.jpg",
                 "label": "Rosa Medio"
+            },
+            {
+                "file": "Glitter Fine bianco (2).jpg",
+                "label": "glitter fine bianco"
+            },
+            {
+                "file": "2.jpg",
+                "label": "glitter fine platino"
+            },
+            {
+                "file": "Glitter Fine Rosa.jpg",
+                "label": "glitter fine rosa"
+            },
+            {
+                "file": "Glitter Fine Rame.jpg",
+                "label": "glitter fine rame"
+            },
+            {
+                "file": "Righe Argento e Azzurro.jpg",
+                "label": "righe azzurre e argento"
+            },
+            {
+                "file": "Glitter Grosso Grigio Rosa.jpg",
+                "label": "glitter grosso grigio/rosa"
+            },
+            {
+                "file": "Glitter Grosso Cemento Matt.jpg",
+                "label": "glitter grosso cemento mat"
+            },
+            {
+                "file": "Glitter Grosso Grigio.jpg",
+                "label": "glitter grosso grigio"
+            },
+            {
+                "file": "glitter grosso dark.jpg",
+                "label": "glitter grosso multicolor dark"
+            },
+            {
+                "file": "verde acqua.jpg",
+                "label": "glitter grosso verde acqua"
+            },
+            {
+                "file": "Glitter Grosso Argento e Nero.jpg",
+                "label": "glitter grosso argento e nero"
+            },
+            {
+                "file": "Glitter Grosso Arlecchino.jpg",
+                "label": "glitter grosso arlecchino"
+            },
+            {
+                "file": "Glitter Grosso Poudre.jpg",
+                "label": "glitter grosso poudre"
+            },
+            {
+                "file": "Glitter Grosso Rosa.jpg",
+                "label": "glitter grosso rosa"
+            },
+            {
+                "file": "Glitter Grosso Celeste Matt.jpg",
+                "label": "glitter grosso celeste mat"
+            },
+            {
+                "file": "glitter grosso nude (2).jpg",
+                "label": "glitter grosso nude"
+            },
+            {
+                "file": "Glitter Grosso Giallo Matt.jpg",
+                "label": "glitter grosso giallo mat"
+            },
+            {
+                "file": "Glitter Arabesque.jpg",
+                "label": "Arabesque"
+            },
+            {
+                "file": "Glitter Pois Oro.jpg",
+                "label": "pois oro"
+            },
+            {
+                "file": "krisma.jpg",
+                "label": "krisma"
+            },
+            {
+                "file": "pois f.jpg",
+                "label": "pois fucsia"
+            },
+            {
+                "file": "pois m.jpg",
+                "label": "pois marrone"
+            },
+            {
+                "file": "Tessuto Glitterato Argento.jpg",
+                "label": "Tessuto glitterato argento chiaro"
+            },
+            {
+                "file": "Tessuto Glitterato Oro Marina.jpg",
+                "label": "Tessuto glitterato oro"
+            },
+            {
+                "file": "Nemo Bronzo.jpg",
+                "label": "Nemo bronzo"
+            },
+            {
+                "file": "Nemo.jpg",
+                "label": "Nemo"
+            },
+            {
+                "file": "Tessuto Glitterato Multicolor.jpg",
+                "label": "Tessuto glitterato multicolor"
+            },
+            {
+                "file": "Maculato Glitter.jpg",
+                "label": "Maculato glitter"
+            },
+            {
+                "file": "H Glitterato Viola.jpg",
+                "label": "Glitterato viola cangiante"
+            },
+            {
+                "file": "tessuto glitterato zigzag.jpg",
+                "label": "Tessuto glitterato zigzag"
+            },
+            {
+                "file": "leo cangiante.jpg",
+                "label": "leo cangiante"
+            },
+            {
+                "file": "tweed glitter.jpg",
+                "label": "tweed glitter"
+            },
+            {
+                "file": "trama fiore argento.jpg",
+                "label": "trama fiore argento"
+            },
+            {
+                "file": "glitter oro rosa fine.jpg",
+                "label": "glitter oro rosa fine"
+            },
+            {
+                "file": "tessuto glitterato mon.jpg",
+                "label": "tessuto glitterato mon"
             }
         ]
     },
@@ -485,10 +701,6 @@
                 "label": "Vernice Nude Scuro"
             },
             {
-                "file": "Vernice rosa antico.jpg",
-                "label": "Vernice Rosa Antico"
-            },
-            {
                 "file": "Vernice rossa.jpg",
                 "label": "Vernice Rossa"
             },
@@ -523,6 +735,10 @@
             {
                 "file": "vernice bianca.jpg",
                 "label": "Vernice Bianca"
+            },
+            {
+                "file": "vernice rosa.jpg",
+                "label": "x"
             }
         ]
     },
@@ -708,6 +924,10 @@
             {
                 "file": "Pelle Spigata Oro.jpg",
                 "label": "Pelle Spigata Oro"
+            },
+            {
+                "file": "pelle bianca spig.jpg",
+                "label": "pelle bianca spigata"
             }
         ]
     },
@@ -753,10 +973,6 @@
                 "label": "Rafia Blu"
             },
             {
-                "file": "rafia caramello.jpg",
-                "label": "Rafia Caramello"
-            },
-            {
                 "file": "rafia corda def.jpg",
                 "label": "Rafia Corda"
             },
@@ -771,6 +987,66 @@
             {
                 "file": "spigato platino e arancione.jpg",
                 "label": "Spigato Platino e Arancione"
+            },
+            {
+                "file": "pelle spigata grigia.jpg",
+                "label": "pelle spigata grigia"
+            },
+            {
+                "file": "rafia beige spigata.jpg",
+                "label": "rafia beige spigata"
+            },
+            {
+                "file": "rafia a trama fine.jpg",
+                "label": "rafia a trama fine"
+            },
+            {
+                "file": "rafia cammello.jpg",
+                "label": "rafia cammello"
+            },
+            {
+                "file": "spigato bianco e nero.jpg",
+                "label": "spigato bianco e nero"
+            },
+            {
+                "file": "rafia poudre.jpg",
+                "label": "rafia poudre"
+            },
+            {
+                "file": "yuta.jpg",
+                "label": "yuta"
+            },
+            {
+                "file": "lino marron glace.jpg",
+                "label": "lino marron glace"
+            },
+            {
+                "file": "lino-nero-pois-argento.jpg",
+                "label": "lino nero pois argento"
+            },
+            {
+                "file": "pied de poule.jpg",
+                "label": "rafia pied bronzo"
+            },
+            {
+                "file": "pied antracite.jpg",
+                "label": "rafia pied antracite"
+            },
+            {
+                "file": "spigato senape e nero.jpg",
+                "label": "spigato senape e nero"
+            },
+            {
+                "file": "intrecciato talpa.jpg",
+                "label": "intrecciato talpa"
+            },
+            {
+                "file": "spigato grigio.jpg",
+                "label": "spigato grigio"
+            },
+            {
+                "file": "pelle bianca spig.jpg",
+                "label": "pelle bianca spigata"
             }
         ]
     },
@@ -834,6 +1110,70 @@
             {
                 "file": "vichy rosso.jpg",
                 "label": "Vichy Rosso"
+            },
+            {
+                "file": "Alaska.JPG",
+                "label": "Alaska"
+            },
+            {
+                "file": "damasco oro.jpg",
+                "label": "damasco oro"
+            },
+            {
+                "file": "jaquard-rosso.jpg",
+                "label": "jacquard rosso"
+            },
+            {
+                "file": "jaquard-verde.jpg",
+                "label": "jacquard verde"
+            },
+            {
+                "file": "giglio-verde.jpg",
+                "label": "giglio verde"
+            },
+            {
+                "file": "giglio-viola.jpg",
+                "label": "giglio viola"
+            },
+            {
+                "file": "fantasia gialla e bianca.jpg",
+                "label": "fantasia gialla"
+            },
+            {
+                "file": "fantasia verde e bianca.jpg",
+                "label": "fantasia verde"
+            },
+            {
+                "file": "fantasia blu e bianca.jpg",
+                "label": "fantasia blu"
+            },
+            {
+                "file": "mattonelle-fucsia.jpg",
+                "label": "mattonelle fucsia"
+            },
+            {
+                "file": "mattonelle piccole grigio e rosa.jpg",
+                "label": "mattonella grigie"
+            },
+            {
+                "file": "mattonelle piccole rosse e viola.jpg",
+                "label": "mattonelle rosse"
+            },
+            {
+                "file": "vichy giallo a trama fine.jpg",
+                "label": "vichy giallo a trama fine"
+            },
+            {
+                "file": "vichy nero a trama fine.jpg",
+                "label": "vichy nero a trama fine"
+            },
+            {
+                "file": "tessuto-borchie.jpg",
+                "label": "tessuto borchie"
+            },
+            {
+                "file": "raso-pois-bianco-e-nero.jpg",
+                "label": "pois bianco e nero"
             }
         ]
     },
@@ -905,6 +1245,272 @@
             {
                 "file": "velluto verde bosco.jpg",
                 "label": "Velluto Verde Bosco"
+            },
+            {
+                "file": "velluto a righe blu notte.jpg",
+                "label": "velluto a righe blu notte"
+            }
+        ]
+    },
+    {
+        "id": "rasi",
+        "name": "RASI",
+        "folder": "RASI",
+        "swatches": [
+            {
+                "file": "raso dalia.jpg",
+                "label": "RASO DALIA"
+            },
+            {
+                "file": "raso oro gold.jpg",
+                "label": "raso oro gold"
+            },
+            {
+                "file": "raso viola cardinale.jpg",
+                "label": "raso viola cardinale"
+            },
+            {
+                "file": "raso viola.jpg",
+                "label": "raso viola shock"
+            },
+            {
+                "file": "raso animalier.jpg",
+                "label": "raso leo"
+            },
+            {
+                "file": "Raso-blu.jpg",
+                "label": "raso blu"
+            },
+            {
+                "file": "Raso-azzurro-polvere.jpg",
+                "label": "raso azzurro polvere"
+            },
+            {
+                "file": "raso-azzurro-scuro.jpg",
+                "label": "raso azzurro scuro"
+            },
+            {
+                "file": "raso nero.jpg",
+                "label": "raso nero"
+            },
+            {
+                "file": "Raso bluette shock.jpg",
+                "label": "raso bluette shock"
+            },
+            {
+                "file": "raso bluette.jpg",
+                "label": "raso bluette"
+            },
+            {
+                "file": "raso marrone.jpg",
+                "label": "raso marrone"
+            },
+            {
+                "file": "raso grigio.jpg",
+                "label": "raso grigio"
+            },
+            {
+                "file": "Raso bordeaux.jpg",
+                "label": "raso bordeaux"
+            },
+            {
+                "file": "Raso tiffany.jpg",
+                "label": "raso tiffany"
+            },
+            {
+                "file": "Raso verde acido.jpg",
+                "label": "raso verde acido"
+            },
+            {
+                "file": "Raso arancione.jpg",
+                "label": "raso arancione"
+            },
+            {
+                "file": "raso nude.jpg",
+                "label": "raso nude"
+            },
+            {
+                "file": "raso salvia.jpg",
+                "label": "raso salvia"
+            },
+            {
+                "file": "raso verde prato.jpg",
+                "label": "raso verde prato"
+            },
+            {
+                "file": "Raso verde bottiglia.jpg",
+                "label": "raso verde bottiglia"
+            },
+            {
+                "file": "raso zafferano.jpg",
+                "label": "raso zafferano"
+            },
+            {
+                "file": "raso giallo.jpg",
+                "label": "raso giallo"
+            },
+            {
+                "file": "Raso rosso.jpg",
+                "label": "raso rosso"
+            },
+            {
+                "file": "raso rosa barbie.jpg",
+                "label": "raso big babol"
+            },
+            {
+                "file": "Raso fucsia.jpg",
+                "label": "raso fucsia"
+            },
+            {
+                "file": "raso rose.jpg",
+                "label": "raso rose"
+            },
+            {
+                "file": "perla.jpg",
+                "label": "raso bianco perla"
+            },
+            {
+                "file": "raso fucsia e verde.jpg",
+                "label": "raso fucsia e verde"
+            },
+            {
+                "file": "raso olio 2.jpg",
+                "label": "Raso olio"
+            },
+            {
+                "file": "dama di raso blu.jpg",
+                "label": "dama di raso blu"
+            }
+        ]
+    },
+    {
+        "id": "boucle-e-tartan",
+        "name": "Boucle e Tartan",
+        "folder": "Boucle e Tartan",
+        "swatches": [
+            {
+                "file": "alaska.jpg",
+                "label": "alaska"
+            },
+            {
+                "file": "bouclè avio.jpg",
+                "label": "bouclè avio"
+            },
+            {
+                "file": "bouclè azzurro glitter.jpg",
+                "label": "bouclè azzurro glitter"
+            },
+            {
+                "file": "bouclè bianco.jpg",
+                "label": "bouclè bianco"
+            },
+            {
+                "file": "bouclè caffelatte e oro.jpg",
+                "label": "bouclè caffelatte e oro"
+            },
+            {
+                "file": "bouclè carta da zucchero.jpg",
+                "label": "bouclè carta da zucchero"
+            },
+            {
+                "file": "bouclè fucsia e nero.jpg",
+                "label": "bouclè fucsia e nero"
+            },
+            {
+                "file": "bouclè fucsia.jpg",
+                "label": "bouclè fucsia"
+            },
+            {
+                "file": "bouclè giallo.jpg",
+                "label": "bouclè giallo"
+            },
+            {
+                "file": "bouclè grigio e argento.jpg",
+                "label": "bouclè grigio e argento"
+            },
+            {
+                "file": "bouclè grigio nero e bianco.jpg",
+                "label": "bouclè grigio nero e bianco"
+            },
+            {
+                "file": "bouclè latte e oro.jpg",
+                "label": "bouclè latte e oro"
+            },
+            {
+                "file": "bouclè lilla.jpg",
+                "label": "bouclè lilla"
+            },
+            {
+                "file": "boucle quadri.jpg",
+                "label": "boucle quadri"
+            },
+            {
+                "file": "boucle rosa antico.jpg",
+                "label": "boucle rosa antico"
+            },
+            {
+                "file": "bouclè rosso e argento.jpg",
+                "label": "bouclè rosso e argento"
+            },
+            {
+                "file": "bouclè salmone.jpg",
+                "label": "bouclè salmone"
+            },
+            {
+                "file": "bouclè salvia.jpg",
+                "label": "bouclè salvia"
+            },
+            {
+                "file": "tartan blu e rosso.jpg",
+                "label": "tartan blu e rosso"
+            },
+            {
+                "file": "tartan grigio.jpg",
+                "label": "tartan grigio"
+            },
+            {
+                "file": "tartan marrone.jpg",
+                "label": "tartan marrone"
+            },
+            {
+                "file": "tartan rosso.jpg",
+                "label": "tartan rosso"
+            },
+            {
+                "file": "tartan verde.jpg",
+                "label": "tartan verde"
+            },
+            {
+                "file": "lana blu.jpg",
+                "label": "lana blu"
+            },
+            {
+                "file": "lana grigia e bianca.jpg",
+                "label": "lana grigia e bianca"
+            },
+            {
+                "file": "lana nera e blu.jpg",
+                "label": "lana nera e blu"
+            },
+            {
+                "file": "tessuto melange bianco e nero.jpg",
+                "label": "tessuto melange bianco e nero"
+            },
+            {
+                "file": "bouclè amarena blu e grigio.jpg",
+                "label": "Boucle amarena blu e grigio"
+            },
+            {
+                "file": "principe di galles lana.jpg",
+                "label": "Principe di galles lana"
+            },
+            {
+                "file": "boucklè rosa e oro.jpg",
+                "label": "Boucle rosa e oro"
+            },
+            {
+                "file": "lana blu.jpg",
+                "label": "lana blu"
             }
         ]
     }
