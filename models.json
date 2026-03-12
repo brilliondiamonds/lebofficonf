@@ -226,6 +226,74 @@
                         "label": "Listino - Riporti - Bordo Sottopiede"
                     }
                 ]
+            },
+            {
+                "id": "adele",
+                "name": "Adele",
+                "folder": "flat",
+                "base": "adeleflatimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "adeletomaialistino.png",
+                        "label": "Tomaia - Listino"
+                    },
+                    {
+                        "file": "adeleorlaturabottone.png",
+                        "label": "Orlatura - Bottone"
+                    }
+                ]
+            },
+            {
+                "id": "alice",
+                "name": "Alice",
+                "folder": "flat",
+                "base": "Gemini_Generated_Image_t7lmggt7lmggt7lm.png",
+                "masks": [
+                    {
+                        "file": "alicepuntamask2.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "alicesperonemask1.png",
+                        "label": "Retro"
+                    },
+                    {
+                        "file": "alicelistinibordomask.png",
+                        "label": "Listini - Bordo Sottopiede"
+                    }
+                ]
+            },
+            {
+                "id": "celeste",
+                "name": "Celeste",
+                "folder": "flat",
+                "base": "celesteimmaginebasenew.png",
+                "masks": [
+                    {
+                        "file": "celestepuntaretromask.png",
+                        "label": "Retro - Punta"
+                    },
+                    {
+                        "file": "celesteriportibordomask.png",
+                        "label": "Riporti - Bordo Sottopiede"
+                    }
+                ]
+            },
+            {
+                "id": "emma-tonda",
+                "name": "Emma Tonda",
+                "folder": "flat",
+                "base": "emmatondaimmaginebasenew.png",
+                "masks": [
+                    {
+                        "file": "emmatondatommask.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "EMMATONDAASDASD.png",
+                        "label": "Listino - Bottone - Punta"
+                    }
+                ]
             }
         ]
     },
@@ -278,6 +346,38 @@
                     {
                         "file": "laviniaorlatura+nappine.png",
                         "label": "Orlatura - Nappine"
+                    }
+                ]
+            },
+            {
+                "id": "priscilla",
+                "name": "Priscilla",
+                "folder": "mocassini",
+                "base": "provaimgbase.png",
+                "masks": [
+                    {
+                        "file": "provamaskdef1.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "provamaskdef2.png",
+                        "label": "Pateletta"
+                    }
+                ]
+            },
+            {
+                "id": "olivia",
+                "name": "Olivia",
+                "folder": "mocassini",
+                "base": "Gemini_Generated_Image_cds598cds598cds5.png",
+                "masks": [
+                    {
+                        "file": "oliviatombacmask.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "oliviafascetta3mask.png",
+                        "label": "Fascia"
                     }
                 ]
             }
@@ -344,22 +444,890 @@
     {
         "id": "55-coda",
         "name": "55 Coda",
-        "models": []
+        "models": [
+            {
+                "id": "celeste-55",
+                "name": "Celeste 55",
+                "folder": "55 coda",
+                "base": "celeste55basecoda.png",
+                "masks": [
+                    {
+                        "file": "celeste55codariportilistinibordocoda.png",
+                        "label": "Riporti - Listini - bordo sottopiede"
+                    },
+                    {
+                        "file": "celeste55codataccoesperone.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "celeste55puntacoda.png",
+                        "label": "Mascherina"
+                    }
+                ]
+            },
+            {
+                "id": "elisabetta-55",
+                "name": "Elisabetta 55",
+                "folder": "55 coda",
+                "base": "elisabetta55basecoda.png",
+                "masks": [
+                    {
+                        "file": "elisabetta55listiniriportibordocoda.png",
+                        "label": "Listini - Bordo sottopiede"
+                    },
+                    {
+                        "file": "elisabetta55puntacoda.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "elisabetta55taccoesperonecoda.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "elisa-55",
+                "name": "Elisa 55",
+                "folder": "55 coda",
+                "base": "elisa55basecoda.png",
+                "masks": [
+                    {
+                        "file": "elisa55tomaiacoda.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "elisa55listinicoda.png",
+                        "label": "Listini"
+                    }
+                ]
+            },
+            {
+                "id": "adele-55",
+                "name": "Adele 55",
+                "folder": "55 coda",
+                "base": "adele55basecoda.png",
+                "masks": [
+                    {
+                        "file": "adele55tomaiacoda.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "adele55orlaturaebottonecoda.png",
+                        "label": "Orlatura - Bottone"
+                    }
+                ]
+            },
+            {
+                "id": "elisabetta-55-ballerina",
+                "name": "Elisabetta 55 ballerina",
+                "folder": "55 coda",
+                "base": "elisabettaballerina55basecoda.png",
+                "masks": [
+                    {
+                        "file": "elisabetta55ballerinatomaiacoda.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "elisabetta55ballerinataccosperonecoda.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "elisabetta55ballerinalistinicoda.png",
+                        "label": "Riporti - Listini"
+                    }
+                ]
+            },
+            {
+                "id": "fiammetta-55",
+                "name": "Fiammetta 55",
+                "folder": "55 coda",
+                "base": "fiammetta55basecoda.png",
+                "masks": [
+                    {
+                        "file": "fiammetta55mascherinacoda.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "fiammtta55speronetaccocoda.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "fiammetta55listinibordocoda.png",
+                        "label": "Listini - Bordo sottopiede"
+                    }
+                ]
+            },
+            {
+                "id": "gaia-55",
+                "name": "Gaia 55",
+                "folder": "55 coda",
+                "base": "gaia55basecoda.png",
+                "masks": [
+                    {
+                        "file": "gaia55mascherinacoda.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "gaia55listbordocoda.png",
+                        "label": "Listini - Bordo sottopiede"
+                    },
+                    {
+                        "file": "gaia55taccocoda.png",
+                        "label": "Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "ginevra-mule-55",
+                "name": "Ginevra Mule 55",
+                "folder": "55 coda",
+                "base": "ginevramule55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "ginevramule55codatacco.png",
+                        "label": "Tacco"
+                    },
+                    {
+                        "file": "ginevramule55codabordosott.png",
+                        "label": "Bordo Sottopiede"
+                    },
+                    {
+                        "file": "ginevramule55codafascia.png",
+                        "label": "Fascia"
+                    },
+                    {
+                        "file": "ginevramule55codafibbia.png",
+                        "label": "Fibbia"
+                    },
+                    {
+                        "file": "ginevramule55codapunta.png",
+                        "label": "Punta"
+                    }
+                ]
+            },
+            {
+                "id": "greta-55",
+                "name": "Greta 55",
+                "folder": "55 coda",
+                "base": "greta55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "greta55codaretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "greta55codabordosottlistino.png",
+                        "label": "Bordo Sottopiede - Listino"
+                    },
+                    {
+                        "file": "greta55codapunta.png",
+                        "label": "Punta"
+                    }
+                ]
+            },
+            {
+                "id": "karol-55",
+                "name": "Karol 55",
+                "folder": "55 coda",
+                "base": "karol55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "karol55codaretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "karol55codatomaia.png",
+                        "label": "Tomaia"
+                    }
+                ]
+            },
+            {
+                "id": "matilde-55",
+                "name": "Matilde 55",
+                "folder": "55 coda",
+                "base": "matilde55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "matilde55codaretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "matilde55codabordosottlistino.png",
+                        "label": "Bordo Sottopiede - Listino"
+                    },
+                    {
+                        "file": "matilde55codapunta.png",
+                        "label": "Punta"
+                    }
+                ]
+            },
+            {
+                "id": "matilde-ballerina-55",
+                "name": "Matilde Ballerina 55",
+                "folder": "55 coda",
+                "base": "matildeballerina55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "matildeballerina55retrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "matildeballerina55codatomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "matildeballerina55codalistino.png",
+                        "label": "Listino"
+                    }
+                ]
+            },
+            {
+                "id": "vittoria-ballerina-55",
+                "name": "Vittoria Ballerina 55",
+                "folder": "55 coda",
+                "base": "vittoriaballerina55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "vittoriaballerina55codaretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "vittoriaballerina55codalaterali.png",
+                        "label": "Laterali"
+                    },
+                    {
+                        "file": "vittoriaballerina55codapuntalistino.png",
+                        "label": "Punta - Listino"
+                    }
+                ]
+            },
+            {
+                "id": "ottavia-55",
+                "name": "Ottavia 55",
+                "folder": "55 coda",
+                "base": "ottavia55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "ottavia55codaretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "ottavia55codalistinibordosottopiede.png",
+                        "label": "Listini - Bordo Sottopiede"
+                    },
+                    {
+                        "file": "ottavia55codapunta.png",
+                        "label": "Punta"
+                    }
+                ]
+            },
+            {
+                "id": "amelia-55",
+                "name": "Amelia 55",
+                "folder": "55 coda",
+                "base": "amelia55codabase.png",
+                "masks": [
+                    {
+                        "file": "amelia55codatomaia1.png",
+                        "label": "tomaia 1"
+                    },
+                    {
+                        "file": "amelia55codatomaia2.png",
+                        "label": "tomaia 2"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": "55-bally",
         "name": "55 Bally",
-        "models": []
+        "models": [
+            {
+                "id": "adele-55",
+                "name": "Adele 55",
+                "folder": "55 bally",
+                "base": "adele55basebally.png",
+                "masks": [
+                    {
+                        "file": "adele55tomaiabally.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "adele55orlaturaebottonebally.png",
+                        "label": "Orlatura - Bottone"
+                    }
+                ]
+            },
+            {
+                "id": "celeste-55",
+                "name": "Celeste 55",
+                "folder": "55 bally",
+                "base": "celeste55basebally.png",
+                "masks": [
+                    {
+                        "file": "celeste55puntabally.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "celeste55taccoesperonebally.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "celeste55riportilistinibordobally.png",
+                        "label": "Listini - Riporti"
+                    }
+                ]
+            },
+            {
+                "id": "elisa-55",
+                "name": "Elisa 55",
+                "folder": "55 bally",
+                "base": "elisa55basebally.png",
+                "masks": [
+                    {
+                        "file": "elisa55tomaiabally.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "elisa55listinibally.png",
+                        "label": "Listini"
+                    }
+                ]
+            },
+            {
+                "id": "fiammetta-55",
+                "name": "Fiammetta 55",
+                "folder": "55 bally",
+                "base": "fiammetta55basebally.png",
+                "masks": [
+                    {
+                        "file": "fiammett55mascherinabally.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "fiammetta55taccosperonebally.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "fiammetta55listinibally.png",
+                        "label": "Listini - Bordo sottopiede"
+                    }
+                ]
+            },
+            {
+                "id": "gaia-55",
+                "name": "Gaia 55",
+                "folder": "55 bally",
+                "base": "gaia55basebally.png",
+                "masks": [
+                    {
+                        "file": "gaia55mascherinabally.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "gaia55taccobally.png",
+                        "label": "Tacco"
+                    },
+                    {
+                        "file": "gaia55listinibordosottbally.png",
+                        "label": "Listini - Bordo sottopiede"
+                    }
+                ]
+            },
+            {
+                "id": "elisabetta-55-ballerina",
+                "name": "Elisabetta 55 Ballerina",
+                "folder": "55 bally",
+                "base": "elisabetta55basebally.png",
+                "masks": [
+                    {
+                        "file": "elisabetta55ballerinatomaiabally.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "elisabetta55ballerinasperone-taccobally.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "elisabetta55ballerinalistinibally.png",
+                        "label": "Riporti - Listini"
+                    }
+                ]
+            },
+            {
+                "id": "elisabetta-55",
+                "name": "Elisabetta 55",
+                "folder": "55 bally",
+                "base": "elisabetta55apertabasebally.png",
+                "masks": [
+                    {
+                        "file": "elisabetta55listinibordoriportibally.png",
+                        "label": "Listini - Bordo Sottopiede - Riporti"
+                    },
+                    {
+                        "file": "elisabetta55mascherinabally.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "elisabetta55speronetaccobally.png",
+                        "label": "Retro - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "ginevra-mule-55",
+                "name": "Ginevra Mule 55",
+                "folder": "55 bally",
+                "base": "ginevramule55ballyimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "ginevramule55ballytacco.png",
+                        "label": "Tacco"
+                    },
+                    {
+                        "file": "ginevramule55ballybordosott.png",
+                        "label": "Bordo Sottopiede"
+                    },
+                    {
+                        "file": "ginevramule55ballyfibbia.png",
+                        "label": "Fibbia"
+                    },
+                    {
+                        "file": "ginevramule55punta.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "ginevramule55ballyfascia.png",
+                        "label": "Fascia"
+                    }
+                ]
+            },
+            {
+                "id": "greta-55",
+                "name": "Greta 55",
+                "folder": "55 bally",
+                "base": "greta55ballyimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "greta55ballyretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "greta55ballybordosottlistino.png",
+                        "label": "Listino - Bordo Sottopiede"
+                    },
+                    {
+                        "file": "greta55ballypunta.png",
+                        "label": "Punta"
+                    }
+                ]
+            },
+            {
+                "id": "karol-55",
+                "name": "Karol 55",
+                "folder": "55 bally",
+                "base": "karol55bally.png",
+                "masks": [
+                    {
+                        "file": "karol55ballyretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "karol55ballytomaia.png",
+                        "label": "Tomaia"
+                    }
+                ]
+            },
+            {
+                "id": "matilde-55",
+                "name": "Matilde 55",
+                "folder": "55 bally",
+                "base": "matilde55ballyimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "matilde55ballyretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "matilde55ballybordosottlistino.png",
+                        "label": "Bordo Sottopiede - Listino"
+                    },
+                    {
+                        "file": "matilde55ballypunta.png",
+                        "label": "Punta"
+                    }
+                ]
+            },
+            {
+                "id": "matilde-ballerina-55",
+                "name": "Matilde Ballerina 55",
+                "folder": "55 bally",
+                "base": "Matilde ballerina 55 bally.png",
+                "masks": [
+                    {
+                        "file": "matildeballerina55retrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "matildeballerina55tomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "matildeballerina55listino.png",
+                        "label": "Listino"
+                    }
+                ]
+            },
+            {
+                "id": "vittoria-ballerina-55",
+                "name": "Vittoria Ballerina 55",
+                "folder": "55 bally",
+                "base": "vittoriaballerina55ballyimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "vittoriaballerina55ballylaterali.png",
+                        "label": "Laterali"
+                    },
+                    {
+                        "file": "vittoriaballerina55ballypuntalistino.png",
+                        "label": "Punta - Listino"
+                    },
+                    {
+                        "file": "vittoriaballerin55ballyretrotacco.png",
+                        "label": "Retro - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "ottavia-55",
+                "name": "Ottavia 55",
+                "folder": "55 bally",
+                "base": "ottavia55ballyimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "ottavia55ballyretrotacco.png",
+                        "label": "Retro - Tacco"
+                    },
+                    {
+                        "file": "ottavia55ballypunta.png",
+                        "label": "Punta"
+                    },
+                    {
+                        "file": "ottavia55ballylistinibordosottopied.png",
+                        "label": "Listini - Bordo Sottopiede"
+                    }
+                ]
+            },
+            {
+                "id": "amelia55-bally",
+                "name": "Amelia55 bally",
+                "folder": "55 bally",
+                "base": "amelia55ballyimgbase.png",
+                "masks": [
+                    {
+                        "file": "amelia55ballytom1.png",
+                        "label": "Tomaia 1"
+                    },
+                    {
+                        "file": "amelia55ballytom2.png",
+                        "label": "Tomaia 2"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": "85-coda",
         "name": "85 Coda",
-        "models": []
+        "models": [
+            {
+                "id": "celeste-85",
+                "name": "Celeste 85",
+                "folder": "85 coda",
+                "base": "celeste85basecoda.png",
+                "masks": [
+                    {
+                        "file": "celeste85mascherinacoda.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "celeste85riplistbordocoda.png",
+                        "label": "Riporti - Listini"
+                    },
+                    {
+                        "file": "celeste85speronetaccocoda.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "elisa-85",
+                "name": "Elisa 85",
+                "folder": "85 coda",
+                "base": "elisa85basecoda.png",
+                "masks": [
+                    {
+                        "file": "elisa85tomaiacoda.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "elisa85taccocoda.png",
+                        "label": "Tacco"
+                    },
+                    {
+                        "file": "elisa85listcoda.png",
+                        "label": "Listini"
+                    }
+                ]
+            },
+            {
+                "id": "elisabetta-85",
+                "name": "Elisabetta 85",
+                "folder": "85 coda",
+                "base": "elisabetta85codabase.png",
+                "masks": [
+                    {
+                        "file": "elisabetta85maschcoda.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "elisabetta85list-bordo-ripcoda.png",
+                        "label": "Riporti - Listini"
+                    },
+                    {
+                        "file": "elisabetta85sperone-taccocoda.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "greta-85-coda",
+                "name": "Greta 85 coda",
+                "folder": "85 coda",
+                "base": "greta85codabase.png",
+                "masks": [
+                    {
+                        "file": "greta85codamascherina.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "greta85codalistbordo.png",
+                        "label": "Listini"
+                    },
+                    {
+                        "file": "greta85codasperonetacco.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "ottavia-85",
+                "name": "Ottavia 85",
+                "folder": "85 coda",
+                "base": "ottavia85codabase.png",
+                "masks": [
+                    {
+                        "file": "ottavia85codamasch.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "ottavia85codalist.png",
+                        "label": "Listini"
+                    },
+                    {
+                        "file": "ottavia85codasper.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "vittoria-85",
+                "name": "Vittoria 85",
+                "folder": "85 coda",
+                "base": "vittoria85codabase.png",
+                "masks": [
+                    {
+                        "file": "vittoria85codamasch.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "vittoria85codatomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "vittoria85codaspertacco.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "gaia-85",
+                "name": "Gaia 85",
+                "folder": "85 coda",
+                "base": "gaia85codabase.png",
+                "masks": [
+                    {
+                        "file": "gaia85masch.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "gaia85codabordolist.png",
+                        "label": "Listini - Bordo sottopiede"
+                    },
+                    {
+                        "file": "gaia85codatacco.png",
+                        "label": "Tacco"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": "85-bally",
         "name": "85 Bally",
-        "models": []
+        "models": [
+            {
+                "id": "celeste-85",
+                "name": "Celeste 85",
+                "folder": "85 bally",
+                "base": "celeste85ballybase.png",
+                "masks": [
+                    {
+                        "file": "celeste85mascherina.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "celeste85speronetaccobally.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "celeste85riportibally.png",
+                        "label": "Riporti - Listini"
+                    }
+                ]
+            },
+            {
+                "id": "elisa-85",
+                "name": "Elisa 85",
+                "folder": "85 bally",
+                "base": "elisa85ballybase.png",
+                "masks": [
+                    {
+                        "file": "elisa85tomaiabally.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "elisa85listinibally.png",
+                        "label": "Listini"
+                    },
+                    {
+                        "file": "elisa85taccobally.png",
+                        "label": "Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "elisabetta-85",
+                "name": "Elisabetta 85",
+                "folder": "85 bally",
+                "base": "elisabetta85basebally.png",
+                "masks": [
+                    {
+                        "file": "elisabetta85maschbally.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "elisabetta85list-rip-bordobally.png",
+                        "label": "Riporti - Listini"
+                    },
+                    {
+                        "file": "elisabette85tacco-sperbally.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "greta-85",
+                "name": "Greta 85",
+                "folder": "85 bally",
+                "base": "greta85basebally.png",
+                "masks": [
+                    {
+                        "file": "greta85mascherinabally.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "greta85listbally.png",
+                        "label": "Listini"
+                    },
+                    {
+                        "file": "greta85taccosperonebally.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "ottavia-85-bally",
+                "name": "Ottavia 85 bally",
+                "folder": "85 bally",
+                "base": "ottavia85ballybase.png",
+                "masks": [
+                    {
+                        "file": "ottavia85ballymasch.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "ottavia85ballilistbordo.png",
+                        "label": "Listini"
+                    },
+                    {
+                        "file": "ottavia85ballytaccosper.png",
+                        "label": "Sperone - Tacco"
+                    }
+                ]
+            },
+            {
+                "id": "vittoria-85",
+                "name": "Vittoria 85",
+                "folder": "85 bally",
+                "base": "vittoria85bally base.png",
+                "masks": [
+                    {
+                        "file": "vittoria85bally punt.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "vittoria85bally sper.png",
+                        "label": "Sperone - Tacco"
+                    },
+                    {
+                        "file": "vittoria85bally tom.png",
+                        "label": "Tomaia"
+                    }
+                ]
+            },
+            {
+                "id": "gaia-85",
+                "name": "Gaia 85",
+                "folder": "85 bally",
+                "base": "gaia85ballybase.png",
+                "masks": [
+                    {
+                        "file": "gaia85ballymasch.png",
+                        "label": "Mascherina"
+                    },
+                    {
+                        "file": "gaia85ballylist.png",
+                        "label": "Listini - Bordo sottopiede"
+                    },
+                    {
+                        "file": "gaia85ballytacco.png",
+                        "label": "Tacco"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": "stivaletti",
