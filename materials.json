@@ -172,10 +172,6 @@
                 "label": "Cavallino Naturale"
             },
             {
-                "file": "cavallino bluette def.jpg",
-                "label": "Cavallino Bluette"
-            },
-            {
                 "file": "cavallino bordeaux def.jpg",
                 "label": "Cavallino Bordeaux"
             },
@@ -242,6 +238,10 @@
             {
                 "file": "Cavallino Zebra Grande.jpg",
                 "label": "Cavallino Zebra Grande"
+            },
+            {
+                "file": "cavallino bluette.jpg",
+                "label": "cavallino bluette"
             }
         ]
     },
