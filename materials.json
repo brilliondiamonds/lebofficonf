@@ -184,6 +184,26 @@
                 "label": "giraffa naturale"
             },
             {
+                "file": "cavallino viola def.jpg",
+                "label": "Cavallino Viola"
+            },
+            {
+                "file": "cavallino zebra azzurro def.jpg",
+                "label": "Cavallino Zebra Azzurro"
+            },
+            {
+                "file": "cavallino zebra fine def.jpg",
+                "label": "Cavallino Zebra Fine"
+            },
+            {
+                "file": "lince.jpg",
+                "label": "Lince"
+            },
+            {
+                "file": "lunette.jpg",
+                "label": "Lunette"
+            },
+            {
                 "file": "cavallino giraffa.jpg",
                 "label": "cavallino giraffa"
             },
@@ -192,12 +212,12 @@
                 "label": "Cavallino Zebra Grande"
             },
             {
-                "file": "cavallino zebra fine.jpg",
-                "label": "cavallino zebra fine"
+                "file": "bb.jpg",
+                "label": "Cavallino beige"
             },
             {
-                "file": "cavallino zebra azzurro.jpg",
-                "label": "cavallino zebra azzurro"
+                "file": "cavallino bordeaux.jpg",
+                "label": "cavallino bordeaux"
             },
             {
                 "file": "cavallino ultraviolet.jpg",
@@ -206,18 +226,6 @@
             {
                 "file": "viola.jpg",
                 "label": "Cavallino eco viola"
-            },
-            {
-                "file": "cavallino bordeaux.jpg",
-                "label": "cavallino bordeaux"
-            },
-            {
-                "file": "cavallino beige.jpg",
-                "label": "cavallino beige"
-            },
-            {
-                "file": "cavallino viola.jpg",
-                "label": "cavallino viola"
             },
             {
                 "file": "cavallino bluette.jpg",
@@ -342,8 +350,20 @@
         "folder": "GLITTER",
         "swatches": [
             {
+                "file": "Fiore Glitter Bordeaux.jpg",
+                "label": "Fiore Glitter Bordeaux"
+            },
+            {
+                "file": "Fiore Glitter Marrone.jpg",
+                "label": "Fiore Glitter Marrone"
+            },
+            {
                 "file": "Glitter Fine Argento.jpg",
                 "label": "Glitter Fine Argento"
+            },
+            {
+                "file": "Glitter Fine Blu.jpg",
+                "label": "Glitter Fine Blu"
             },
             {
                 "file": "Glitter Fine Dorato.jpg",
@@ -352,18 +372,6 @@
             {
                 "file": "Glitter Fine Fucsia.jpg",
                 "label": "Glitter Fine Fucsia"
-            },
-            {
-                "file": "Glitter Fine Blu.jpg",
-                "label": "Glitter Fine Blu"
-            },
-            {
-                "file": "Fiore Glitter Bordeaux.jpg",
-                "label": "Fiore Glitter Bordeaux"
-            },
-            {
-                "file": "Fiore Glitter Marrone.jpg",
-                "label": "Fiore Glitter Marrone"
             },
             {
                 "file": "Glitter Fine Grigio Antracite.jpg",
