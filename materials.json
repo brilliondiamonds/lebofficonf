@@ -366,8 +366,12 @@
                 "label": "Glitter Fine Nero"
             },
             {
-                "file": "Glitter Grosso Bianco Matt.jpg",
-                "label": "Glitter Grosso Bianco Matt"
+                "file": "2.jpg",
+                "label": "glitter fine platino"
+            },
+            {
+                "file": "Glitter Fine bianco (2).jpg",
+                "label": "glitter fine bianco"
             },
             {
                 "file": "Glitter Fine Dorato.jpg",
@@ -382,16 +386,16 @@
                 "label": "Glitter Fine Petrolio"
             },
             {
+                "file": "Glitter Fine Rosa.jpg",
+                "label": "glitter fine rosa"
+            },
+            {
+                "file": "Glitter Fine Rame.jpg",
+                "label": "glitter fine rame"
+            },
+            {
                 "file": "Glitter Fine Rosso.jpg",
                 "label": "Glitter Fine Rosso"
-            },
-            {
-                "file": "Fiore Glitter Bordeaux.jpg",
-                "label": "Fiore Glitter Bordeaux"
-            },
-            {
-                "file": "Fiore Glitter Marrone.jpg",
-                "label": "Fiore Glitter Marrone"
             },
             {
                 "file": "Glitter Grosso Blu.jpg",
@@ -402,16 +406,76 @@
                 "label": "Glitter Grosso Bluette"
             },
             {
+                "file": "Glitter Grosso Bianco Matt.jpg",
+                "label": "Glitter Grosso Bianco Matt"
+            },
+            {
                 "file": "Glitter Grosso Oro.jpg",
                 "label": "Glitter Grosso Oro"
+            },
+            {
+                "file": "glitter grosso bordeaux.jpg",
+                "label": "Glitter Grosso Bordeaux"
+            },
+            {
+                "file": "glitter grosso nero.jpg",
+                "label": "Glitter Grosso Nero"
             },
             {
                 "file": "Glitter Grosso Poudre.jpg",
                 "label": "Glitter Grosso Poudre"
             },
             {
+                "file": "glitter grosso antracite.jpg",
+                "label": "Glitter Grosso Antracite"
+            },
+            {
+                "file": "glitter grosso rosa mat.jpg",
+                "label": "Glitter Grosso Rosa Mat"
+            },
+            {
+                "file": "glitter grosso rosso.jpg",
+                "label": "Glitter Grosso Rosso"
+            },
+            {
+                "file": "Glitter Grosso Grigio.jpg",
+                "label": "glitter grosso grigio"
+            },
+            {
+                "file": "rosa m.jpg",
+                "label": "Rosa Medio"
+            },
+            {
                 "file": "Glitter Grosso Viola.jpg",
                 "label": "Glitter Grosso Viola"
+            },
+            {
+                "file": "Glitter Grosso Cemento Matt.jpg",
+                "label": "glitter grosso cemento mat"
+            },
+            {
+                "file": "verde acqua.jpg",
+                "label": "glitter grosso verde acqua"
+            },
+            {
+                "file": "glitter grosso dark.jpg",
+                "label": "glitter grosso multicolor dark"
+            },
+            {
+                "file": "Glitter Grosso Argento e Nero.jpg",
+                "label": "glitter grosso argento e nero"
+            },
+            {
+                "file": "Glitter Grosso Arlecchino.jpg",
+                "label": "glitter grosso arlecchino"
+            },
+            {
+                "file": "Fiore Glitter Bordeaux.jpg",
+                "label": "Fiore Glitter Bordeaux"
+            },
+            {
+                "file": "Fiore Glitter Marrone.jpg",
+                "label": "Fiore Glitter Marrone"
             },
             {
                 "file": "Maculato Glitter.jpg",
@@ -426,26 +490,6 @@
                 "label": "Tessuto Glitterato Rosa"
             },
             {
-                "file": "glitter grosso antracite.jpg",
-                "label": "Glitter Grosso Antracite"
-            },
-            {
-                "file": "glitter grosso bordeaux.jpg",
-                "label": "Glitter Grosso Bordeaux"
-            },
-            {
-                "file": "glitter grosso nero.jpg",
-                "label": "Glitter Grosso Nero"
-            },
-            {
-                "file": "glitter grosso rosa mat.jpg",
-                "label": "Glitter Grosso Rosa Mat"
-            },
-            {
-                "file": "glitter grosso rosso.jpg",
-                "label": "Glitter Grosso Rosso"
-            },
-            {
                 "file": "pois f.jpg",
                 "label": "Pois Fine"
             },
@@ -454,60 +498,12 @@
                 "label": "Pois Medio"
             },
             {
-                "file": "rosa m.jpg",
-                "label": "Rosa Medio"
-            },
-            {
-                "file": "Glitter Fine bianco (2).jpg",
-                "label": "glitter fine bianco"
-            },
-            {
-                "file": "2.jpg",
-                "label": "glitter fine platino"
-            },
-            {
-                "file": "Glitter Fine Rosa.jpg",
-                "label": "glitter fine rosa"
-            },
-            {
-                "file": "Glitter Fine Rame.jpg",
-                "label": "glitter fine rame"
-            },
-            {
                 "file": "Righe Argento e Azzurro.jpg",
                 "label": "righe azzurre e argento"
             },
             {
                 "file": "Glitter Grosso Grigio Rosa.jpg",
                 "label": "glitter grosso grigio/rosa"
-            },
-            {
-                "file": "Glitter Grosso Cemento Matt.jpg",
-                "label": "glitter grosso cemento mat"
-            },
-            {
-                "file": "Glitter Grosso Grigio.jpg",
-                "label": "glitter grosso grigio"
-            },
-            {
-                "file": "glitter grosso dark.jpg",
-                "label": "glitter grosso multicolor dark"
-            },
-            {
-                "file": "verde acqua.jpg",
-                "label": "glitter grosso verde acqua"
-            },
-            {
-                "file": "Glitter Grosso Argento e Nero.jpg",
-                "label": "glitter grosso argento e nero"
-            },
-            {
-                "file": "Glitter Grosso Arlecchino.jpg",
-                "label": "glitter grosso arlecchino"
-            },
-            {
-                "file": "Glitter Grosso Poudre.jpg",
-                "label": "glitter grosso poudre"
             },
             {
                 "file": "Glitter Grosso Rosa.jpg",
