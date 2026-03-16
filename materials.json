@@ -224,16 +224,16 @@
                 "label": "cavallino verde"
             },
             {
+                "file": "pourple.jpg",
+                "label": "cavallino viola"
+            },
+            {
                 "file": "cavallino nero.jpg",
                 "label": "cavallino nero"
             },
             {
                 "file": "pelle leo.jpg",
                 "label": "pelle leo"
-            },
-            {
-                "file": "pourple.jpg",
-                "label": "cavallino viola"
             }
         ]
     },
