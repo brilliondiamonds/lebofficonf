@@ -786,6 +786,10 @@
             {
                 "file": "azzurra.jpg",
                 "label": "Pelle liscia azzurro scuro"
+            },
+            {
+                "file": "pelle liscia blu notte.jpg",
+                "label": "pelle liscia blu notte"
             }
         ]
     },
