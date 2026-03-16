@@ -184,6 +184,10 @@
                 "label": "giraffa naturale"
             },
             {
+                "file": "cavallino viola def.jpg",
+                "label": "Cavallino Viola"
+            },
+            {
                 "file": "cavallino zebra azzurro def.jpg",
                 "label": "Cavallino Zebra Azzurro"
             },
@@ -218,10 +222,6 @@
             {
                 "file": "cavallino bluette.jpg",
                 "label": "cavallino bluette"
-            },
-            {
-                "file": "cavallino viola.jpg",
-                "label": "cavallino viola"
             },
             {
                 "file": "cavallino verde.jpg",
