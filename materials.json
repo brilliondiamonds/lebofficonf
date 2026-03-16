@@ -196,6 +196,10 @@
                 "label": "Cavallino Zebra Fine"
             },
             {
+                "file": "lince.jpg",
+                "label": "Lince"
+            },
+            {
                 "file": "cavallino giraffa.jpg",
                 "label": "cavallino giraffa"
             },
@@ -772,6 +776,10 @@
                 "label": "Nude Scurissimo"
             },
             {
+                "file": "nude.jpg",
+                "label": "Nude"
+            },
+            {
                 "file": "talpa c.jpg",
                 "label": "Talpa Chiaro"
             },
@@ -786,10 +794,6 @@
             {
                 "file": "azzurra.jpg",
                 "label": "Pelle liscia azzurro scuro"
-            },
-            {
-                "file": "pelle liscia blu notte.jpg",
-                "label": "pelle liscia blu notte"
             }
         ]
     },
