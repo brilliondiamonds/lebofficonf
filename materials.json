@@ -184,16 +184,16 @@
                 "label": "giraffa naturale"
             },
             {
-                "file": "cavallino zebra fine def.jpg",
-                "label": "Cavallino Zebra Fine"
-            },
-            {
                 "file": "cavallino giraffa.jpg",
                 "label": "cavallino giraffa"
             },
             {
                 "file": "Cavallino Zebra Grande.jpg",
                 "label": "Cavallino Zebra Grande"
+            },
+            {
+                "file": "cavallino zebra fine.jpg",
+                "label": "cavallino zebra fine"
             },
             {
                 "file": "azzu.jpg",
