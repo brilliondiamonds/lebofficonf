@@ -184,14 +184,6 @@
                 "label": "giraffa naturale"
             },
             {
-                "file": "cavallino zebra azzurro def.jpg",
-                "label": "Cavallino Zebra Azzurro"
-            },
-            {
-                "file": "lince.jpg",
-                "label": "Lince"
-            },
-            {
                 "file": "lunette.jpg",
                 "label": "Lunette"
             },
@@ -208,10 +200,6 @@
                 "label": "cavallino zebra fine"
             },
             {
-                "file": "bb.jpg",
-                "label": "Cavallino beige"
-            },
-            {
                 "file": "cavallino ultraviolet.jpg",
                 "label": "cavallino ultraviolet"
             },
@@ -222,6 +210,10 @@
             {
                 "file": "cavallino bordeaux.jpg",
                 "label": "cavallino bordeaux"
+            },
+            {
+                "file": "cavallino beige.jpg",
+                "label": "cavallino beige"
             },
             {
                 "file": "cavallino viola.jpg",
@@ -242,6 +234,10 @@
             {
                 "file": "pelle leo.jpg",
                 "label": "pelle leo"
+            },
+            {
+                "file": "cavallino zebra azzurro.jpg",
+                "label": "cavallino zebra azzurro"
             }
         ]
     },
