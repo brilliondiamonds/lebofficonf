@@ -184,16 +184,8 @@
                 "label": "giraffa naturale"
             },
             {
-                "file": "cavallino viola def.jpg",
-                "label": "Cavallino Viola"
-            },
-            {
                 "file": "cavallino zebra azzurro def.jpg",
                 "label": "Cavallino Zebra Azzurro"
-            },
-            {
-                "file": "cavallino zebra fine def.jpg",
-                "label": "Cavallino Zebra Fine"
             },
             {
                 "file": "lince.jpg",
@@ -212,12 +204,12 @@
                 "label": "Cavallino Zebra Grande"
             },
             {
-                "file": "bb.jpg",
-                "label": "Cavallino beige"
+                "file": "cavallino zebra fine.jpg",
+                "label": "cavallino zebra fine"
             },
             {
-                "file": "cavallino bordeaux.jpg",
-                "label": "cavallino bordeaux"
+                "file": "bb.jpg",
+                "label": "Cavallino beige"
             },
             {
                 "file": "cavallino ultraviolet.jpg",
@@ -226,6 +218,14 @@
             {
                 "file": "viola.jpg",
                 "label": "Cavallino eco viola"
+            },
+            {
+                "file": "cavallino bordeaux.jpg",
+                "label": "cavallino bordeaux"
+            },
+            {
+                "file": "cavallino viola.jpg",
+                "label": "cavallino viola"
             },
             {
                 "file": "cavallino bluette.jpg",
