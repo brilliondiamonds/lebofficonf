@@ -164,16 +164,12 @@
         "folder": "CAVALLINI",
         "swatches": [
             {
-                "file": "Cavallino Naturale def.jpg",
+                "file": "cavallino berri.jpg",
+                "label": "cavallino berri"
+            },
+            {
+                "file": "Cavallino Naturale.jpg",
                 "label": "Cavallino Naturale"
-            },
-            {
-                "file": "Cavallino Zebra Grande def.jpg",
-                "label": "Cavallino Zebra Grande"
-            },
-            {
-                "file": "cavallino berri def.jpg",
-                "label": "Cavallino Berri"
             },
             {
                 "file": "cavallino bluette def.jpg",
@@ -242,6 +238,10 @@
             {
                 "file": "pelle leo.jpg",
                 "label": "pelle leo"
+            },
+            {
+                "file": "Cavallino Zebra Grande.jpg",
+                "label": "Cavallino Zebra Grande"
             }
         ]
     },
