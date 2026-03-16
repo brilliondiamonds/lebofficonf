@@ -226,6 +226,10 @@
             {
                 "file": "lunette.jpg",
                 "label": "Lunette"
+            },
+            {
+                "file": "bb.jpg",
+                "label": "Cavallino beige"
             }
         ]
     },
