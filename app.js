@@ -45,20 +45,15 @@
     async function loadDataFile(fileName) {
         const timestamp = new Date().getTime();
         try {
-            // 1. Tenta di scaricare i dati in tempo reale dall'API di GitHub (bypassa l'attesa di Vercel)
-            const ghRes = await fetch(`https://api.github.com/repos/brilliondiamonds/lebofficonf/contents/${fileName}?t=${timestamp}`, {
-                headers: {
-                    'Accept': 'application/vnd.github.v3.raw'
-                }
-            });
+            const rawUrl = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${fileName}?t=${timestamp}`;
+            const ghRes = await fetch(rawUrl);
             if (ghRes.ok) {
-                console.log(`[App] ${fileName} caricato da GitHub API (istantaneo)`);
+                console.log(`[App] ${fileName} caricato da GitHub (istantaneo)`);
                 return await ghRes.json();
             }
-            throw new Error(`GitHub API HTTP ${ghRes.status}`);
+            throw new Error(`GitHub raw HTTP ${ghRes.status}`);
         } catch (e) {
             console.warn(`[App] Fallback: carico ${fileName} in locale (server)`, e);
-            // 2. Se l'API fallisce (es. rate limit di GitHub), usiamo il file servito da Vercel
             const localRes = await fetch(`${fileName}?v=${timestamp}`);
             return await localRes.json();
         }
@@ -486,7 +481,7 @@
         if (clientName && clientName.trim() !== '') {
             lines.push('Cliente: ' + clientName.trim());
         }
-        
+
         selectedModel.masks.forEach((mask, i) => {
             const mat = maskMaterials[i];
             lines.push(mask.label + ':  ' + (mat ? mat.label : '—'));
@@ -527,21 +522,21 @@
         try {
             const logoUrl = encodeURI('images/logo/logo.avif');
             const logoImg = await loadImage(logoUrl);
-            
+
             // Calculate scale to fit nicely in the panel
             const maxLogoHeight = panelH - padding * 2;
             const maxLogoWidth = 400; // max width space we want to give to the logo
             let logoW = logoImg.naturalWidth;
             let logoH = logoImg.naturalHeight;
             const scale = Math.min(maxLogoWidth / logoW, maxLogoHeight / logoH);
-            
+
             logoW = logoW * scale;
             logoH = logoH * scale;
 
             // Align logo to the right, centered vertically within the panel
             const logoX = W - padding - logoW;
             const logoY = panelY + (panelH - logoH) / 2;
-            
+
             ctx.drawImage(logoImg, logoX, logoY, logoW, logoH);
         } catch (e) {
             console.warn('Impossibile caricare il logo per l\'esportazione', e);
@@ -557,7 +552,7 @@
         btnExport.addEventListener('click', (e) => {
             if (!selectedModel) return;
             e.stopPropagation(); // Prevent closing immediately
-            
+
             const isHidden = dropdown.classList.contains('hidden');
             if (isHidden) {
                 dropdown.classList.remove('hidden');
@@ -586,7 +581,7 @@
 
         btnConfirm.addEventListener('click', () => {
             if (!selectedModel) return;
-            
+
             const clientName = input.value;
             closeExportDropdown();
 
@@ -597,7 +592,7 @@
             currentStep = -1; // suppress active mask highlight
             renderShoe().then(async () => {
                 await drawExportSummary(clientName);
-                
+
                 let fileName = 'leboffi-' + selectedModel.id;
                 if (clientName && clientName.trim() !== '') {
                     fileName += '-' + clientName.trim().replace(/[^a-z0-9]/gi, '-').toLowerCase();
@@ -625,9 +620,9 @@
                         fallbackDownload();
                         return;
                     }
-                    
+
                     const file = new File([blob], fullFileName, { type: blob.type });
-                    
+
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
                         try {
                             await navigator.share({
@@ -676,5 +671,79 @@
         });
     }
 
-    document.addEventListener('DOMContentLoaded', init);
+    function setupScrollListener() {
+        const viewerCol = document.querySelector('.viewer-col');
+        if (!viewerCol) return;
+
+        // On mobile, the actual scroll happens inside .panel-scroll
+        const panels = document.querySelectorAll('.panel-scroll');
+
+        panels.forEach(panel => {
+            panel.addEventListener('scroll', (e) => {
+                if (window.innerWidth <= 960) {
+                    if (e.target.scrollTop > 30) {
+                        viewerCol.classList.add('scrolled');
+                    } else {
+                        viewerCol.classList.remove('scrolled');
+                    }
+                }
+            });
+        });
+
+        // Fallback for desktop window scrolling (if any)
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth > 960) {
+                if (window.scrollY > 30) {
+                    viewerCol.classList.add('scrolled');
+                } else {
+                    viewerCol.classList.remove('scrolled');
+                }
+            }
+        });
+
+        // Re-bind on resize to handle orientation/resizing
+        window.addEventListener('resize', () => {
+            const isMobile = window.innerWidth <= 960;
+            const isScrolled = viewerCol.classList.contains('scrolled');
+            if (!isMobile && isScrolled) viewerCol.classList.remove('scrolled');
+        });
+    }
+
+    function setupPreviewTouchSync() {
+        const viewerCol = document.querySelector('.viewer-col');
+        if (!viewerCol) return;
+
+        let touchStartY = 0;
+
+        viewerCol.addEventListener('touchstart', (e) => {
+            if (window.innerWidth > 960) return;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        viewerCol.addEventListener('touchmove', (e) => {
+            if (window.innerWidth > 960) return;
+            const touchY = e.touches[0].clientY;
+            const deltaY = touchStartY - touchY;
+            touchStartY = touchY;
+
+            const activePanel = document.querySelector('.step-panel.active .panel-scroll');
+            if (activePanel) {
+                activePanel.scrollTop += deltaY;
+            }
+        }, { passive: false });
+
+        viewerCol.addEventListener('wheel', (e) => {
+            if (window.innerWidth > 960) return;
+            const activePanel = document.querySelector('.step-panel.active .panel-scroll');
+            if (activePanel) {
+                activePanel.scrollTop += e.deltaY;
+            }
+        }, { passive: true });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+        setupScrollListener();
+        setupPreviewTouchSync();
+    });
 })();

@@ -17,11 +17,11 @@
 
     // ─── STATE ───────────────────────
     let token = '';
-    
+
     let materialsData = [];
     let originalJSON = '';
     let fileSha = '';
-    
+
     let modelsData = [];
     let originalModelsJSON = '';
     let modelsFileSha = '';
@@ -29,13 +29,13 @@
     let pendingSwatchImage = null; // { base64, fileName }
     let pendingBaseImage = null;   // { base64, fileName }
     let pendingMaskImage = null;   // { base64, fileName }
-    
+
     let editingCategoryIndex = -1;
     let editingModelCategoryIndex = -1;
     let editingModelIndex = -1;
     let editingModelCatParentIndex = -1;
     let deletingTarget = null; // { type: 'category'|'swatch'|'model-cat'|'model'|'mask', catIdx, swIdx?, modelCatIdx?, modelIdx?, maskIdx? }
-    
+
     let currentTab = 'materiali'; // 'materiali' | 'modelli'
 
     // ─── DOM REFS ────────────────────
@@ -85,7 +85,7 @@
             tab.addEventListener('click', (e) => {
                 document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
                 e.target.classList.add('active');
-                
+
                 const targetId = e.target.dataset.tab;
                 currentTab = targetId;
 
@@ -94,7 +94,7 @@
                     toolbarMateriali.classList.add('active');
                     toolbarModelli.classList.add('hidden');
                     toolbarModelli.classList.remove('active');
-                    
+
                     categoriesList.classList.remove('hidden');
                     categoriesList.classList.add('active');
                     modelsList.classList.add('hidden');
@@ -104,7 +104,7 @@
                     toolbarModelli.classList.add('active');
                     toolbarMateriali.classList.add('hidden');
                     toolbarMateriali.classList.remove('active');
-                    
+
                     modelsList.classList.remove('hidden');
                     modelsList.classList.add('active');
                     categoriesList.classList.add('hidden');
@@ -173,6 +173,29 @@
         if (saved) doLogin();
     }
 
+    // ─── HELPERS (API / JSON) ─────────
+    async function safeJson(response, label) {
+        const text = await response.text();
+        if (!text || !text.trim()) throw new Error((label || 'Risposta') + ' vuota dal server');
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            console.error(`Errore parse JSON per ${label}:`, text.substring(0, 200) + '...');
+            throw new Error((label || 'Risposta') + ' non è JSON valido: ' + e.message);
+        }
+    }
+
+    function safeParseJson(str, fileLabel) {
+        const s = (str && String(str).trim()) || '[]';
+        try {
+            const out = JSON.parse(s);
+            return Array.isArray(out) ? out : [];
+        } catch (e) {
+            console.error(`Errore parse JSON contenuto file ${fileLabel}:`, s.substring(0, 200) + '...');
+            throw new Error('Il file ' + (fileLabel || '') + ' non contiene JSON valido: ' + e.message);
+        }
+    }
+
     // ─── AUTH ────────────────────────
     async function doLogin() {
         const t = tokenInput.value.trim();
@@ -184,7 +207,7 @@
         try {
             const res = await ghFetch('/user');
             if (!res.ok) throw new Error('Token non valido');
-            const user = await res.json();
+            const user = await safeJson(res, 'Profilo utente');
             token = t;
             localStorage.setItem('leboffi_gh_token', t);
 
@@ -192,7 +215,7 @@
             const repoRes = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}`);
             let hasPush = false;
             if (repoRes.ok) {
-                const repoData = await repoRes.json();
+                const repoData = await safeJson(repoRes, 'Dati repository');
                 hasPush = repoData.permissions && repoData.permissions.push;
             }
 
@@ -223,72 +246,141 @@
         });
     }
 
+    /** Carica un JSON da GitHub. Usa il download_url (raw.githubusercontent.com) per il contenuto
+     *  perché non ha limiti di dimensione, e la Contents API solo per lo SHA. */
+    async function fetchJsonFromGitHubOrLocal(path) {
+        const ts = new Date().getTime();
+        try {
+            const res = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}?v=${ts}`);
+            if (!res.ok) return { source: 'local', sha: null };
+            const meta = await safeJson(res, 'metadati ' + path);
+
+            const rawUrl = meta.download_url || `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${path}`;
+            const rawRes = await fetch(rawUrl + (rawUrl.includes('?') ? '&' : '?') + 'v=' + ts);
+            if (!rawRes.ok) throw new Error('Impossibile scaricare ' + path + ' (HTTP ' + rawRes.status + ')');
+
+            const raw = await rawRes.text();
+            const parsed = safeParseJson(raw, path);
+            return { source: 'github', sha: meta.sha, data: parsed };
+        } catch (e) {
+            console.error('Errore fetch GitHub per', path, e);
+            return { source: 'local', sha: null };
+        }
+    }
+
+    /** Carica un JSON dalla stessa origine (es. /materials.json su localhost). */
+    async function fetchJsonLocal(path) {
+        const ts = new Date().getTime();
+        const res = await fetch(path + '?v=' + ts);
+        if (!res.ok) return null;
+        const text = await res.text();
+        const raw = (text && text.trim()) || '[]';
+        try {
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+            return null;
+        }
+    }
+
     async function loadData() {
         categoriesList.innerHTML = `
             <div class="loading-spinner">
                 <div class="spinner"></div>
                 <span>Caricamento materiali…</span>
             </div>`;
-            
+
         modelsList.innerHTML = `
             <div class="loading-spinner">
                 <div class="spinner"></div>
                 <span>Caricamento modelli…</span>
             </div>`;
 
+        function setError(msg) {
+            const html = `<p style="text-align:center;color:var(--danger);padding:40px;">❌ ${esc(msg)}</p>`;
+            categoriesList.innerHTML = html;
+            modelsList.innerHTML = html;
+        }
+
         try {
-            const timestamp = new Date().getTime();
-            
-            // Fetch materials
-            const matRes = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${MATERIALS_PATH}?v=${timestamp}`);
-            if (!matRes.ok) throw new Error('Impossibile caricare materials.json');
-            const matData = await matRes.json();
-            fileSha = matData.sha;
-            const matContent = atob(matData.content.replace(/\n/g, ''));
-            materialsData = JSON.parse(matContent);
-            originalJSON = JSON.stringify(materialsData);
-            
-            // Fetch models
-            const modRes = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${MODELS_PATH}?v=${timestamp}`);
-            if (modRes.ok) {
-                const modData = await modRes.json();
-                modelsFileSha = modData.sha;
-                const modContent = atob(modData.content.replace(/\n/g, ''));
-                modelsData = JSON.parse(modContent);
-                originalModelsJSON = JSON.stringify(modelsData);
+            // 1) Materiali: prima GitHub, poi fallback locale
+            const matResult = await fetchJsonFromGitHubOrLocal(MATERIALS_PATH);
+            if (matResult.source === 'github' && matResult.data) {
+                fileSha = matResult.sha;
+                materialsData = matResult.data;
             } else {
-                modelsData = [];
-                originalModelsJSON = '[]';
+                const localMat = await fetchJsonLocal(MATERIALS_PATH);
+                if (localMat) {
+                    materialsData = localMat;
+                    fileSha = '';
+                    showToast('Materiali caricati da questo server (non da GitHub)', 'info');
+                } else {
+                    materialsData = [];
+                    fileSha = '';
+                }
             }
+            originalJSON = JSON.stringify(materialsData);
+
+            // 2) Modelli: prima GitHub, poi fallback locale
+            const modResult = await fetchJsonFromGitHubOrLocal(MODELS_PATH);
+            if (modResult.source === 'github' && modResult.data) {
+                modelsFileSha = modResult.sha;
+                modelsData = modResult.data;
+            } else {
+                const localMod = await fetchJsonLocal(MODELS_PATH);
+                if (localMod) {
+                    modelsData = localMod;
+                    modelsFileSha = '';
+                    showToast('Modelli caricati da questo server (non da GitHub)', 'info');
+                } else {
+                    modelsData = [];
+                    modelsFileSha = '';
+                }
+            }
+            originalModelsJSON = JSON.stringify(modelsData);
 
             renderCategories();
             renderModels();
             updateStatus();
         } catch (err) {
-            categoriesList.innerHTML = `<p style="text-align:center;color:var(--danger);padding:40px;">❌ ${err.message}</p>`;
-            modelsList.innerHTML = `<p style="text-align:center;color:var(--danger);padding:40px;">❌ ${err.message}</p>`;
+            setError(err.message || 'Errore sconosciuto');
         }
+    }
+
+    function utf8ToBase64(str) {
+        const bytes = new TextEncoder().encode(str);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+        return btoa(binary);
+    }
+
+    function base64ToUtf8(b64) {
+        const binary = atob(b64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        return new TextDecoder().decode(bytes);
     }
 
     async function commitFile(path, content, message, sha) {
         const body = {
             message: message,
-            content: btoa(unescape(encodeURIComponent(content))),
-            sha: sha
+            content: utf8ToBase64(content)
         };
+        if (sha) body.sha = sha;
         const res = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
             method: 'PUT',
             body: JSON.stringify(body)
         });
         if (!res.ok) {
-            const err = await res.json();
+            let err = {};
+            try { err = await res.json(); } catch (_) { err = { message: await res.text() || 'Errore sconosciuto' }; }
             console.error('[Admin] Commit error:', res.status, err);
             if (res.status === 404) {
                 throw new Error('Nessun permesso di scrittura. Il token deve appartenere al proprietario del repo oppure a un collaboratore con permesso "Write".');
             }
             throw new Error(err.message || 'Errore nel commit (HTTP ' + res.status + ')');
         }
-        return res.json();
+        return safeJson(res, 'Risposta commit');
     }
 
     async function uploadImage(path, base64Data, message) {
@@ -297,10 +389,10 @@
         try {
             const check = await ghFetch(`/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`);
             if (check.ok) {
-                const existing = await check.json();
+                const existing = await safeJson(check, 'Contenuto file');
                 sha = existing.sha;
             }
-        } catch (e) { /* file doesn't exist, that's fine */ }
+        } catch (e) { /* file doesn't exist o risposta non valida */ }
 
         const body = {
             message: message,
@@ -313,15 +405,22 @@
             body: JSON.stringify(body)
         });
         if (!res.ok) {
-            const err = await res.json();
+            let err = {};
+            try { err = await res.json(); } catch (_) { err = { message: await res.text() || 'Errore upload' }; }
             throw new Error(err.message || 'Errore upload immagine');
         }
-        return res.json();
+        return safeJson(res, 'Risposta upload');
     }
 
     // ─── RENDER ──────────────────────
     function renderCategories() {
         const query = searchInput.value.trim().toLowerCase();
+
+        const openIdxs = new Set();
+        document.querySelectorAll('#categoriesList .category-card.open').forEach(c => {
+            if (c.dataset.idx) openIdxs.add(c.dataset.idx);
+        });
+
         categoriesList.innerHTML = '';
 
         let filtered = materialsData;
@@ -344,6 +443,7 @@
             const realIdx = materialsData.indexOf(cat);
             const card = document.createElement('div');
             card.className = 'category-card';
+            if (openIdxs.has(realIdx.toString())) card.classList.add('open');
             card.dataset.idx = realIdx;
 
             // Header
@@ -405,11 +505,15 @@
                     imgSrc = 'data:image/png;base64,' + sw._pendingUpload.base64;
                 }
                 const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(IMAGES_BASE + '/' + cat.folder + '/' + sw.file)}?v=${new Date().getTime()}`;
-                
+
                 const swCard = document.createElement('div');
                 swCard.className = 'admin-swatch-card';
+                swCard.draggable = true;
+                swCard.dataset.catIdx = realIdx;
+                swCard.dataset.swIdx = swIdx;
+
                 swCard.innerHTML = `
-                    <img class="admin-swatch-img" src="${imgSrc}" alt="${esc(sw.label)}" loading="lazy" 
+                    <img class="admin-swatch-img" draggable="false" src="${imgSrc}" alt="${esc(sw.label)}" loading="lazy" 
                          onerror="if(!this.dataset.fb){ this.dataset.fb='1'; this.src='${fallbackSrc}'; } else { this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%231a1a1f%22 width=%22100%22 height=%22100%22/><text fill=%22%235a5a6a%22 x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2212%22>No img</text></svg>'; }"/>
                     <div class="admin-swatch-info">
                         <span class="admin-swatch-name" title="${esc(sw.label)}">${esc(sw.label)}</span>
@@ -420,10 +524,112 @@
                             </svg>
                         </button>
                     </div>`;
+
+                // --- Drag and Drop + Multi-Select Events ---
+
+                // Toggle selection on click (unless clicking control buttons)
+                swCard.addEventListener('click', (e) => {
+                    if (e.target.closest('button')) return;
+                    swCard.classList.toggle('selected');
+                });
+
+                // Start Drag
+                swCard.addEventListener('dragstart', (e) => {
+                    // If dragged item wasn't selected, select only it
+                    if (!swCard.classList.contains('selected')) {
+                        document.querySelectorAll('.admin-swatch-card.selected').forEach(el => el.classList.remove('selected'));
+                        swCard.classList.add('selected');
+                    }
+
+                    // Gather all currently selected indices
+                    const selectedEls = document.querySelectorAll('.admin-swatch-card.selected');
+                    const selectedData = Array.from(selectedEls).map(el => ({
+                        catIdx: parseInt(el.dataset.catIdx),
+                        swIdx: parseInt(el.dataset.swIdx)
+                    }));
+
+                    const jsonData = JSON.stringify(selectedData);
+                    e.dataTransfer.setData('application/json', jsonData);
+                    e.dataTransfer.setData('text/plain', jsonData);
+                    e.dataTransfer.effectAllowed = 'move';
+
+                    // Optional visual feedback for drag image could go here
+                });
+
+                // Handle Drag Over elements
+                swCard.addEventListener('dragenter', (e) => {
+                    e.preventDefault();
+                    swCard.classList.add('drag-over');
+                });
+                swCard.addEventListener('dragover', (e) => {
+                    e.preventDefault(); // Necessary to allow dropping
+                    e.dataTransfer.dropEffect = 'move';
+                    swCard.classList.add('drag-over');
+                });
+
+                swCard.addEventListener('dragleave', () => {
+                    swCard.classList.remove('drag-over');
+                });
+
+                // Drop on another swatch
+                swCard.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    swCard.classList.remove('drag-over');
+
+                    let dataStr = e.dataTransfer.getData('application/json');
+                    if (!dataStr) dataStr = e.dataTransfer.getData('text/plain');
+                    if (!dataStr) return;
+
+                    let draggedData = [];
+                    try { draggedData = JSON.parse(dataStr); } catch (e) { return; }
+
+                    if (!draggedData || draggedData.length === 0) return;
+
+                    const targetCatIdx = parseInt(swCard.dataset.catIdx);
+                    // Rilascio PRIMA o DOPO? Per semplicità inseriamo prima dell'elemento target
+                    const targetSwIdx = parseInt(swCard.dataset.swIdx);
+
+                    handleDropItems(draggedData, targetCatIdx, targetSwIdx);
+                });
+
                 grid.appendChild(swCard);
             });
 
             body.appendChild(actionsBar);
+
+            // Allow dropping onto an empty or partially populated grid
+            grid.addEventListener('dragenter', (e) => {
+                e.preventDefault();
+                grid.classList.add('drag-over');
+            });
+            grid.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                grid.classList.add('drag-over');
+            });
+            grid.addEventListener('dragleave', () => {
+                grid.classList.remove('drag-over');
+            });
+            grid.addEventListener('drop', (e) => {
+                e.preventDefault();
+                grid.classList.remove('drag-over');
+                // Se viene rilasciato nell'area vuota della grid, aggiungi alla fine di questa cat
+                if (e.target === grid || e.target.closest('.admin-swatch-grid') === grid) {
+                    let dataStr = e.dataTransfer.getData('application/json');
+                    if (!dataStr) dataStr = e.dataTransfer.getData('text/plain');
+                    if (!dataStr) return;
+
+                    let draggedData = [];
+                    try { draggedData = JSON.parse(dataStr); } catch (err) { return; }
+
+                    if (!draggedData || draggedData.length === 0) return;
+
+                    const targetCatIdx = parseInt(card.dataset.idx);
+                    const targetSwIdx = materialsData[targetCatIdx].swatches.length; // insert at end
+                    handleDropItems(draggedData, targetCatIdx, targetSwIdx);
+                }
+            });
+
             body.appendChild(grid);
             card.appendChild(header);
             card.appendChild(body);
@@ -434,6 +640,12 @@
     // ─── ACTION HANDLER ──────────────
     function renderModels() {
         const query = searchModelInput.value.trim().toLowerCase();
+
+        const openIdxs = new Set();
+        document.querySelectorAll('#modelsList .category-card.open').forEach(c => {
+            if (c.dataset.modelCatIdx) openIdxs.add(c.dataset.modelCatIdx);
+        });
+
         modelsList.innerHTML = '';
 
         let filtered = modelsData;
@@ -457,6 +669,7 @@
             const realCatIdx = modelsData.indexOf(cat);
             const card = document.createElement('div');
             card.className = 'category-card';
+            if (openIdxs.has(realCatIdx.toString())) card.classList.add('open');
             card.dataset.modelCatIdx = realCatIdx;
 
             // Header for Model Category
@@ -504,7 +717,7 @@
                     </svg>
                     Aggiungi Modello
                 </button>`;
-            
+
             const modelsContainer = document.createElement('div');
             modelsContainer.style.display = 'flex';
             modelsContainer.style.flexDirection = 'column';
@@ -523,7 +736,7 @@
                         baseImgSrc = 'data:image/png;base64,' + model._pendingBaseUpload.base64;
                     }
                     const fallbackSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + model.base)}?v=${new Date().getTime()}`;
-                    
+
                     const mHeader = document.createElement('div');
                     mHeader.className = 'cat-header';
                     mHeader.style.padding = '12px 16px';
@@ -556,7 +769,7 @@
                                 </svg>
                             </button>
                         </div>`;
-                    
+
                     const mGrid = document.createElement('div');
                     mGrid.className = 'admin-swatch-grid';
                     mGrid.style.padding = '0 16px 16px 16px';
@@ -573,7 +786,7 @@
                             maskImgSrc = 'data:image/png;base64,' + mask._pendingUpload.base64;
                         }
                         const maskFbSrc = `https://raw.githubusercontent.com/brilliondiamonds/lebofficonf/main/${encodeURI(MODELS_IMAGES_BASE + '/' + model.folder + '/' + mask.file)}?v=${new Date().getTime()}`;
-                        
+
                         const maskCard = document.createElement('div');
                         maskCard.className = 'admin-swatch-card';
                         maskCard.innerHTML = `
@@ -648,7 +861,7 @@
                 openModal('modalDelete');
                 break;
             }
-                
+
             case 'edit-model-cat':
                 editingModelCategoryIndex = idx;
                 document.getElementById('modalModelCategoryTitle').textContent = 'Modifica Categoria';
@@ -671,42 +884,42 @@
                 document.getElementById('modalModelTitle').textContent = 'Nuovo Modello';
                 document.getElementById('modelNameInput').value = '';
                 document.getElementById('modelFolderInput').value = '';
-                
+
                 // Populate select
                 const sel = document.getElementById('modelCategorySelect');
                 sel.innerHTML = modelsData.map((c, i) => `<option value="${i}" ${i === catIdx ? 'selected' : ''}>${esc(c.name)}</option>`).join('');
-                
+
                 const baseInput = document.getElementById('baseFileInput');
-                if(baseInput) baseInput.value = '';
-                
+                if (baseInput) baseInput.value = '';
+
                 const basePreview = document.getElementById('uploadBasePreview');
                 const basePlaceholder = document.getElementById('uploadBasePlaceholder');
-                if(basePreview) basePreview.classList.add('hidden');
-                if(basePlaceholder) basePlaceholder.classList.remove('hidden');
-                
+                if (basePreview) basePreview.classList.add('hidden');
+                if (basePlaceholder) basePlaceholder.classList.remove('hidden');
+
                 openModal('modalModel');
                 break;
             }
-                
+
             case 'edit-model': {
                 const catIdx = parseInt(btn.dataset.catIdx);
                 const modIdx = parseInt(btn.dataset.modelIdx);
                 editingModelCatParentIndex = catIdx;
                 editingModelIndex = modIdx;
                 pendingBaseImage = null;
-                
+
                 const theModel = modelsData[catIdx].models[modIdx];
                 document.getElementById('modalModelTitle').textContent = 'Modifica Modello';
                 document.getElementById('modelNameInput').value = theModel.name;
                 document.getElementById('modelFolderInput').value = theModel.folder;
-                
+
                 // Populate select
                 const sel = document.getElementById('modelCategorySelect');
                 sel.innerHTML = modelsData.map((c, i) => `<option value="${i}" ${i === catIdx ? 'selected' : ''}>${esc(c.name)}</option>`).join('');
 
                 const baseInput = document.getElementById('baseFileInput');
-                if(baseInput) baseInput.value = '';
-                
+                if (baseInput) baseInput.value = '';
+
                 const basePreview = document.getElementById('uploadBasePreview');
                 const basePlaceholder = document.getElementById('uploadBasePlaceholder');
                 if (theModel._pendingBaseUpload) {
@@ -743,11 +956,11 @@
                 pendingMaskImage = null;
                 document.getElementById('maskLabelInput').value = '';
                 const maskInput = document.getElementById('maskFileInput');
-                if(maskInput) maskInput.value = '';
+                if (maskInput) maskInput.value = '';
                 const maskPreview = document.getElementById('uploadMaskPreview');
                 const maskPlaceholder = document.getElementById('uploadMaskPlaceholder');
-                if(maskPreview) maskPreview.classList.add('hidden');
-                if(maskPlaceholder) maskPlaceholder.classList.remove('hidden');
+                if (maskPreview) maskPreview.classList.add('hidden');
+                if (maskPlaceholder) maskPlaceholder.classList.remove('hidden');
                 openModal('modalMask');
                 break;
             }
@@ -763,6 +976,47 @@
                 break;
             }
         }
+    }
+
+    // ─── DRAG & DROP HELPER ──────────
+    function handleDropItems(draggedData, targetCatIdx, targetSwIdx) {
+        let itemsToMove = [];
+
+        // 1. Sort effectively: highest index first to avoid disrupting later removals
+        draggedData.sort((a, b) => {
+            if (a.catIdx !== b.catIdx) return b.catIdx - a.catIdx;
+            return b.swIdx - a.swIdx;
+        });
+
+        // 2. Remove items from original arrays
+        draggedData.forEach(item => {
+            const removed = materialsData[item.catIdx].swatches.splice(item.swIdx, 1)[0];
+            // Push to front so they stay in their original relative order
+            itemsToMove.unshift(removed);
+
+            // se stavamo eliminando dallo stesso blocco di destinazione E prima del target inserimento, il target inserimento scende
+            if (item.catIdx === targetCatIdx && item.swIdx < targetSwIdx) {
+                targetSwIdx--;
+            }
+        });
+
+        // 3. Insert into the new location
+        materialsData[targetCatIdx].swatches.splice(targetSwIdx, 0, ...itemsToMove);
+
+        updateStatus();
+        renderCategories();
+
+        // Attempt to re-select the moved swatches
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.admin-swatch-card');
+            cards.forEach(card => {
+                const cIdx = parseInt(card.dataset.catIdx);
+                const sIdx = parseInt(card.dataset.swIdx);
+                if (cIdx === targetCatIdx && sIdx >= targetSwIdx && sIdx < targetSwIdx + itemsToMove.length) {
+                    card.classList.add('selected');
+                }
+            });
+        }, 10);
     }
 
     // ─── CATEGORY CRUD ───────────────
@@ -879,7 +1133,7 @@
                     folder: folder
                 };
             }
-            
+
             // If category changed, move it
             if (selectedCatIdx !== editingModelCatParentIndex) {
                 modelsData[editingModelCatParentIndex].models.splice(editingModelIndex, 1);
@@ -926,7 +1180,7 @@
         }
 
         const model = modelsData[editingModelCatParentIndex].models[editingModelIndex];
-        if(!model.masks) model.masks = [];
+        if (!model.masks) model.masks = [];
         model.masks.push({
             file: pendingMaskImage.fileName,
             label: label,
@@ -1058,7 +1312,7 @@
         try {
             const pendingUploads = [];
             modelsData.forEach(cat => {
-                if(cat.models) {
+                if (cat.models) {
                     cat.models.forEach(m => {
                         if (m._pendingBaseUpload) {
                             pendingUploads.push({
@@ -1067,7 +1321,7 @@
                                 label: `Base: ${m.name}`
                             });
                         }
-                        if(m.masks) {
+                        if (m.masks) {
                             m.masks.forEach(mask => {
                                 if (mask._pendingUpload) {
                                     pendingUploads.push({
@@ -1163,16 +1417,16 @@
             }))
         }));
         const modChanged = JSON.stringify(currentCleanModels) !== originalModelsJSON;
-        
+
         return { matChanged, modChanged };
     }
 
     function updateStatus() {
         const { matChanged, modChanged } = hasChanges();
-        
+
         const btnMat = document.getElementById('btnSavePublish');
         if (btnMat) btnMat.disabled = !matChanged;
-        
+
         const btnMod = document.getElementById('btnSavePublishModelli');
         if (btnMod) btnMod.disabled = !modChanged;
 
