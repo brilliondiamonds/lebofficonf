@@ -374,6 +374,10 @@
                 "label": "glitter fine bianco"
             },
             {
+                "file": "glitter oro rosa fine.jpg",
+                "label": "glitter oro rosa fine"
+            },
+            {
                 "file": "Glitter Fine Dorato.jpg",
                 "label": "Glitter Fine Dorato"
             },
@@ -498,6 +502,18 @@
                 "label": "Tessuto Glitterato Antracite"
             },
             {
+                "file": "Tessuto Glitterato Argento.jpg",
+                "label": "Tessuto glitterato argento chiaro"
+            },
+            {
+                "file": "Tessuto Glitterato Oro Marina.jpg",
+                "label": "Tessuto glitterato oro"
+            },
+            {
+                "file": "Tessuto Glitterato Multicolor.jpg",
+                "label": "Tessuto glitterato multicolor"
+            },
+            {
                 "file": "Tessuto Glitterato Rosa.jpg",
                 "label": "Tessuto Glitterato Rosa"
             },
@@ -526,24 +542,12 @@
                 "label": "pois marrone"
             },
             {
-                "file": "Tessuto Glitterato Argento.jpg",
-                "label": "Tessuto glitterato argento chiaro"
-            },
-            {
-                "file": "Tessuto Glitterato Oro Marina.jpg",
-                "label": "Tessuto glitterato oro"
-            },
-            {
                 "file": "Nemo Bronzo.jpg",
                 "label": "Nemo bronzo"
             },
             {
                 "file": "Nemo.jpg",
                 "label": "Nemo"
-            },
-            {
-                "file": "Tessuto Glitterato Multicolor.jpg",
-                "label": "Tessuto glitterato multicolor"
             },
             {
                 "file": "Maculato Glitter.jpg",
@@ -568,10 +572,6 @@
             {
                 "file": "trama fiore argento.jpg",
                 "label": "trama fiore argento"
-            },
-            {
-                "file": "glitter oro rosa fine.jpg",
-                "label": "glitter oro rosa fine"
             },
             {
                 "file": "tessuto glitterato mon.jpg",
