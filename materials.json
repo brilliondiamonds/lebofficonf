@@ -172,32 +172,16 @@
                 "label": "Cavallino Naturale"
             },
             {
-                "file": "cavallino bordeaux def.jpg",
-                "label": "Cavallino Bordeaux"
-            },
-            {
-                "file": "cavallino giraffa def.jpg",
-                "label": "Cavallino Giraffa"
-            },
-            {
-                "file": "cavallino lunette def.jpg",
-                "label": "Cavallino Lunette"
-            },
-            {
-                "file": "cavallino nero def.jpg",
-                "label": "Cavallino Nero"
-            },
-            {
                 "file": "cavallino spring leo.jpg",
-                "label": "Cavallino Spring Leo"
+                "label": "cavallino spring leo"
             },
             {
-                "file": "cavallino ultraviolet def.jpg",
-                "label": "Cavallino Ultraviolet"
+                "file": "lunette.jpg",
+                "label": "cavallino lunette"
             },
             {
-                "file": "cavallino verde def.jpg",
-                "label": "Cavallino Verde"
+                "file": "gir nat.jpg",
+                "label": "giraffa naturale"
             },
             {
                 "file": "cavallino viola def.jpg",
@@ -220,28 +204,44 @@
                 "label": "Lunette"
             },
             {
-                "file": "bb.jpg",
-                "label": "Cavallino beige"
-            },
-            {
-                "file": "viola.jpg",
-                "label": "Cavallino eco viola"
-            },
-            {
-                "file": "gir nat.jpg",
-                "label": "giraffa naturale"
-            },
-            {
-                "file": "pelle leo.jpg",
-                "label": "pelle leo"
+                "file": "cavallino giraffa.jpg",
+                "label": "cavallino giraffa"
             },
             {
                 "file": "Cavallino Zebra Grande.jpg",
                 "label": "Cavallino Zebra Grande"
             },
             {
+                "file": "bb.jpg",
+                "label": "Cavallino beige"
+            },
+            {
+                "file": "cavallino bordeaux.jpg",
+                "label": "cavallino bordeaux"
+            },
+            {
+                "file": "cavallino ultraviolet.jpg",
+                "label": "cavallino ultraviolet"
+            },
+            {
+                "file": "viola.jpg",
+                "label": "Cavallino eco viola"
+            },
+            {
                 "file": "cavallino bluette.jpg",
                 "label": "cavallino bluette"
+            },
+            {
+                "file": "cavallino verde.jpg",
+                "label": "cavallino verde"
+            },
+            {
+                "file": "cavallino nero.jpg",
+                "label": "cavallino nero"
+            },
+            {
+                "file": "pelle leo.jpg",
+                "label": "pelle leo"
             }
         ]
     },
