@@ -846,16 +846,8 @@
         "folder": "PELLI STAMPATE",
         "swatches": [
             {
-                "file": "Cocco Beige.jpg",
-                "label": "Cocco Beige"
-            },
-            {
                 "file": "Cocco Bianco.jpg",
                 "label": "Cocco Bianco"
-            },
-            {
-                "file": "Cocco Blu Marino.jpg",
-                "label": "Cocco Blu Marino"
             },
             {
                 "file": "Cocco-blu.jpg",
@@ -884,10 +876,6 @@
             {
                 "file": "Cocco Platino.jpg",
                 "label": "Cocco Platino"
-            },
-            {
-                "file": "Cocco Tabacco.jpg",
-                "label": "Cocco Tabacco"
             },
             {
                 "file": "Cocco Verde Lucido.jpg",
@@ -948,6 +936,10 @@
             {
                 "file": "pelle bianca spig.jpg",
                 "label": "pelle bianca spigata"
+            },
+            {
+                "file": "Cocco-caramello.jpg",
+                "label": "Cocco caramello"
             }
         ]
     },
