@@ -184,6 +184,10 @@
                 "label": "giraffa naturale"
             },
             {
+                "file": "cavallino zebra azzurro def.jpg",
+                "label": "Cavallino Zebra Azzurro"
+            },
+            {
                 "file": "cavallino zebra fine def.jpg",
                 "label": "Cavallino Zebra Fine"
             },
@@ -338,20 +342,32 @@
         "folder": "GLITTER",
         "swatches": [
             {
-                "file": "Fiore Glitter Bordeaux.jpg",
-                "label": "Fiore Glitter Bordeaux"
-            },
-            {
-                "file": "Fiore Glitter Marrone.jpg",
-                "label": "Fiore Glitter Marrone"
-            },
-            {
                 "file": "Glitter Fine Argento.jpg",
                 "label": "Glitter Fine Argento"
             },
             {
+                "file": "Glitter Fine Grigio Antracite.jpg",
+                "label": "Glitter Fine Grigio Antracite"
+            },
+            {
+                "file": "Glitter Fine Nude.jpg",
+                "label": "Glitter Fine Nude"
+            },
+            {
+                "file": "Glitter Fine Marrone.jpg",
+                "label": "Glitter Fine Marrone"
+            },
+            {
                 "file": "Glitter Fine Blu.jpg",
                 "label": "Glitter Fine Blu"
+            },
+            {
+                "file": "Glitter Fine Nero.jpg",
+                "label": "Glitter Fine Nero"
+            },
+            {
+                "file": "Glitter Grosso Bianco Matt.jpg",
+                "label": "Glitter Grosso Bianco Matt"
             },
             {
                 "file": "Glitter Fine Dorato.jpg",
@@ -362,22 +378,6 @@
                 "label": "Glitter Fine Fucsia"
             },
             {
-                "file": "Glitter Fine Grigio Antracite.jpg",
-                "label": "Glitter Fine Grigio Antracite"
-            },
-            {
-                "file": "Glitter Fine Marrone.jpg",
-                "label": "Glitter Fine Marrone"
-            },
-            {
-                "file": "Glitter Fine Nero.jpg",
-                "label": "Glitter Fine Nero"
-            },
-            {
-                "file": "Glitter Fine Nude.jpg",
-                "label": "Glitter Fine Nude"
-            },
-            {
                 "file": "Glitter Fine Petrolio.jpg",
                 "label": "Glitter Fine Petrolio"
             },
@@ -386,8 +386,12 @@
                 "label": "Glitter Fine Rosso"
             },
             {
-                "file": "Glitter Grosso Bianco Matt.jpg",
-                "label": "Glitter Grosso Bianco Matt"
+                "file": "Fiore Glitter Bordeaux.jpg",
+                "label": "Fiore Glitter Bordeaux"
+            },
+            {
+                "file": "Fiore Glitter Marrone.jpg",
+                "label": "Fiore Glitter Marrone"
             },
             {
                 "file": "Glitter Grosso Blu.jpg",
