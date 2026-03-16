@@ -944,6 +944,10 @@
             {
                 "file": "poi.jpg",
                 "label": "pelle pois marrone"
+            },
+            {
+                "file": "struzzo.jpg",
+                "label": "struzzo nero"
             }
         ]
     },
