@@ -1453,6 +1453,22 @@
                 "label": "boucle giallo"
             },
             {
+                "file": "boucle grigio e argento.jpg",
+                "label": "boucle grigio e argento"
+            },
+            {
+                "file": "boucle grigio nero e bianco.jpg",
+                "label": "boucle grigio e nero"
+            },
+            {
+                "file": "boucle latte e oro.jpg",
+                "label": "boucle latte e oro"
+            },
+            {
+                "file": "boucle lilla.jpg",
+                "label": "boucle lilla"
+            },
+            {
                 "file": "boucle rosa antico.jpg",
                 "label": "boucle rosa antico"
             },
@@ -1461,8 +1477,20 @@
                 "label": "boucle rosa e oro"
             },
             {
+                "file": "boucle rosso e argento.jpg",
+                "label": "boucle rosso e argento"
+            },
+            {
+                "file": "boucle salmone.jpg",
+                "label": "boucle salmone"
+            },
+            {
                 "file": "boucle quadri.jpg",
                 "label": "boucle quadri"
+            },
+            {
+                "file": "boucle salvia.jpg",
+                "label": "boucle salvia"
             },
             {
                 "file": "tartan blu e rosso.jpg",
@@ -1503,10 +1531,6 @@
             {
                 "file": "principe di galles lana.jpg",
                 "label": "Principe di galles lana"
-            },
-            {
-                "file": "lana blu.jpg",
-                "label": "lana blu"
             }
         ]
     }
