@@ -184,10 +184,6 @@
                 "label": "giraffa naturale"
             },
             {
-                "file": "cavallino zebra azzurro def.jpg",
-                "label": "Cavallino Zebra Azzurro"
-            },
-            {
                 "file": "cavallino zebra fine def.jpg",
                 "label": "Cavallino Zebra Fine"
             },
@@ -198,6 +194,10 @@
             {
                 "file": "Cavallino Zebra Grande.jpg",
                 "label": "Cavallino Zebra Grande"
+            },
+            {
+                "file": "cavallino zebra azzurro.jpg",
+                "label": "cavallino zebra azzurro"
             },
             {
                 "file": "bb.jpg",
