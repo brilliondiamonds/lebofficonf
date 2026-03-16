@@ -426,12 +426,16 @@
                 "label": "Glitter Grosso Poudre"
             },
             {
-                "file": "glitter grosso antracite.jpg",
-                "label": "Glitter Grosso Antracite"
+                "file": "Glitter Grosso Rosa.jpg",
+                "label": "glitter grosso rosa"
             },
             {
                 "file": "glitter grosso rosa mat.jpg",
                 "label": "Glitter Grosso Rosa Mat"
+            },
+            {
+                "file": "glitter grosso antracite.jpg",
+                "label": "Glitter Grosso Antracite"
             },
             {
                 "file": "glitter grosso rosso.jpg",
@@ -440,10 +444,6 @@
             {
                 "file": "Glitter Grosso Grigio.jpg",
                 "label": "glitter grosso grigio"
-            },
-            {
-                "file": "rosa m.jpg",
-                "label": "Rosa Medio"
             },
             {
                 "file": "Glitter Grosso Viola.jpg",
@@ -504,10 +504,6 @@
             {
                 "file": "Glitter Grosso Grigio Rosa.jpg",
                 "label": "glitter grosso grigio/rosa"
-            },
-            {
-                "file": "Glitter Grosso Rosa.jpg",
-                "label": "glitter grosso rosa"
             },
             {
                 "file": "Glitter Grosso Celeste Matt.jpg",
