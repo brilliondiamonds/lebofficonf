@@ -196,6 +196,10 @@
                 "label": "cavallino zebra fine"
             },
             {
+                "file": "cavallino zebra azzurro.jpg",
+                "label": "cavallino zebra azzurro"
+            },
+            {
                 "file": "cavallino ultraviolet.jpg",
                 "label": "cavallino ultraviolet"
             },
@@ -230,10 +234,6 @@
             {
                 "file": "pelle leo.jpg",
                 "label": "pelle leo"
-            },
-            {
-                "file": "cavallino zebra azzurro.jpg",
-                "label": "cavallino zebra azzurro"
             }
         ]
     },
