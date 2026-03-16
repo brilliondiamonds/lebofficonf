@@ -854,6 +854,10 @@
                 "label": "Cocco Blu"
             },
             {
+                "file": "Cocco-caramello.jpg",
+                "label": "Cocco caramello"
+            },
+            {
                 "file": "Cocco-bordeaux.jpg",
                 "label": "Cocco Bordeaux"
             },
@@ -875,14 +879,6 @@
             },
             {
                 "file": "Cocco-verde.jpg",
-                "label": "Cocco Verde Lucido"
-            },
-            {
-                "file": "Cocco Verde Oliva.jpg",
-                "label": "Cocco Verde Oliva"
-            },
-            {
-                "file": "Cocco Verde.jpg",
                 "label": "Cocco Verde"
             },
             {
@@ -932,10 +928,6 @@
             {
                 "file": "pelle bianca spig.jpg",
                 "label": "pelle bianca spigata"
-            },
-            {
-                "file": "Cocco-caramello.jpg",
-                "label": "Cocco caramello"
             }
         ]
     },
