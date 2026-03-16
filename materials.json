@@ -342,20 +342,8 @@
         "folder": "GLITTER",
         "swatches": [
             {
-                "file": "Fiore Glitter Bordeaux.jpg",
-                "label": "Fiore Glitter Bordeaux"
-            },
-            {
-                "file": "Fiore Glitter Marrone.jpg",
-                "label": "Fiore Glitter Marrone"
-            },
-            {
                 "file": "Glitter Fine Argento.jpg",
                 "label": "Glitter Fine Argento"
-            },
-            {
-                "file": "Glitter Fine Blu.jpg",
-                "label": "Glitter Fine Blu"
             },
             {
                 "file": "Glitter Fine Dorato.jpg",
@@ -364,6 +352,18 @@
             {
                 "file": "Glitter Fine Fucsia.jpg",
                 "label": "Glitter Fine Fucsia"
+            },
+            {
+                "file": "Glitter Fine Blu.jpg",
+                "label": "Glitter Fine Blu"
+            },
+            {
+                "file": "Fiore Glitter Bordeaux.jpg",
+                "label": "Fiore Glitter Bordeaux"
+            },
+            {
+                "file": "Fiore Glitter Marrone.jpg",
+                "label": "Fiore Glitter Marrone"
             },
             {
                 "file": "Glitter Fine Grigio Antracite.jpg",
