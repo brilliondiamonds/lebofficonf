@@ -794,6 +794,18 @@
             {
                 "file": "Pelle mattone scuro.jpg",
                 "label": "Pelle mattone scuro"
+            },
+            {
+                "file": "pelle liscia ottanio.jpg",
+                "label": "pelle liscia ottanio"
+            },
+            {
+                "file": "pelle liscia viola chiaro.jpg",
+                "label": "pelle liscia viola chiaro"
+            },
+            {
+                "file": "pelle viola shock.jpg",
+                "label": "pelle viola shock"
             }
         ]
     },
