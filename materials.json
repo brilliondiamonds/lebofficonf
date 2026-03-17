@@ -786,6 +786,14 @@
             {
                 "file": "pelle liscia testa di moro.jpg",
                 "label": "pelle liscia testa di moro"
+            },
+            {
+                "file": "pelle liscia mattone chiaro.jpg",
+                "label": "pelle liscia mattone chiaro"
+            },
+            {
+                "file": "Pelle mattone scuro.jpg",
+                "label": "Pelle mattone scuro"
             }
         ]
     },
