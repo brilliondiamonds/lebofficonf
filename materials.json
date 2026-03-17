@@ -695,6 +695,10 @@
             {
                 "file": "Vernice caramello.jpg",
                 "label": "Vernice caramello"
+            },
+            {
+                "file": "vernice corallo.jpg",
+                "label": "Vernice corallo"
             }
         ]
     },
