@@ -691,6 +691,10 @@
             {
                 "file": "vernice bianca.jpg",
                 "label": "Vernice Bianca"
+            },
+            {
+                "file": "Vernice caramello.jpg",
+                "label": "Vernice caramello"
             }
         ]
     },
