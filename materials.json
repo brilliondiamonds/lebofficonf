@@ -814,6 +814,14 @@
             {
                 "file": "pelle verde prato.jpg",
                 "label": "pelle verde prato"
+            },
+            {
+                "file": "Pelle liscia arancione.jpg",
+                "label": "Pelle liscia arancione"
+            },
+            {
+                "file": "pelle liscia arancio scuro.jpg",
+                "label": "pelle liscia arancio scuro"
             }
         ]
     },
