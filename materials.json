@@ -228,12 +228,12 @@
                 "label": "cavallino viola"
             },
             {
-                "file": "pelle leo.jpg",
-                "label": "pelle leo"
-            },
-            {
                 "file": "cavallino beige.jpg",
                 "label": "cavallino beige"
+            },
+            {
+                "file": "pelle leo.jpg",
+                "label": "pelle leo"
             }
         ]
     },
