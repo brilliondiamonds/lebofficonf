@@ -715,6 +715,10 @@
             {
                 "file": "vernice giallo fluo.jpg",
                 "label": "Vernice giallo fluo"
+            },
+            {
+                "file": "Vernice grigi.jpg",
+                "label": "Vernice grigia"
             }
         ]
     },
