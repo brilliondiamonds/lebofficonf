@@ -1361,6 +1361,10 @@
             {
                 "file": "velluto giallo.jpg",
                 "label": "Velluto giallo"
+            },
+            {
+                "file": "velluto grigio.jpg",
+                "label": "Velluto grigio"
             }
         ]
     },
