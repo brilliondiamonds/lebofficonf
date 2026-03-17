@@ -200,6 +200,10 @@
                 "label": "cavallino zebrato azzurro"
             },
             {
+                "file": "bb.jpg",
+                "label": "Cavallino beige"
+            },
+            {
                 "file": "cavallino bordeaux.jpg",
                 "label": "cavallino bordeaux"
             },
@@ -230,10 +234,6 @@
             {
                 "file": "pelle leo.jpg",
                 "label": "pelle leo"
-            },
-            {
-                "file": "cavallino beige.jpg",
-                "label": "cavallino beige"
             }
         ]
     },
@@ -762,6 +762,10 @@
             {
                 "file": "pelle liscia blu notte.jpg",
                 "label": "pelle blu notte"
+            },
+            {
+                "file": "Pelle grigio chiaro.jpg",
+                "label": "Pelle grigio chiaro"
             }
         ]
     },
