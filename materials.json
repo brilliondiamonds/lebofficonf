@@ -770,6 +770,14 @@
             {
                 "file": "Pelle grigio scuro.jpg",
                 "label": "Pelle grigio scuro"
+            },
+            {
+                "file": "pelle lilla.jpg",
+                "label": "pelle lilla"
+            },
+            {
+                "file": "pelle lilla scuro.jpg",
+                "label": "pelle lilla scuro"
             }
         ]
     },
