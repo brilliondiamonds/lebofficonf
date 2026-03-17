@@ -719,6 +719,10 @@
             {
                 "file": "Vernice grigi.jpg",
                 "label": "Vernice grigia"
+            },
+            {
+                "file": "vernice melanzana.jpg",
+                "label": "Vernice melanzana"
             }
         ]
     },
