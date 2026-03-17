@@ -585,10 +585,6 @@
                 "label": "Laminato Bronzo"
             },
             {
-                "file": "Laminato Marrone.jpg",
-                "label": "Laminato Marrone"
-            },
-            {
                 "file": "Laminato bronzo antico.jpg",
                 "label": "Laminato Bronzo Antico"
             },
@@ -609,16 +605,8 @@
                 "label": "Laminato Platino Arricciato"
             },
             {
-                "file": "Laminato platino rigato.jpg",
-                "label": "Laminato Platino Rigato"
-            },
-            {
                 "file": "Laminato platino.jpg",
                 "label": "Laminato Platino"
-            },
-            {
-                "file": "Laminato rosa chiaro.jpg",
-                "label": "Laminato Rosa Chiaro"
             },
             {
                 "file": "Laminato tie dye oro.jpg",
@@ -629,16 +617,8 @@
                 "label": "Laminato Tie Dye Rosa Antico"
             },
             {
-                "file": "Pelle carte d'or.jpg",
-                "label": "Pelle Carte d'Or"
-            },
-            {
                 "file": "Pelle glitterata Oro.jpg",
                 "label": "Pelle Glitterata Oro"
-            },
-            {
-                "file": "Pelle glitterata nera.jpg",
-                "label": "Pelle Glitterata Nera"
             },
             {
                 "file": "Pelle glitterata platino.jpg",
@@ -677,14 +657,6 @@
                 "label": "Vernice Nera"
             },
             {
-                "file": "Vernice nude chiaro.jpg",
-                "label": "Vernice Nude Chiaro"
-            },
-            {
-                "file": "Vernice nude scuro.jpg",
-                "label": "Vernice Nude Scuro"
-            },
-            {
                 "file": "Vernice rossa.jpg",
                 "label": "Vernice Rossa"
             },
@@ -719,10 +691,6 @@
             {
                 "file": "vernice bianca.jpg",
                 "label": "Vernice Bianca"
-            },
-            {
-                "file": "vernice rosa.jpg",
-                "label": "x"
             }
         ]
     },
