@@ -766,6 +766,10 @@
             {
                 "file": "Pelle grigio chiaro.jpg",
                 "label": "Pelle grigio chiaro"
+            },
+            {
+                "file": "Pelle grigio scuro.jpg",
+                "label": "Pelle grigio scuro"
             }
         ]
     },
