@@ -707,6 +707,10 @@
             {
                 "file": "Vernice fango.jpg",
                 "label": "Vernice fango"
+            },
+            {
+                "file": "vernice fucsia.jpg",
+                "label": "Vernice fucsia"
             }
         ]
     },
