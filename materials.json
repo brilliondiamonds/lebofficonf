@@ -732,6 +732,10 @@
         "folder": "PELLE LISCIA",
         "swatches": [
             {
+                "file": "Pelle liscia bianca.jpg",
+                "label": "pelle liscia bianca"
+            },
+            {
                 "file": "crem.jpg",
                 "label": "Crema"
             },
