@@ -794,6 +794,14 @@
             {
                 "file": "pelle liscia arancio scuro.jpg",
                 "label": "pelle liscia arancio scuro"
+            },
+            {
+                "file": "Pelle lisci bordeaux.jpg",
+                "label": "Pelle liscia bordeaux"
+            },
+            {
+                "file": "Pelle liscia nera.jpg",
+                "label": "Pelle liscia nera"
             }
         ]
     },
