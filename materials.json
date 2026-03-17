@@ -1381,6 +1381,14 @@
             {
                 "file": "velluto nero stellato.jpg",
                 "label": "Velluto nero stellato"
+            },
+            {
+                "file": "velluto oro intenso.jpg",
+                "label": "Velluto oro intenso"
+            },
+            {
+                "file": "velluto petrolio.jpg",
+                "label": "Velluto petrolio"
             }
         ]
     },
