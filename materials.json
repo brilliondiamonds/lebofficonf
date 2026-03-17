@@ -711,6 +711,10 @@
             {
                 "file": "vernice fucsia.jpg",
                 "label": "Vernice fucsia"
+            },
+            {
+                "file": "vernice giallo fluo.jpg",
+                "label": "Vernice giallo fluo"
             }
         ]
     },
