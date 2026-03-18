@@ -1050,6 +1050,22 @@
                         "label": "Tomaia 2"
                     }
                 ]
+            },
+            {
+                "id": "giorgia-55-bally",
+                "name": "Giorgia 55 Bally",
+                "folder": "55 bally",
+                "base": "giorgia55ballyimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "giorgia55ballytomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "giorgia55ballysotto.png",
+                        "label": "Sotto"
+                    }
+                ]
             }
         ]
     },
