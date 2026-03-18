@@ -1042,7 +1042,7 @@
                 "label": "Cocco viola scuro"
             },
             {
-                "file": "pelle intrecciata marrone.jpeg",
+                "file": "pelle intrecciata marrone.jpg",
                 "label": "pelle intrecciata marrone"
             }
         ]
@@ -1161,6 +1161,10 @@
                 "label": "spigato grigio"
             },
             {
+                "file": "pelle intrecciata marrone.jpg",
+                "label": "pelle intrecciata marrone"
+            },
+            {
                 "file": "pelle bianca spig.jpg",
                 "label": "pelle bianca spigata"
             },
@@ -1187,10 +1191,6 @@
             {
                 "file": "rafia oliva e bianco.jpg",
                 "label": "Rafia oliva e bianco"
-            },
-            {
-                "file": "pelle intrecciata marrone.jpeg",
-                "label": "pelle intrecciata marrone"
             }
         ]
     },
