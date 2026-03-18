@@ -736,6 +736,22 @@
                         "label": "tomaia 2"
                     }
                 ]
+            },
+            {
+                "id": "giorgia-55",
+                "name": "Giorgia 55",
+                "folder": "55",
+                "base": "giorgia55codaimmaginebase.png",
+                "masks": [
+                    {
+                        "file": "tomaia.png",
+                        "label": "Tomaia"
+                    },
+                    {
+                        "file": "sotto.png",
+                        "label": "Sotto"
+                    }
+                ]
             }
         ]
     },
