@@ -155,6 +155,10 @@
             {
                 "file": "camoscio l.jpg",
                 "label": "camoscio leo"
+            },
+            {
+                "file": "foto 2.png",
+                "label": "test"
             }
         ]
     },
