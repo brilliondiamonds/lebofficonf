@@ -796,10 +796,6 @@
                 "label": "Pelle liscia cuoio scuro"
             },
             {
-                "file": "nude scu.jpg",
-                "label": "Nude Scuro"
-            },
-            {
                 "file": "talpa c.jpg",
                 "label": "Talpa Chiaro"
             },
@@ -892,8 +888,8 @@
                 "label": "Pelle liscia fucsia"
             },
             {
-                "file": "IMG_4862.jpeg",
-                "label": "Pelle nude scuro 2"
+                "file": "IMG_4877.jpeg",
+                "label": "Nude scuro"
             }
         ]
     },
