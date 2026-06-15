@@ -1047,10 +1047,6 @@
             },
             {
                 "file": "poi.jpg",
-                "label": "pelle pois oro"
-            },
-            {
-                "file": "poi.jpg",
                 "label": "pelle pois marrone"
             },
             {
@@ -1064,6 +1060,10 @@
             {
                 "file": "pelle intrecciata marrone.jpg",
                 "label": "pelle intrecciata marrone"
+            },
+            {
+                "file": "77c8ee29-4a01-47f1-9021-dc32f94e7407.jpeg",
+                "label": "Pelle pois oro"
             }
         ]
     },
