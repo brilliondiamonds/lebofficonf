@@ -33,10 +33,6 @@
                 "label": "Camoscio Arancio"
             },
             {
-                "file": "camoscio biscotto.jpg",
-                "label": "Camoscio Biscotto"
-            },
-            {
                 "file": "Camoscio cognac.jpg",
                 "label": "Camoscio Cognac"
             },
@@ -55,10 +51,6 @@
             {
                 "file": "camoscio talpa.jpg",
                 "label": "Camoscio Talpa"
-            },
-            {
-                "file": "camoscio ultraviolet.jpg",
-                "label": "Camoscio Ultraviolet"
             },
             {
                 "file": "camoscio verde bottiglia.jpg",
@@ -81,10 +73,6 @@
                 "label": "camoscio grigio topo"
             },
             {
-                "file": "camoscio beige.jpg",
-                "label": "Camoscio beige"
-            },
-            {
                 "file": "Camoscio sabbia.jpg",
                 "label": "Camoscio sabbia"
             },
@@ -101,10 +89,6 @@
                 "label": "camoscio ottanio"
             },
             {
-                "file": "camoscio grigio scuro.jpg",
-                "label": "camoscio grigio scuro"
-            },
-            {
                 "file": "camoscio verde oliva.jpg",
                 "label": "camoscio verde oliva"
             },
@@ -117,10 +101,6 @@
                 "label": "Camoscio verde prato 2"
             },
             {
-                "file": "camoscio verde prato.jpg",
-                "label": "camoscio verde prato"
-            },
-            {
                 "file": "camoscio verde avocado.jpg",
                 "label": "camoscio verde avocado"
             },
@@ -131,10 +111,6 @@
             {
                 "file": "camoscio fucsia.jpg",
                 "label": "camoscio fucsia shock"
-            },
-            {
-                "file": "camoscio lavanda scuro.jpg",
-                "label": "camoscio lavanda scuro"
             },
             {
                 "file": "camoscio rosa confetto.jpg",
@@ -155,10 +131,6 @@
             {
                 "file": "camoscio l.jpg",
                 "label": "camoscio leo"
-            },
-            {
-                "file": "foto 2.png",
-                "label": "test"
             }
         ]
     },
@@ -546,10 +518,6 @@
                 "label": "pois marrone"
             },
             {
-                "file": "Nemo Bronzo.jpg",
-                "label": "Nemo bronzo"
-            },
-            {
                 "file": "Nemo.jpg",
                 "label": "Nemo"
             },
@@ -588,18 +556,6 @@
         "name": "Laminati e Vernici",
         "folder": "LAMINATI E VERNICI",
         "swatches": [
-            {
-                "file": "Laminato Bronzo.jpg",
-                "label": "Laminato Bronzo"
-            },
-            {
-                "file": "Laminato bronzo antico.jpg",
-                "label": "Laminato Bronzo Antico"
-            },
-            {
-                "file": "Laminato canna di fucile.jpg",
-                "label": "Laminato Canna di Fucile"
-            },
             {
                 "file": "Laminato oro arricciato.jpg",
                 "label": "Laminato Oro Arricciato"
@@ -687,14 +643,6 @@
             {
                 "file": "vernice arancione fluo.jpg",
                 "label": "Vernice Arancione Fluo"
-            },
-            {
-                "file": "vernice azzurr.jpg",
-                "label": "Vernice Azzurro"
-            },
-            {
-                "file": "vernice beige.jpg",
-                "label": "Vernice Beige"
             },
             {
                 "file": "vernice bianca.jpg",
@@ -978,10 +926,6 @@
                 "label": "Cocco Bordeaux"
             },
             {
-                "file": "Cocco Cioccolato Fondente.jpg",
-                "label": "Cocco Cioccolato Fondente"
-            },
-            {
                 "file": "Cocco Fucsia.jpg",
                 "label": "Cocco Fucsia"
             },
@@ -1028,10 +972,6 @@
             {
                 "file": "Rettile Verde.jpg",
                 "label": "Rettile Verde"
-            },
-            {
-                "file": "Pelle Spigata Grigia.jpg",
-                "label": "Pelle Spigata Grigia"
             },
             {
                 "file": "pelle bianca spig.jpg",
@@ -1125,18 +1065,6 @@
                 "label": "Spigato Azzurro"
             },
             {
-                "file": "spigato platino e arancione.jpg",
-                "label": "Spigato Platino e Arancione"
-            },
-            {
-                "file": "pelle spigata grigia.jpg",
-                "label": "pelle spigata grigia"
-            },
-            {
-                "file": "rafia beige spigata.jpg",
-                "label": "rafia beige spigata"
-            },
-            {
                 "file": "rafia a trama fine.jpg",
                 "label": "rafia a trama fine"
             },
@@ -1147,10 +1075,6 @@
             {
                 "file": "spigato bianco e nero.jpg",
                 "label": "spigato bianco e nero"
-            },
-            {
-                "file": "rafia poudre.jpg",
-                "label": "rafia poudre"
             },
             {
                 "file": "yuta.jpg",
@@ -1169,10 +1093,6 @@
                 "label": "rafia pied bronzo"
             },
             {
-                "file": "pied antracite.jpg",
-                "label": "rafia pied antracite"
-            },
-            {
                 "file": "spigato senape e nero.jpg",
                 "label": "spigato senape e nero"
             },
@@ -1181,16 +1101,8 @@
                 "label": "intrecciato talpa"
             },
             {
-                "file": "spigato grigio.jpg",
-                "label": "spigato grigio"
-            },
-            {
                 "file": "pelle intrecciata marrone.jpg",
                 "label": "pelle intrecciata marrone"
-            },
-            {
-                "file": "pelle bianca spig.jpg",
-                "label": "pelle bianca spigata"
             },
             {
                 "file": "rafia bianca e nera.jpg",
@@ -1381,10 +1293,6 @@
             {
                 "file": "velluto antracite def.jpg",
                 "label": "Velluto Antracite"
-            },
-            {
-                "file": "velluto azzurro def.jpg",
-                "label": "Velluto Azzurro"
             },
             {
                 "file": "cc.jpg",
